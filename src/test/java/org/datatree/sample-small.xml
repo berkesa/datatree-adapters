@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xml>
+	<user>
+		<id>1</id>
+		<name>test1</name>
+	</user>
+	<user>
+		<id>2</id>
+		<name>test3</name>
+	</user>
+	<user>
+		<id>2</id>
+		<name>test3</name>
+	</user>
+</xml>

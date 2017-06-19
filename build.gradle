@@ -1,0 +1,195 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    testCompile 'junit:junit:4.12'
+    
+	// ====================== JSON ============================
+	    
+    // --- BOON PARSER ---
+	
+	// https://mvnrepository.com/artifact/io.fastjson/boon
+	compile group: 'io.fastjson', name: 'boon', version: '0.34'
+
+    // --- JACKSON PARSER ---
+    
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr3'
+
+	// --- GSON PARSER ---
+	
+	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'	
+
+	// --- GENSON JSON PARSER ---
+	
+	// https://mvnrepository.com/artifact/com.owlike/genson
+	compile group: 'com.owlike', name: 'genson', version: '1.4'
+
+	// --- BSON JSON PARSER ---
+
+	// https://mvnrepository.com/artifact/org.mongodb/bson
+	compile group: 'org.mongodb', name: 'bson', version: '3.4.2'
+
+    // --- JSON-SIMPLE PARSER ---
+    	
+	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+		
+	// --- FAST JSON ---
+	
+	// https://mvnrepository.com/artifact/com.alibaba/fastjson
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.31'
+	
+	// --- JSON-IO ---
+	
+	// https://mvnrepository.com/artifact/com.cedarsoftware/json-io
+	compile group: 'com.cedarsoftware', name: 'json-io', version: '4.9.12'
+	
+	// --- JSON-SMART ---
+	
+	// https://mvnrepository.com/artifact/net.minidev/json-smart
+	compile group: 'net.minidev', name: 'json-smart', version: '2.3'
+	
+	// --- NANOJSON ---
+	
+	// https://mvnrepository.com/artifact/com.grack/nanojson
+	compile group: 'com.grack', name: 'nanojson', version: '1.2'
+	
+	// --- DSL JSON ---
+	
+	// https://mvnrepository.com/artifact/com.dslplatform/dsl-json
+	compile group: 'com.dslplatform', name: 'dsl-json', version: '1.4.0'
+	
+	// --- APACHE JOHNZON ---
+	
+	// https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-mapper
+	compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version: '1.1.0'
+	
+	// --- JSON API FOR APACHE JOHNZON ---
+	
+	// https://mvnrepository.com/artifact/javax.json/javax.json-api
+	compile group: 'javax.json', name: 'javax.json-api', version: '1.0'
+	
+	// --- JODD JSON ---
+	
+	// https://mvnrepository.com/artifact/org.jodd/jodd-json
+	compile group: 'org.jodd', name: 'jodd-json', version: '3.8.5'
+	
+	// --- SOJO ---
+	
+	// https://mvnrepository.com/artifact/net.sf.sojo/sojo
+	compile group: 'net.sf.sojo', name: 'sojo', version: '1.0.8'	
+	
+	// --- JSONUTIL ---
+	
+	// https://mvnrepository.com/artifact/org.kopitubruk.util/JSONUtil
+	compile group: 'org.kopitubruk.util', name: 'JSONUtil', version: '1.10.4'
+	
+	// --- FLEXJSON ---
+	
+	// https://mvnrepository.com/artifact/net.sf.flexjson/flexjson
+	compile group: 'net.sf.flexjson', name: 'flexjson', version: '3.3'
+	
+	// ====================== YAML ============================
+	
+	// --- BUILTIN YAML / SNAKEYAML ---
+	
+	// https://mvnrepository.com/artifact/org.yaml/snakeyaml
+	compile group: 'org.yaml', name: 'snakeyaml', version: '1.18'
+	
+	// --- JACKSON YAML ---
+	
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0.pr3'	
+
+	// ====================== CSV ============================
+
+	// --- OPENCSV ---
+	
+	// https://mvnrepository.com/artifact/net.sf.opencsv/opencsv
+	compile group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'
+	
+	// ====================== PROPERTIES ============================
+	
+	// --- JACKSON PROPERTIES ---
+	
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.0.pr3'
+
+	// ====================== XML ============================
+
+	// --- JACKSON XML ---
+
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.0.pr3'
+
+	// --- XSTREAM ---
+	
+	// https://mvnrepository.com/artifact/xstream/xstream
+	compile group: 'xstream', name: 'xstream', version: '1.2.2'
+
+	// ====================== TOML ============================
+	
+	// --- TOML4J API ---
+	
+	// https://mvnrepository.com/artifact/com.moandjiezana.toml/toml4j
+	compile group: 'com.moandjiezana.toml', name: 'toml4j', version: '0.7.1'
+
+	// --- JTOML API (GRISON) ---
+	
+	// https://mvnrepository.com/artifact/me.grison/jtoml
+	compile group: 'me.grison', name: 'jtoml', version: '1.0.0'
+
+	// --- JTOML API (IO.OUS) ---
+	
+	// https://mvnrepository.com/artifact/io.ous/jtoml
+	compile group: 'io.ous', name: 'jtoml', version: '2.0.0'
+
+	// ====================== SMILE ============================
+
+	// --- JACKSON SMILE (BINARY) ---
+
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.0.pr3'
+
+	// ====================== CBOR ============================
+
+	// --- JACKSON CBOR (BINARY) ---
+	
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.0.pr3'
+
+	// ====================== BSON BINARY ============================
+	
+	// https://mvnrepository.com/artifact/de.undercouch/bson4jackson
+	compile group: 'de.undercouch', name: 'bson4jackson', version: '2.7.0'
+
+	// ====================== MESSAGE PACK ============================
+	
+	// --- MSGPACK API ---
+		
+	// https://mvnrepository.com/artifact/org.msgpack/msgpack
+	compile group: 'org.msgpack', name: 'msgpack', version: '0.6.12'
+
+	// --- JACKSON MSGPACK ---
+	
+	// https://mvnrepository.com/artifact/org.msgpack/jackson-dataformat-msgpack
+	compile group: 'org.msgpack', name: 'jackson-dataformat-msgpack', version: '0.8.12'
+	
+	// ====================== ION ============================
+	
+	// https://mvnrepository.com/artifact/software.amazon.ion/ion-java
+	compile group: 'software.amazon.ion', name: 'ion-java', version: '1.0.2'
+	
+}
+
+test {
+    exclude '**/ExtendedTreeTest.class'
+    exclude '**/TreeTestSuite.class'
+    exclude '**/Performance*'
+}

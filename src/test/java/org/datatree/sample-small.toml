@@ -1,0 +1,28 @@
+title = "TOML Example"
+"sub title" = "Now with quoted keys"
+
+[database]
+  ports = [ 8001, 8001, 8002 ]
+  enabled = true
+  [database.credentials]
+    password = "password"
+    
+[servers]
+  cluster = "hyades"
+  [servers.alpha]
+  ip = "10.0.0.1"
+  
+[[networks]]
+  name = "Level 1"
+  [networks.status]
+    bandwidth = 10
+
+[[networks]]
+  name = "Level 2"
+
+[[networks]]
+  name = "Level 3"
+  [[networks.operators]]
+    location = "Geneva"
+  [[networks.operators]]
+    location = "Paris"
