@@ -77,3 +77,24 @@ ION adapters:
 Java Object Serialization:
 
 - Built-in API
+
+## Usage
+
+Tree tree = new Tree();
+
+tree.put("address.city", "Washington D.C.");
+tree.put("address.zip", 20000);
+
+String json = tree.toString("json");
+String xml = tree.toString("xml");
+String yaml = tree.toString("yaml");
+String toml = tree.toString("toml");
+String csv = tree.toString("csv");
+String tsv = tree.toString("tsv");
+String properties = tree.toString("properties");
+
+byte[] bson = tree.toBinary("bson");
+byte[] cbor = tree.toBinary("cbor");
+byte[] smile = tree.toBinary("smile");
+byte[] ion = tree.toBinary("ion");
+byte[] serializedJavaObject = tree.toBinary("java");
