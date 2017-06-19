@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Map;
 
-import org.datatree.dom.converters.DataConverterRegistry;
+import io.datatree.dom.converters.DataConverterRegistry;
 
 /**
  * Extended writer for NanoJSON API.

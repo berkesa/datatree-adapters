@@ -80,6 +80,7 @@ Java Object Serialization:
 
 ## Usage
 
+```java
 Tree tree = new Tree();
 
 tree.put("address.city", "Washington D.C.");
@@ -87,14 +88,22 @@ tree.put("address.zip", 20000);
 
 String json = tree.toString("json");
 String xml = tree.toString("xml");
-String yaml = tree.toString("yaml");
 String toml = tree.toString("toml");
 String csv = tree.toString("csv");
 String tsv = tree.toString("tsv");
 String properties = tree.toString("properties");
+String yaml = tree.toString("yaml");
 
-byte[] bson = tree.toBinary("bson");
+Tree yamlCopy = new Tree(yaml, "yaml");
+
+byte[] ion = tree.toBinary("ion");
 byte[] cbor = tree.toBinary("cbor");
 byte[] smile = tree.toBinary("smile");
-byte[] ion = tree.toBinary("ion");
-byte[] serializedJavaObject = tree.toBinary("java");
+byte[] java = tree.toBinary("java");
+byte[] bson = tree.toBinary("bson");
+
+Tree bsonCopy = new Tree(bson, "bson");
+
+String city = bsonCopy.get("address.city", "defaultValue");
+int zip = bsonCopy.get("address.zip", 1000);
+```
