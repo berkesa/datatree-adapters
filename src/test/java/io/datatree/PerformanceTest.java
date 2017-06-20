@@ -17,13 +17,14 @@
  */
 package io.datatree;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Properties;
 
 import org.junit.Test;
 
-import io.datatree.Tree;
 import io.datatree.dom.TreeReaderRegistry;
 import io.datatree.dom.TreeWriterRegistry;
 import junit.framework.TestCase;
@@ -67,7 +68,7 @@ public abstract class PerformanceTest extends TestCase {
 		if (!DO_LARGE_TEST) {
 			return;
 		}
-		
+
 		// TODO Missing file
 		long duration = doReaderTest("sample-large.json", LARGE_READER_LOOPS);
 		printResult(duration, false, true);
@@ -87,7 +88,7 @@ public abstract class PerformanceTest extends TestCase {
 		if (!DO_LARGE_TEST) {
 			return;
 		}
-		
+
 		// TODO Missing file
 		long duration = doWriterTest("sample-large.json", LARGE_WRITER_LOOPS);
 		printResult(duration, true, false);
@@ -153,7 +154,16 @@ public abstract class PerformanceTest extends TestCase {
 		if (json != null) {
 			return json;
 		}
-		byte[] bytes = readFully(PerformanceTest.class.getResourceAsStream(name));
+
+		Properties p = System.getProperties();
+		for (Object key : p.keySet()) {
+			System.out.println(key + " = " + p.getProperty(String.valueOf(key)));
+		}
+		InputStream in = PerformanceTest.class.getResourceAsStream("/" + name);
+		if (in == null) {
+			in = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/" + name);
+		}
+		byte[] bytes = readFully(in);
 		json = new String(bytes, "UTF8");
 		json = json.trim();
 		jsons.put(name, json);
