@@ -1,4 +1,21 @@
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'com.github.berkesa'
+archivesBaseName = 'datatree-adapters'
+version =  '1.0.0'
+
+jar {
+    baseName = 'datatree-adapters'
+    manifest {
+        attributes 'Implementation-Title': 'DataTree Adapters',
+                   'Implementation-Version': version
+    }    
+}
 
 repositories {
     jcenter()
@@ -7,6 +24,8 @@ repositories {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     testCompile 'junit:junit:4.12'
+    
+    compile project(':datatree')
     
 	// ====================== JSON ============================
 	    
@@ -192,4 +211,18 @@ test {
     exclude '**/ExtendedTreeTest.class'
     exclude '**/TreeTestSuite.class'
     exclude '**/Performance*'
+}
+
+task sourcesJar(type: Jar) {
+    baseName = 'datatree-adapters'
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }

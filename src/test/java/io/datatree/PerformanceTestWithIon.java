@@ -22,11 +22,11 @@ import io.datatree.dom.TreeWriterRegistry;
 import io.datatree.dom.adapters.JsonIon;
 
 /**
- * PreformanceTestWithIon.java
+ * PerformanceTestWithIon.java
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
-public class PreformanceTestWithIon extends PerformanceTest {
+public class PerformanceTestWithIon extends PerformanceTest {
 
 	protected void setUp() throws Exception {
 		JsonIon impl = new JsonIon();

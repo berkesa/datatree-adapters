@@ -27,7 +27,7 @@ import org.junit.runners.Suite;
 		PerformanceTestWithJsonSimple.class, PerformanceTestWithFastJson.class, PerformanceTestWithJsonIO.class,
 		PerformanceTestWithJsonSmart.class, PerformanceTestWithNanoJson.class, PerformanceTestWithDSLJson.class,
 		PerformanceTestWithJohnzon.class, PerformanceTestWithJodd.class, PerformanceTestWithSojo.class,
-		PerformanceTestWithJsonUtil.class, PerformanceTestWithFlexjson.class, PreformanceTestWithIon.class })
+		PerformanceTestWithJsonUtil.class, PerformanceTestWithFlexjson.class, PerformanceTestWithIon.class })
 
 /**
  * Performance tests of JSON APIs.
