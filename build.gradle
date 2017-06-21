@@ -1,23 +1,20 @@
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: 'signing'
+apply plugin: 'com.bmuschko.nexus'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-group = 'com.github.berkesa'
-archivesBaseName = 'datatree-adapters'
-version =  '1.0.0'
-
-jar {
-    baseName = 'datatree-adapters'
-    manifest {
-        attributes 'Implementation-Title': 'DataTree Adapters',
-                   'Implementation-Version': version
-    }    
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+    }
 }
 
 repositories {
+    mavenCentral()
     jcenter()
 }
 
@@ -207,22 +204,61 @@ dependencies {
 	
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'com.github.berkesa'
+version = '1.0.0'
+
+modifyPom {
+    project {
+        artifactId 'datatree-adapters'
+        name 'DataTree Core API'
+        description 'Extensible Java Library for reading, manipulating and writing hierarchical data structures from/to various formats.'
+        url 'https://github.com/berkesa/datatree-adapters'
+        inceptionYear '2017'
+
+        scm {
+            url 'https://github.com/berkesa/datatree-adapters'
+            connection 'scm:https://github.com/berkesa/datatree-adapters.git'
+            developerConnection 'scm:git://github.com/berkesa/datatree-adapters.git'
+        }
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+        
+        dependencies {
+            dependency {
+                groupId 'com.github.berkesa'
+                artifactId 'datatree-core'
+                version '1.0.0'
+                scope 'runtime'
+            }        
+        }
+
+        developers {
+            developer {
+                id 'berkesa'
+                name 'Andras Berkes'
+                email 'andras.berkes@programmer.net'
+            }
+        }
+    }
+}
+
+nexus {
+    sign = true
+    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+	snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
+}
+
 test {
     exclude '**/ExtendedTreeTest.class'
     exclude '**/TreeTestSuite.class'
     exclude '**/Performance*'
-}
-
-task sourcesJar(type: Jar) {
-    baseName = 'datatree-adapters'
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-signing {
-    sign configurations.archives
 }
