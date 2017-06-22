@@ -85,7 +85,7 @@ public class MsgPackOrgBsonSerializers implements Consumer<MessagePack> {
 		});
 
 		addSerializer(mapper, BsonTimestamp.class, (packer, value) -> {
-			packer.write(value.getTime());
+			packer.write(value.getTime() * 1000L);
 		});
 
 		addSerializer(mapper, BsonUndefined.class, (packer, value) -> {

@@ -21,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Properties;
 
 import org.junit.Test;
 
@@ -155,10 +154,6 @@ public abstract class PerformanceTest extends TestCase {
 			return json;
 		}
 
-		Properties p = System.getProperties();
-		for (Object key : p.keySet()) {
-			System.out.println(key + " = " + p.getProperty(String.valueOf(key)));
-		}
 		InputStream in = PerformanceTest.class.getResourceAsStream("/" + name);
 		if (in == null) {
 			in = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/" + name);

@@ -100,7 +100,7 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 				if (startIndex == Integer.MIN_VALUE) {
 					startIndex = zeroIndexes.get(node.getName(), 1);
 				}
-				append(builder, child.getPath(startIndex), child.asString());
+				append(builder, child.getPath(startIndex), String.valueOf(child.asString()));
 			}
 		}
 	}

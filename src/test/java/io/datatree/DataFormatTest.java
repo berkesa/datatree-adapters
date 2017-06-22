@@ -27,6 +27,22 @@ import java.net.InetAddress;
 import java.util.Date;
 import java.util.UUID;
 
+import org.bson.BsonBoolean;
+import org.bson.BsonDateTime;
+import org.bson.BsonDouble;
+import org.bson.BsonInt32;
+import org.bson.BsonInt64;
+import org.bson.BsonNull;
+import org.bson.BsonRegularExpression;
+import org.bson.BsonString;
+import org.bson.BsonTimestamp;
+import org.bson.BsonUndefined;
+import org.bson.Document;
+import org.bson.types.Binary;
+import org.bson.types.Code;
+import org.bson.types.Decimal128;
+import org.bson.types.ObjectId;
+import org.bson.types.Symbol;
 import org.junit.Test;
 
 import io.datatree.Tree;
@@ -43,14 +59,14 @@ import junit.framework.TestCase;
 public class DataFormatTest extends TestCase {
 
 	// --- START TEST ---
-	
+
 	@Override
 	protected void setUp() throws Exception {
 		JsonBuiltin impl = new JsonBuiltin();
 		TreeReaderRegistry.setReader("json", impl);
 		TreeWriterRegistry.setWriter("json", impl);
 	}
-	
+
 	// --- SAMPLE ---
 
 	private static final String JSON = "{\"a\":{\"b\":{\"c\":{\"d\":[1,2,3]}}}}";
@@ -62,13 +78,15 @@ public class DataFormatTest extends TestCase {
 
 		// Builtin XML reader/writer
 		testParser("XmlBuiltin", true);
+		testMongoTypes("XmlBuiltin");
 
 		// Jackson XML reader/writer
 		testParser("XmlJackson", false);
-
+		testMongoTypes("XmlJackson");
+		
 		// XStream XML reader/writer
 		testParser("XmlXStream", false);
-
+		testMongoTypes("XmlXStream");
 	}
 
 	private void testParser(String format, boolean doParserTest) throws Exception {
@@ -98,10 +116,12 @@ public class DataFormatTest extends TestCase {
 		// Builtin Properties reader/writer
 		testParser("PropertiesBuiltin", true);
 		testPropertyGetters("PropertiesBuiltin");
-
+		testMongoTypes("PropertiesBuiltin");
+		
 		// Jackson Properties reader/writer
 		testParser("PropertiesJackson", true);
 		testPropertyGetters("PropertiesJackson");
+		testMongoTypes("PropertiesJackson");
 	}
 
 	private void testPropertyGetters(String format) throws Exception {
@@ -114,7 +134,7 @@ public class DataFormatTest extends TestCase {
 		assertEquals("Washington D.C.", t.get("address.city", "-"));
 		assertEquals("User", t.get("account[1].name", ""));
 		assertFalse(t.get("account[1].enabled", true));
-		
+
 		props = PerformanceTest.loadString("sample-large.properties");
 		t = new Tree(props, format);
 
@@ -130,9 +150,11 @@ public class DataFormatTest extends TestCase {
 
 		// Implementation based on SnakeYAML
 		testYaml("YamlSnakeYaml");
-
+		testMongoTypes("YamlSnakeYaml");
+		
 		// Jackson's implementation (it's also based on SnakeYAML)
 		testYaml("YamlJackson");
+		testMongoTypes("YamlJackson");
 	}
 
 	public void testYaml(String format) throws Exception {
@@ -148,7 +170,7 @@ public class DataFormatTest extends TestCase {
 		assertEquals(30, t.get("age", 0));
 		assertEquals("Washington D.C.", t.get("address.city", "-"));
 		assertEquals("User", t.get("roles[0]", ""));
-		
+
 		// Parser test
 		t = new Tree(JSON);
 		String source = t.toString(format, true);
@@ -166,7 +188,8 @@ public class DataFormatTest extends TestCase {
 		testConvert("TomlJToml");
 		testTomlGetters("TomlJToml");
 		testTomlReaderWrite("TomlJToml");
-
+		testMongoTypes("TomlJToml");
+		
 		// JToml (io.ous.jtoml) test
 		// This API only a TOML reader (without writer), but better than
 		// "me.grison.jtoml" API's reader
@@ -217,16 +240,15 @@ public class DataFormatTest extends TestCase {
 
 		// OpenCSV
 		testCsv("CsvOpenCSV");
-		
 	}
-	
+
 	public void testCsv(String format) throws Exception {
-		
+
 		String csv = PerformanceTest.loadString("sample-small.csv");
 		Tree t = new Tree(csv, format);
-		
+
 		testSerializationAndCloning(t);
-		
+
 		assertTrue(t.isEnumeration());
 		assertEquals(10, t.size());
 		assertEquals("Test0", t.get(0).get(0).asString());
@@ -243,14 +265,14 @@ public class DataFormatTest extends TestCase {
 		testTsv("TsvOpenCSV");
 
 	}
-	
+
 	public void testTsv(String format) throws Exception {
-		
+
 		String csv = PerformanceTest.loadString("sample-small.tsv");
 		Tree t = new Tree(csv, format);
-		
+
 		testSerializationAndCloning(t);
-		
+
 		assertTrue(t.isEnumeration());
 		assertEquals(10, t.size());
 		assertEquals("Test0", t.get(0).get(0).asString());
@@ -265,7 +287,7 @@ public class DataFormatTest extends TestCase {
 
 		// Java serialization test
 		testConvert("java");
-
+		testMongoTypes("java");
 	}
 
 	// --- BINARY CBOR ---
@@ -275,7 +297,7 @@ public class DataFormatTest extends TestCase {
 
 		// CBOR test
 		testConvert("cbor");
-
+		testMongoTypes("cbor");
 	}
 
 	// --- BINARY SMILE ---
@@ -285,7 +307,7 @@ public class DataFormatTest extends TestCase {
 
 		// SMILE test
 		testConvert("smile");
-
+		testMongoTypes("smile");
 	}
 
 	// --- BINARY BSON ---
@@ -295,7 +317,7 @@ public class DataFormatTest extends TestCase {
 
 		// BSON test
 		testConvert("bson");
-
+		testMongoTypes("bson");
 	}
 
 	// --- BINARY MESSAGEPACK ---
@@ -305,10 +327,11 @@ public class DataFormatTest extends TestCase {
 
 		// MessagePack (org.msgpack.msgpack)
 		testConvert("MsgPackOrg");
-
+		testMongoTypes("MsgPackOrg");
+		
 		// MessagePack (org.msgpack.jackson-dataformat-msgpack)
 		testConvert("MsgPackJackson");
-
+		testMongoTypes("MsgPackJackson");
 	}
 
 	// --- BINARY ION ---
@@ -318,9 +341,9 @@ public class DataFormatTest extends TestCase {
 
 		// ION test
 		testConvert("IonIon");
-
+		testMongoTypes("IonIon");
 	}
-	
+
 	// --- CONVERTER TEST ---
 
 	private Tree testConvert(String format) throws Exception {
@@ -464,6 +487,61 @@ public class DataFormatTest extends TestCase {
 		// Cloning
 		txtCopy = node.clone().toString("debug");
 		assertEquals(txtOriginal, txtCopy);
+	}
+
+	// --- TEST MONGO TYPES ---
+
+	@Test
+	public void testMongoTypes(String format) throws Exception {
+
+		Document doc = new Document();
+		doc.put("BsonBoolean", new BsonBoolean(true));
+		long time = System.currentTimeMillis();
+		doc.put("BsonDateTime", new BsonDateTime(time));
+		doc.put("BsonDouble", new BsonDouble(123.456));
+		doc.put("BsonInt32", new BsonInt32(123));
+		doc.put("BsonInt64", new BsonInt64(123456));
+		doc.put("BsonNull", new BsonNull());
+		doc.put("BsonRegularExpression", new BsonRegularExpression("abc"));
+		doc.put("BsonString", new BsonString("abcdefgh"));
+		doc.put("BsonTimestamp", new BsonTimestamp(12, 23));
+		doc.put("BsonUndefined", new BsonUndefined());
+		doc.put("Binary", new Binary("abcdefgh".getBytes()));
+		doc.put("Code", new Code("var a = 5;"));
+		doc.put("Decimal128", new Decimal128(123456789));
+		ObjectId objectID = new ObjectId();
+		doc.put("ObjectId", objectID);
+		doc.put("Symbol", new Symbol("s"));
+
+		Tree t = new Tree(doc, null);
+		byte[] binary = t.toBinary(format);
+		// System.out.println(new String(binary));
+		t = new Tree(binary, format);
+
+		assertTrue(t.get("BsonBoolean", false));
+
+		Date date = t.get("BsonDateTime", new Date());
+		assertEquals(time / 1000L, date.getTime() / 1000L);
+
+		assertEquals(123.456, t.get("BsonDouble", 1d));
+		assertEquals(123, t.get("BsonInt32", 1));
+		assertEquals(123456L, t.get("BsonInt64", 1L));
+		
+		assertNull(t.get("BsonNull", (String) null));
+		assertNull(t.get("BsonUndefined", (String) null));			
+		
+		assertEquals("abc", t.get("BsonRegularExpression", "?"));
+		assertEquals("abcdefgh", t.get("BsonString", "?"));
+
+		// String or Number
+		date = t.get("BsonTimestamp", new Date());
+		assertEquals(12000L, date.getTime());
+
+		assertEquals("abcdefgh", new String(t.get("Binary", "?".getBytes())));
+		assertEquals("var a = 5;", t.get("Code", "?"));
+		assertEquals(123456789L, t.get("Decimal128", 1L));
+		assertEquals(objectID.toHexString(), t.get("ObjectId", "?"));
+		assertEquals("s", t.get("Symbol", "?"));
 	}
 
 }

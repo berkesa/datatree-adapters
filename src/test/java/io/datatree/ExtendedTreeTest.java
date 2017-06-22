@@ -2041,9 +2041,18 @@ public abstract class ExtendedTreeTest extends TestCase {
 
 	@Test
 	public void testMongoTypes() throws Exception {
+		
+		// JSON-Simple and JsonUtil aren't extendable APIs
+		String writerClass = TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).getClass().toString();
+		boolean unsupportedAPI = writerClass.contains("Simple") || writerClass.contains("JsonUtil");
+		if (unsupportedAPI) {
+			return;
+		}
+		
 		Document doc = new Document();
 		doc.put("BsonBoolean", new BsonBoolean(true));
-		doc.put("BsonDateTime", new BsonDateTime(System.currentTimeMillis()));
+		long time = System.currentTimeMillis();
+		doc.put("BsonDateTime", new BsonDateTime(time));
 		doc.put("BsonDouble", new BsonDouble(123.456));
 		doc.put("BsonInt32", new BsonInt32(123));
 		doc.put("BsonInt64", new BsonInt64(123456));
@@ -2055,17 +2064,41 @@ public abstract class ExtendedTreeTest extends TestCase {
 		doc.put("Binary", new Binary("abcdefgh".getBytes()));
 		doc.put("Code", new Code("var a = 5;"));
 		doc.put("Decimal128", new Decimal128(123456789));
-		doc.put("ObjectId", new ObjectId());
+		ObjectId objectID = new ObjectId();
+		doc.put("ObjectId", objectID);
 		doc.put("Symbol", new Symbol("s"));
 
 		Tree t = new Tree(doc, null);
 		String json = t.toString();
 
-		String writerClass = TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).getClass().toString();
 		System.out.println("-------------------- BSON --------------------");
 		System.out.println("Output of " + writerClass + " serializer (MongoDB types):");
 		System.out.println(json);
 
+		t = new Tree(json);
+
+		assertTrue(t.get("BsonBoolean", false));
+		
+		Date date = t.get("BsonDateTime", new Date());
+		assertEquals(time / 1000L, date.getTime() / 1000L);
+		
+		assertEquals(123.456, t.get("BsonDouble", 1d));
+		assertEquals(123, t.get("BsonInt32", 1));
+		assertEquals(123456L, t.get("BsonInt64", 1L));
+				assertNull(t.get("BsonNull", "?"));
+		assertEquals("abc", t.get("BsonRegularExpression", "?"));
+		assertEquals("abcdefgh", t.get("BsonString", "?"));
+		
+		// String or Number
+		date = t.get("BsonTimestamp", new Date());
+		assertEquals(12000L, date.getTime());
+		
+		assertNull(t.get("BsonUndefined", "?"));
+		assertEquals("abcdefgh", new String(t.get("Binary", "?".getBytes())));
+		assertEquals("var a = 5;", t.get("Code", "?"));
+		assertEquals(123456789L, t.get("Decimal128", 1L));
+		assertEquals(objectID.toHexString(), t.get("ObjectId", "?"));
+		assertEquals("s", t.get("Symbol", "?"));
 	}
 
 	// --- SERIALIZATION / DESERIALIZATION / CLONE ---

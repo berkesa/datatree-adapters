@@ -156,9 +156,9 @@ public class XmlBuiltin extends AbstractTextAdapter {
 					continue;
 				}
 			}
-
+			
 			// BASE64
-			if (child.isNull() || !child.isPrimitive()) {
+			if (!child.isPrimitive()) {
 				continue;
 			}
 			if (indent > -1) {
@@ -167,7 +167,7 @@ public class XmlBuiltin extends AbstractTextAdapter {
 			out.append('<');
 			out.append(childName);
 			out.append('>');
-			writeXMLContent(out, child.asString());
+			writeXMLContent(out, String.valueOf(child.asString()));
 			out.append(BEGIN_END_TAG);
 			out.append(childName);
 			out.append('>');

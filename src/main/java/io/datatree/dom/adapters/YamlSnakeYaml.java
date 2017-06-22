@@ -80,7 +80,7 @@ public class YamlSnakeYaml extends AbstractTextAdapter {
 		ExtensibleRepresenter representer = new ExtensibleRepresenter();
 
 		// Install MongoDB / BSON serializers
-		tryToAddSerializers("io.datatree.dom.adapters.YamlSnakeYamlBsonSerializers", mapper);
+		tryToAddSerializers("io.datatree.dom.adapters.YamlSnakeYamlBsonSerializers", representer);
 		
 		// InetAddress
 		addSerializer(representer, InetAddress.class, (value) -> {
@@ -150,7 +150,11 @@ public class YamlSnakeYaml extends AbstractTextAdapter {
 			@SuppressWarnings("unchecked")
 			@Override
 			public Node representData(Object data) {
-				return new ScalarNode(Tag.STR, function.apply((T) data), null, null, null);
+				String txt = function.apply((T) data);
+				if (txt == null) {
+					return new ScalarNode(Tag.NULL, "null", null, null, null);
+				}
+				return new ScalarNode(Tag.STR, txt, null, null, null);
 			}
 
 		});

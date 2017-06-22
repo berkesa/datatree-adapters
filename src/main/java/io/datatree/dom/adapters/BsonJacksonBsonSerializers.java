@@ -103,7 +103,7 @@ public class BsonJacksonBsonSerializers implements Consumer<ObjectMapper> {
 		});
 
 		addSerializer(module, Decimal128.class, (value, gen) -> {
-			gen.writeNumber(value.bigDecimalValue());
+			gen.writeString(value.bigDecimalValue().toPlainString());
 		});
 
 		addSerializer(module, ObjectId.class, (value, gen) -> {

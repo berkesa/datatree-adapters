@@ -80,7 +80,7 @@ public class XmlXStreamBsonSerializers implements Consumer<XStream> {
 		});
 
 		addSerializer(mapper, BsonNull.class, (value) -> {
-			return null;
+			return "null";
 		});
 
 		addSerializer(mapper, BsonRegularExpression.class, (value) -> {
@@ -99,7 +99,7 @@ public class XmlXStreamBsonSerializers implements Consumer<XStream> {
 		});
 
 		addSerializer(mapper, BsonUndefined.class, (value) -> {
-			return null;
+			return "null";
 		});
 
 		addSerializer(mapper, Binary.class, (value) -> {
