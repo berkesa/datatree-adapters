@@ -20,16 +20,21 @@ Result:
 
 Other formats:
 
-String yaml = tree.toString("yaml");
-String xml  = tree.toString("xml");
-String toml = tree.toString("toml");
-String prop = tree.toString("properties");
-String csv  = tree.toString("csv");
-String tsv  = tree.toString("tsv");
+String yaml  = tree.toString("yaml");
+String xml   = tree.toString("xml");
+String toml  = tree.toString("toml");
+String prop  = tree.toString("properties");
+String csv   = tree.toString("csv");
+String tsv   = tree.toString("tsv");
+
+byte[] bson  = tree.toBinary("bson");
+byte[] ion   = tree.toBinary("ion");
+byte[] cbor  = tree.toBinary("cbor");
+byte[] smile = tree.toBinary("smile");
+byte[] msgpk = tree.toBinary("msgpack");
 ```
 
-## Text formats
-JSON adapters:
+Supported JSON APIs (readers and writers):
 
 - Boon JSON API
 - BSON (MongoDB API)
@@ -49,58 +54,3 @@ JSON adapters:
 - JsonUtil
 - Amazon Ion JSON API
 - Built-in JSON API
-
-TOML adapters:
-
-- Toml4J TOML API
-- JToml (me.grison.jtoml package)
-- JToml (io.ous.jtoml package)
-
-TSV adapters:
-
-- OpenCSV CSV API
-
-CSV adapters:
-
-- OpenCSV CSV API
-
-XML adapters:
-
-- Jackson XML API
-- Built-in XML API
-
-YAML adapters:
-
-- SnakeYAML API
-- Jackson YAML API
-
-Java Properties adapters:
-
-- Jackson Properties API 
-- Built-in Properties API
-
-## Binary formats
-MessagePack adapters:
-
-- Jackson MsgPack API
-- MsgPack.org API
-
-BSON adapters:
-
-- Jackson BSON API
-
-CBOR adapters:
-
-- Jackson CBOR API
-
-SMILE adapters:
-
-- Jackson SMILE API
-
-ION adapters:
-
-- Amazon ION binary API
-
-Java Object Serialization:
-
-- Built-in API
