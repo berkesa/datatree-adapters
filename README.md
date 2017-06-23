@@ -3,6 +3,18 @@ Various text and binary adapters to DataTree API.
 
  ![architecture](https://github.com/berkesa/datatree/blob/master/docs/images/architecture.png)
 
+## Download
+
+Add the following dependency to your pom.xml:
+
+```xml
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 ## Usage
 
 ```javascript
@@ -20,18 +32,18 @@ Result:
 
 Other formats:
 
-String yaml  = tree.toString("yaml");
-String xml   = tree.toString("xml");
-String toml  = tree.toString("toml");
-String prop  = tree.toString("properties");
-String csv   = tree.toString("csv");
-String tsv   = tree.toString("tsv");
+String yaml  = document.toString("yaml");
+String xml   = document.toString("xml");
+String toml  = document.toString("toml");
+String prop  = document.toString("properties");
+String csv   = document.toString("csv");
+String tsv   = document.toString("tsv");
 
-byte[] bson  = tree.toBinary("bson");
-byte[] ion   = tree.toBinary("ion");
-byte[] cbor  = tree.toBinary("cbor");
-byte[] smile = tree.toBinary("smile");
-byte[] msgpk = tree.toBinary("msgpack");
+byte[] bson  = document.toBinary("bson");
+byte[] ion   = document.toBinary("ion");
+byte[] cbor  = document.toBinary("cbor");
+byte[] smile = document.toBinary("smile");
+byte[] msgpk = document.toBinary("msgpack");
 ```
 
 Supported JSON APIs (readers and writers):
