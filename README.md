@@ -1,7 +1,7 @@
 # DataTree Adapters
 Various text and binary adapters to DataTree API.
 
- ![architecture](https://github.com/berkesa/datatree/blob/master/architecture.png)
+ ![architecture](https://github.com/berkesa/datatree/blob/master/docs/images/architecture.png)
 
 ## Usage
 
