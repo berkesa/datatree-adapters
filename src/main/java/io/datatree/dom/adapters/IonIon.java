@@ -44,6 +44,12 @@ import software.amazon.ion.system.IonBinaryWriterBuilder;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one ION implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties. If there
+ * is only one (eg. only the "ion-java") implementation on the classpath, this
+ * step is NOT necessary, the DataTree API will use this implementation
+ * automatically.<br>
+ * <br>
  * -Ddatatree.ion.reader=io.datatree.dom.adapters.IonIon<br>
  * -Ddatatree.ion.writer=io.datatree.dom.adapters.IonIon<br>
  * <br>
@@ -56,7 +62,12 @@ import software.amazon.ion.system.IonBinaryWriterBuilder;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputBytes, "ion");<br>
- * byte[] outputBytes = node.toBytes("ion");
+ * byte[] outputBytes = node.toBytes("ion");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputBytes, "IonIon");<br>
+ * byte[] outputBytes = node.toBytes("IonIon");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

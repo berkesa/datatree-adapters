@@ -69,6 +69,12 @@ import software.amazon.ion.system.IonTextWriterBuilder;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
+ * classpath, the preferred implementation is adjustable with the following
+ * System Properties. If there is only one (eg. only the "ion-java")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this JSON API automatically.<br>
+ * <br>
  * -Ddatatree.ion.reader=io.datatree.dom.adapters.IonIon<br>
  * -Ddatatree.ion.writer=io.datatree.dom.adapters.IonIon<br>
  * <br>
@@ -81,7 +87,12 @@ import software.amazon.ion.system.IonTextWriterBuilder;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString);<br>
- * String outputString = node.toString();
+ * String outputString = node.toString();<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "JsonIon");<br>
+ * String outputString = node.toString("JsonIon");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -117,11 +128,11 @@ public class JsonIon extends AbstractTextAdapter {
 			return value.toString();
 		});
 	}
-	
+
 	// --- CONVERTERS ---
 
 	public HashMap<Class<?>, Function<Object, Object>> converters = new HashMap<>();
-	
+
 	// --- WRITER FACTORY ---
 
 	public CachedWriter createWriter(boolean pretty) throws IOException {
@@ -144,7 +155,7 @@ public class JsonIon extends AbstractTextAdapter {
 		public ByteArrayOutputStream buffer;
 		public IonWriter writer;
 	}
-	
+
 	// --- IMPLEMENTED WRITER METHOD ---
 
 	@Override
@@ -300,19 +311,19 @@ public class JsonIon extends AbstractTextAdapter {
 	// --- COMMON PARSER INSTANCE ---
 
 	public IonSystem parser = IonSystemBuilder.standard().build();
-	
+
 	// --- IMPLEMENTED PARSER METHODS ---
 
 	@Override
 	public Object parse(String source) throws Exception {
 		return getSingletonItem(parse(null, null, parser.newReader(source)));
 	}
-	
+
 	@Override
 	public Object parse(byte[] source) throws Exception {
 		return getSingletonItem(parse(null, null, parser.newReader(source)));
 	}
-	
+
 	public Object getSingletonItem(Object result) {
 		if (result != null && result instanceof List) {
 			List<?> list = (List<?>) result;
@@ -320,7 +331,7 @@ public class JsonIon extends AbstractTextAdapter {
 				return list.get(0);
 			}
 		}
-		return result;		
+		return result;
 	}
 
 	public Object parse(LinkedHashMap<String, Object> map, LinkedList<Object> list, IonReader reader) throws Exception {
@@ -464,5 +475,5 @@ public class JsonIon extends AbstractTextAdapter {
 			Function<T, Object> function) {
 		converters.put(type, (Function<Object, Object>) function);
 	}
-	
+
 }

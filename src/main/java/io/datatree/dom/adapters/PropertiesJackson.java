@@ -35,10 +35,12 @@ import io.datatree.dom.Priority;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
- * -Ddatatree.properties.reader=io.datatree.dom.adapters.PropertiesJackson
+ * If there is more than one "properties" implementation on classpath, the
+ * preferred implementation is adjustable with the following System Properties.
  * <br>
- * -Ddatatree.properties.writer=io.datatree.dom.adapters.PropertiesJackson
  * <br>
+ * -Ddatatree.properties.reader=io.datatree.dom.adapters.PropertiesJackson <br>
+ * -Ddatatree.properties.writer=io.datatree.dom.adapters.PropertiesJackson <br>
  * <br>
  * <b>Set as default (using static methods):</b><br>
  * <br>
@@ -50,6 +52,11 @@ import io.datatree.dom.Priority;
  * <br>
  * Tree node = new Tree(inputString, "properties");<br>
  * String outputString = node.toString("properties");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "PropertiesJackson");<br>
+ * String outputString = node.toString("PropertiesJackson");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -57,7 +64,7 @@ import io.datatree.dom.Priority;
 public class PropertiesJackson extends AbstractJacksonTextAdapter {
 
 	// --- NAME OF THE FORMAT ---
-	
+
 	@Override
 	public String getFormat() {
 		return "properties";
@@ -67,10 +74,10 @@ public class PropertiesJackson extends AbstractJacksonTextAdapter {
 
 	public PropertiesJackson() {
 		super(new JavaPropsMapper());
-		
+
 		// Install MongoDB / BSON serializers
 		// (Using JSON serializers)
 		tryToAddSerializers("io.datatree.dom.adapters.JsonJacksonBsonSerializers", mapper, prettyMapper);
 	}
-	
+
 }

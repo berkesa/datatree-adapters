@@ -41,6 +41,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one TOML implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties. If there
+ * is only one (eg. only the "toml4j") implementation on the classpath, this
+ * step is NOT necessary, the DataTree API will use this implementation
+ * automatically.<br>
+ * <br>
  * -Ddatatree.toml.reader=io.datatree.dom.adapters.TomlToml4j<br>
  * -Ddatatree.toml.writer=io.datatree.dom.adapters.TomlToml4j<br>
  * <br>
@@ -53,7 +59,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "toml");<br>
- * String outputString = node.toString("toml");
+ * String outputString = node.toString("toml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "TomlToml4j");<br>
+ * String outputString = node.toString("TomlToml4j");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

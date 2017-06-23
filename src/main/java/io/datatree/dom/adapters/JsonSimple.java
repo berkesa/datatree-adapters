@@ -53,6 +53,12 @@ import io.datatree.dom.builtin.JsonBuiltin;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
+ * classpath, the preferred implementation is adjustable with the following
+ * System Properties. If there is only one (eg. only the "json-simple")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this JSON API automatically.<br>
+ * <br>
  * -Ddatatree.json.reader=io.datatree.dom.adapters.JsonSimple<br>
  * -Ddatatree.json.writer=io.datatree.dom.adapters.JsonSimple<br>
  * <br>
@@ -63,7 +69,12 @@ import io.datatree.dom.builtin.JsonBuiltin;
  * TreeWriterRegistry.setWriter("json", jsonSimple);<br>
  * <br>
  * Tree node = new Tree(inputString);<br>
- * String outputString = node.toString();
+ * String outputString = node.toString();<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "JsonSimple");<br>
+ * String outputString = node.toString("JsonSimple");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

@@ -58,6 +58,12 @@ import net.minidev.json.reader.JsonWriterI;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
+ * classpath, the preferred implementation is adjustable with the following
+ * System Properties. If there is only one (eg. only the "json-smart")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this JSON API automatically.<br>
+ * <br>
  * -Ddatatree.json.reader=io.datatree.dom.adapters.JsonSmart<br>
  * -Ddatatree.json.writer=io.datatree.dom.adapters.JsonSmart<br>
  * <br>
@@ -68,7 +74,12 @@ import net.minidev.json.reader.JsonWriterI;
  * TreeWriterRegistry.setWriter("json", jsonSmart);<br>
  * <br>
  * Tree node = new Tree(inputString);<br>
- * String outputString = node.toString();
+ * String outputString = node.toString();<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "JsonSmart");<br>
+ * String outputString = node.toString("JsonSmart");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

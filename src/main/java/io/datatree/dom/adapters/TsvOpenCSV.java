@@ -32,7 +32,12 @@ import io.datatree.dom.Priority;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "tsv");<br>
- * String outputString = node.toString("tsv");
+ * String outputString = node.toString("tsv");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "TsvOpenCSV");<br>
+ * String outputString = node.toString("TsvOpenCSV");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

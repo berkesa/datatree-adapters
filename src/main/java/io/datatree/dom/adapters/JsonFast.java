@@ -45,6 +45,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
+ * classpath, the preferred implementation is adjustable with the following
+ * System Properties. If there is only one (eg. only the "fastjson")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this JSON API automatically.<br>
+ * <br>
  * -Ddatatree.json.reader=io.datatree.dom.adapters.JsonFast<br>
  * -Ddatatree.json.writer=io.datatree.dom.adapters.JsonFast<br>
  * <br>
@@ -55,7 +61,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * TreeWriterRegistry.setWriter("json", jsonFast);<br>
  * <br>
  * Tree node = new Tree(inputString);<br>
- * String outputString = node.toString();
+ * String outputString = node.toString();<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "JsonFast");<br>
+ * String outputString = node.toString("JsonFast");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -124,18 +135,19 @@ public class JsonFast extends AbstractTextAdapter {
 	}
 
 	// --- ADD CUSTOM SERIALIZER ---
-	
-	public static final <T> void addSerializer(SerializeConfig config, Class<T> type, CheckedBiConsumer<T, JSONSerializer> consumer) {
+
+	public static final <T> void addSerializer(SerializeConfig config, Class<T> type,
+			CheckedBiConsumer<T, JSONSerializer> consumer) {
 		config.put(type, new ObjectSerializer() {
-			
+
 			@SuppressWarnings("unchecked")
 			@Override
 			public void write(JSONSerializer serializer, Object object, Object fieldName, Type fieldType, int features)
 					throws IOException {
 				consumer.accept((T) object, serializer);
 			}
-			
+
 		});
 	}
-	
+
 }

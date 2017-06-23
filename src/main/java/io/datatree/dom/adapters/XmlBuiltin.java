@@ -42,7 +42,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "xml");<br>
- * String outputString = node.toString("xml");
+ * String outputString = node.toString("xml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "XmlBuiltin");<br>
+ * String outputString = node.toString("XmlBuiltin");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

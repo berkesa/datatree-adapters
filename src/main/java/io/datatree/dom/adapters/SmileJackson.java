@@ -41,6 +41,12 @@ import io.datatree.dom.Priority;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one SMILE implementation on classpath, the
+ * preferred implementation is adjustable with the following System Properties.
+ * If there is only one (eg. only the "jackson-dataformat-smile")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this implementation automatically.<br>
+ * <br>
  * -Ddatatree.smile.reader=io.datatree.dom.adapters.SmileJackson<br>
  * -Ddatatree.smile.writer=io.datatree.dom.adapters.SmileJackson<br>
  * <br>
@@ -53,7 +59,12 @@ import io.datatree.dom.Priority;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputBytes, "smile");<br>
- * byte[] outputBytes = node.toBytes("smile");
+ * byte[] outputBytes = node.toBytes("smile");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputBytes, "SmileJackson");<br>
+ * byte[] outputBytes = node.toBytes("SmileJackson");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

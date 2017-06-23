@@ -69,7 +69,7 @@ import io.datatree.dom.adapters.JsonSimple;
 import junit.framework.TestCase;
 
 /**
- * Tree JUnit test cases.
+ * Test JSON parsers (abstract superclass).
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

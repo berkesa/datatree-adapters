@@ -35,19 +35,30 @@ import io.datatree.dom.Priority;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one YAML implementation on classpath, the
+ * preferred implementation is adjustable with the following System Properties.
+ * If there is only one (eg. only the "jackson-dataformat-yaml")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this implementation automatically.<br>
+ * <br>
  * -Ddatatree.yaml.reader=io.datatree.dom.adapters.YamlJackson<br>
  * -Ddatatree.yaml.writer=io.datatree.dom.adapters.YamlJackson<br>
  * <br>
  * <b>Set as default (using static methods):</b><br>
  * <br>
- * YamlJackson yaml = new YamlJackson();
+ * YamlJackson yaml = new YamlJackson();<br>
  * TreeReaderRegistry.setReader("yaml", yaml);<br>
  * TreeWriterRegistry.setWriter("yaml", yaml);<br>
  * <br>
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "yaml");<br>
- * String outputString = node.toString("yaml");
+ * String outputString = node.toString("yaml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "YamlJackson");<br>
+ * String outputString = node.toString("YamlJackson");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

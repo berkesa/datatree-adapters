@@ -43,6 +43,11 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <br>
  * <b>Set as default (using static methods):</b><br>
  * <br>
+ * If there is more than one "properties" implementation on classpath, the
+ * preferred implementation is adjustable with the following System Properties.
+ * If there is only one (this) implementation on the classpath, this step is NOT
+ * necessary, the DataTree API will use this implementation automatically.<br>
+ * <br>
  * PropertiesBuiltin properties = new PropertiesBuiltin();<br>
  * TreeReaderRegistry.setReader("properties", properties);<br>
  * TreeWriterRegistry.setWriter("properties", properties);<br>
@@ -50,7 +55,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "properties");<br>
- * String outputString = node.toString("properties");
+ * String outputString = node.toString("properties");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "PropertiesBuiltin");<br>
+ * String outputString = node.toString("PropertiesBuiltin");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -66,12 +76,12 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 	protected static final int[] KEY_ESCAPES;
 
 	// --- NAME OF THE FORMAT ---
-	
+
 	@Override
 	public String getFormat() {
 		return "properties";
 	}
-	
+
 	// --- IMPLEMENTED WRITER METHOD ---
 
 	@Override
@@ -90,7 +100,7 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 	}
 
 	// --- RECURSIVE WRITE ---
-	
+
 	protected static final void write(StringBuilder builder, Tree node, Tree zeroIndexes) {
 		int startIndex = zeroIndexes == null ? 1 : Integer.MIN_VALUE;
 		for (Tree child : node) {
@@ -199,7 +209,7 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 		table[' '] = ' ';
 		KEY_ESCAPES = table;
 	}
-	
+
 	// --- CONSTANTS ---
 
 	public static final String FIRST_INDEX = "firstIndex";
@@ -370,5 +380,5 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 		}
 
 	}
-	
+
 }

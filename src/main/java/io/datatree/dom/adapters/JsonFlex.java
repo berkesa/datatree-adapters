@@ -49,6 +49,12 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
+ * classpath, the preferred implementation is adjustable with the following
+ * System Properties. If there is only one (eg. only the "flexjson")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this JSON API automatically.<br>
+ * <br>
  * -Ddatatree.json.reader=io.datatree.dom.adapters.JsonFlex<br>
  * -Ddatatree.json.writer=io.datatree.dom.adapters.JsonFlex<br>
  * <br>
@@ -59,7 +65,12 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * TreeWriterRegistry.setWriter("json", jsonFlex);<br>
  * <br>
  * Tree node = new Tree(inputString);<br>
- * String outputString = node.toString();
+ * String outputString = node.toString();<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "JsonFlex");<br>
+ * String outputString = node.toString("JsonFlex");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -76,10 +87,18 @@ public class JsonFlex extends AbstractTextAdapter {
 	public JsonFlex() {
 		TypeTransformerMap map = new TypeTransformerMap(TransformerUtil.getDefaultTypeTransformers());
 
+		// Install Java / Apache Cassandra serializers
+		addDefaultSerializers(map);
+		
 		// Install MongoDB / BSON serializers
 		tryToAddSerializers("io.datatree.dom.adapters.JsonFlexBsonSerializers", map);
 
-		// Install serializers for Apache Cassandra
+		normalMapper = new JSONSerializer(map);
+		prettyMapper = new JSONSerializer(map);
+		prettyMapper.prettyPrint(true);
+	}
+
+	public void addDefaultSerializers(TypeTransformerMap map) {
 
 		// InetAddress
 		addSerializer(map, InetAddress.class, (value, ctx) -> {
@@ -114,12 +133,8 @@ public class JsonFlex extends AbstractTextAdapter {
 				ctx.write(Long.toString(value.getTime()));
 			}
 		});
-
-		normalMapper = new JSONSerializer(map);
-		prettyMapper = new JSONSerializer(map);
-		prettyMapper.prettyPrint(true);
 	}
-
+	
 	// --- IMPLEMENTED WRITER METHOD ---
 
 	@Override

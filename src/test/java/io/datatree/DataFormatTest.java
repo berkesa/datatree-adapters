@@ -52,7 +52,7 @@ import io.datatree.dom.builtin.JsonBuiltin;
 import junit.framework.TestCase;
 
 /**
- * DataFormatTest.java
+ * XML, BSON, MessagePack, ION, CSV, TSV, Java Properties tests.
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -83,7 +83,7 @@ public class DataFormatTest extends TestCase {
 		// Jackson XML reader/writer
 		testParser("XmlJackson", false);
 		testMongoTypes("XmlJackson");
-		
+
 		// XStream XML reader/writer
 		testParser("XmlXStream", false);
 		testMongoTypes("XmlXStream");
@@ -117,7 +117,7 @@ public class DataFormatTest extends TestCase {
 		testParser("PropertiesBuiltin", true);
 		testPropertyGetters("PropertiesBuiltin");
 		testMongoTypes("PropertiesBuiltin");
-		
+
 		// Jackson Properties reader/writer
 		testParser("PropertiesJackson", true);
 		testPropertyGetters("PropertiesJackson");
@@ -151,7 +151,7 @@ public class DataFormatTest extends TestCase {
 		// Implementation based on SnakeYAML
 		testYaml("YamlSnakeYaml");
 		testMongoTypes("YamlSnakeYaml");
-		
+
 		// Jackson's implementation (it's also based on SnakeYAML)
 		testYaml("YamlJackson");
 		testMongoTypes("YamlJackson");
@@ -189,7 +189,7 @@ public class DataFormatTest extends TestCase {
 		testTomlGetters("TomlJToml");
 		testTomlReaderWrite("TomlJToml");
 		testMongoTypes("TomlJToml");
-		
+
 		// JToml (io.ous.jtoml) test
 		// This API only a TOML reader (without writer), but better than
 		// "me.grison.jtoml" API's reader
@@ -328,10 +328,53 @@ public class DataFormatTest extends TestCase {
 		// MessagePack (org.msgpack.msgpack)
 		testConvert("MsgPackOrg");
 		testMongoTypes("MsgPackOrg");
-		
+
 		// MessagePack (org.msgpack.jackson-dataformat-msgpack)
 		testConvert("MsgPackJackson");
 		testMongoTypes("MsgPackJackson");
+
+		// Read-write test
+		Tree t = new Tree();
+		Date date = new Date();
+		InetAddress inet = InetAddress.getLocalHost();
+		UUID uuid = UUID.randomUUID();
+
+		t.put("null", (String) null);
+		t.put("empty", "");
+		t.put("bool", true);
+		t.put("byte", (byte) 3);
+		t.put("double", 4d);
+		t.put("float", 5f);
+		t.put("int", 6);
+		t.put("long", 7l);
+		t.put("short", (short) 8);
+		t.put("string", "abcdefgh");
+		t.put("bigDecimal", new BigDecimal("1.2"));
+		t.put("bigInteger", new BigInteger("2"));
+		t.put("bytes", "test".getBytes());
+		t.put("inet", inet);
+		t.put("date", date);
+		t.put("uuid", uuid);
+
+		byte[] bytes = t.toBinary("MsgPackOrg");
+		Tree t2 = new Tree(bytes, "MsgPackJackson");
+
+		assertNull(t2.get("null", (String) null));
+		assertEquals(true, t2.get("bool", false));
+		assertEquals((byte) 3, t2.get("byte", (byte) 0));
+		assertEquals(4d, t2.get("double", 0d));
+		assertEquals(5f, t2.get("float", 0f));
+		assertEquals(6, t2.get("int", 0));
+		assertEquals(7l, t2.get("long", 0L));
+		assertEquals((short) 8, t2.get("short", (short) 0));
+		assertEquals("abcdefgh", t2.get("string", ""));
+		assertEquals(-1, (new BigDecimal("1.2").subtract(t2.get("bigDecimal", new BigDecimal("0")))
+				.compareTo(new BigDecimal("0.0000001"))));
+		assertEquals(new BigInteger("2"), t2.get("bigInteger", new BigInteger("0")));
+		assertEquals("test", new String(t2.get("bytes", "ppp".getBytes())));
+		assertEquals(inet, t2.get("inet", InetAddress.getLocalHost()));
+		assertEquals(date.getTime() / 1000L, t2.get("date", new Date(0)).getTime() / 1000L);
+		assertEquals(uuid, t2.get("uuid", UUID.randomUUID()));
 	}
 
 	// --- BINARY ION ---
@@ -526,10 +569,10 @@ public class DataFormatTest extends TestCase {
 		assertEquals(123.456, t.get("BsonDouble", 1d));
 		assertEquals(123, t.get("BsonInt32", 1));
 		assertEquals(123456L, t.get("BsonInt64", 1L));
-		
+
 		assertNull(t.get("BsonNull", (String) null));
-		assertNull(t.get("BsonUndefined", (String) null));			
-		
+		assertNull(t.get("BsonUndefined", (String) null));
+
 		assertEquals("abc", t.get("BsonRegularExpression", "?"));
 		assertEquals("abcdefgh", t.get("BsonString", "?"));
 

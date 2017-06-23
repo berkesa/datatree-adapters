@@ -40,6 +40,12 @@ import me.grison.jtoml.impl.SimpleTomlParser;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one TOML implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties. If there
+ * is only one (eg. only the "jtoml") implementation on the classpath, this step
+ * is NOT necessary, the DataTree API will use this implementation
+ * automatically.<br>
+ * <br>
  * -Ddatatree.toml.reader=io.datatree.dom.adapters.TomlJtoml<br>
  * -Ddatatree.toml.writer=io.datatree.dom.adapters.TomlJtoml<br>
  * <br>
@@ -53,6 +59,11 @@ import me.grison.jtoml.impl.SimpleTomlParser;
  * <br>
  * Tree node = new Tree(inputString, "toml");<br>
  * String outputString = node.toString("toml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "TomlJtoml");<br>
+ * String outputString = node.toString("TomlJtoml");<br>
  * <br>
  * The "io.ous.jtoml" is better TOML reader than "me.grison.jtoml", but has no
  * writer functionality. To combine the two APIs, use this settings:<br>

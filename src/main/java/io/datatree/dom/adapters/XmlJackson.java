@@ -35,6 +35,9 @@ import io.datatree.dom.Priority;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one XML implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties.<br>
+ * <br>
  * -Ddatatree.xml.reader=io.datatree.dom.adapters.XmlJackson<br>
  * -Ddatatree.xml.writer=io.datatree.dom.adapters.XmlJackson<br>
  * <br>
@@ -47,7 +50,12 @@ import io.datatree.dom.Priority;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "xml");<br>
- * String outputString = node.toString("xml");
+ * String outputString = node.toString("xml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "XmlJackson");<br>
+ * String outputString = node.toString("XmlJackson");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -55,19 +63,19 @@ import io.datatree.dom.Priority;
 public class XmlJackson extends AbstractJacksonTextAdapter {
 
 	// --- NAME OF THE FORMAT ---
-	
+
 	@Override
 	public String getFormat() {
 		return "xml";
 	}
-	
+
 	// --- CONSTRUCTOR ---
 
 	public XmlJackson() {
 		super(new XmlMapper());
-		
+
 		// Install MongoDB / BSON serializers
 		tryToAddSerializers("io.datatree.dom.adapters.JsonJacksonBsonSerializers", mapper, prettyMapper);
 	}
-	
+
 }

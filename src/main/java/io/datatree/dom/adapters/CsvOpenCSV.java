@@ -45,6 +45,12 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one CSV implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties. If there
+ * is only one (eg. only the "opencsv") implementation on the classpath, this
+ * step is NOT necessary, the DataTree API will use this implementation
+ * automatically.<br>
+ * <br>
  * -Ddatatree.csv.reader=io.datatree.dom.adapters.CsvOpenCSV<br>
  * -Ddatatree.csv.writer=io.datatree.dom.adapters.CsvOpenCSV<br>
  * <br>
@@ -57,13 +63,18 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "csv");<br>
- * String outputString = node.toString("csv");
- *  
+ * String outputString = node.toString("csv");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "CsvOpenCSV");<br>
+ * String outputString = node.toString("CsvOpenCSV");
+ * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
 @Priority(10)
 public class CsvOpenCSV extends AbstractTextAdapter {
-	
+
 	// --- PARSING PROPERTIES ---
 
 	public char defaultSeparatorChar = CSVParser.DEFAULT_SEPARATOR;
@@ -78,12 +89,12 @@ public class CsvOpenCSV extends AbstractTextAdapter {
 	public String defaultLineEnd = CSVWriter.DEFAULT_LINE_END;
 
 	// --- NAME OF THE FORMAT ---
-	
+
 	@Override
 	public String getFormat() {
 		return "csv";
 	}
-	
+
 	// --- IMPLEMENTED WRITER METHOD ---
 
 	@SuppressWarnings({ "resource" })
@@ -150,8 +161,8 @@ public class CsvOpenCSV extends AbstractTextAdapter {
 	@SuppressWarnings("resource")
 	@Override
 	public Object parse(String source) throws Exception {
-		return new CSVReader(new StringReader(source), defaultSeparatorChar, defaultQuoteChar, defaultEscapeChar, defaultSkipLines, defaultStrictQuotes,
-				defaultIgnoreLeadingWhiteSpace).readAll();
+		return new CSVReader(new StringReader(source), defaultSeparatorChar, defaultQuoteChar, defaultEscapeChar,
+				defaultSkipLines, defaultStrictQuotes, defaultIgnoreLeadingWhiteSpace).readAll();
 	}
 
 }

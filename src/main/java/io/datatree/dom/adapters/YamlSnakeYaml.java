@@ -50,10 +50,29 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * https://mvnrepository.com/artifact/org.yaml/snakeyaml<br>
  * compile group: 'org.yaml', name: 'snakeyaml', version: '1.18'<br>
  * <br>
+ * <b>Set as default (using Java System Properties):</b><br>
+ * <br>
+ * If there is more than one YAML implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties.<br>
+ * <br>
+ * -Ddatatree.yaml.reader=io.datatree.dom.adapters.YamlSnakeYaml<br>
+ * -Ddatatree.yaml.writer=io.datatree.dom.adapters.YamlSnakeYaml<br>
+ * <br>
+ * <b>Set as default (using static methods):</b><br>
+ * <br>
+ * YamlSnakeYaml yaml = new YamlSnakeYaml();<br>
+ * TreeReaderRegistry.setReader("yaml", yaml);<br>
+ * TreeWriterRegistry.setWriter("yaml", yaml);<br>
+ * <br>
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "yaml");<br>
- * String outputString = node.toString("yaml");
+ * String outputString = node.toString("yaml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "YamlSnakeYaml");<br>
+ * String outputString = node.toString("YamlSnakeYaml");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -79,9 +98,25 @@ public class YamlSnakeYaml extends AbstractTextAdapter {
 		// Representer
 		ExtensibleRepresenter representer = new ExtensibleRepresenter();
 
+		// Install Java / Apache Cassandra serializers
+		addDefaultSerializers(representer);
+
 		// Install MongoDB / BSON serializers
 		tryToAddSerializers("io.datatree.dom.adapters.YamlSnakeYamlBsonSerializers", representer);
-		
+
+		// Create flow-style YAML mapper
+		DumperOptions optionsNormal = new DumperOptions();
+		optionsNormal.setDefaultFlowStyle(FlowStyle.FLOW);
+		mapper = new Yaml(representer, optionsNormal);
+
+		// Create "pretty" YAML mapper
+		DumperOptions optionsPretty = new DumperOptions();
+		optionsPretty.setDefaultFlowStyle(FlowStyle.BLOCK);
+		prettyMapper = new Yaml(representer, optionsPretty);
+	}
+
+	public void addDefaultSerializers(ExtensibleRepresenter representer) {
+
 		// InetAddress
 		addSerializer(representer, InetAddress.class, (value) -> {
 			return value.getCanonicalHostName();
@@ -110,16 +145,6 @@ public class YamlSnakeYaml extends AbstractTextAdapter {
 			}
 			return Long.toString(value.getTime());
 		});
-
-		// Create flow-style YAML normalMapper
-		DumperOptions optionsNormal = new DumperOptions();
-		optionsNormal.setDefaultFlowStyle(FlowStyle.FLOW);
-		mapper = new Yaml(representer, optionsNormal);
-
-		// Create "pretty" YAML normalMapper
-		DumperOptions optionsPretty = new DumperOptions();
-		optionsPretty.setDefaultFlowStyle(FlowStyle.BLOCK);
-		prettyMapper = new Yaml(representer, optionsPretty);
 	}
 
 	// --- IMPLEMENTED WRITER METHOD ---

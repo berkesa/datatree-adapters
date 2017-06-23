@@ -50,6 +50,9 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one XML implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties.<br>
+ * <br>
  * -Ddatatree.xml.reader=io.datatree.dom.adapters.XmlXStream<br>
  * -Ddatatree.xml.writer=io.datatree.dom.adapters.XmlXStream<br>
  * <br>
@@ -62,7 +65,12 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputString, "xml");<br>
- * String outputString = node.toString("xml");
+ * String outputString = node.toString("xml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "XmlXStream");<br>
+ * String outputString = node.toString("XmlXStream");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

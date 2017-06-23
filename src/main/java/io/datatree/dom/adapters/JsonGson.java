@@ -54,6 +54,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
+ * classpath, the preferred implementation is adjustable with the following
+ * System Properties. If there is only one (eg. only the "gson") implementation
+ * on the classpath, this step is NOT necessary, the DataTree API will use this
+ * JSON API automatically.<br>
+ * <br>
  * -Ddatatree.json.reader=io.datatree.dom.adapters.JsonGson<br>
  * -Ddatatree.json.writer=io.datatree.dom.adapters.JsonGson<br>
  * <br>
@@ -64,7 +70,12 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * TreeWriterRegistry.setWriter("json", jsonGson);<br>
  * <br>
  * Tree node = new Tree(inputString);<br>
- * String outputString = node.toString();
+ * String outputString = node.toString();<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "JsonGson");<br>
+ * String outputString = node.toString("JsonGson");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

@@ -41,7 +41,12 @@ import io.datatree.dom.Priority;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputBytes, "bson");<br>
- * byte[] outputBytes = node.toBytes("bson");
+ * byte[] outputBytes = node.toBytes("bson");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputBytes, "BsonJackson");<br>
+ * byte[] outputBytes = node.toBytes("BsonJackson");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

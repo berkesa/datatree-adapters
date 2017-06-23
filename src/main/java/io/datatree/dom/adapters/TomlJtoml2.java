@@ -33,6 +33,12 @@ import io.ous.jtoml.JToml;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one TOML implementation on classpath, the preferred
+ * implementation is adjustable with the following System Properties. If there
+ * is only one (eg. only the "jtoml") implementation on the classpath, this step
+ * is NOT necessary, the DataTree API will use this implementation
+ * automatically.<br>
+ * <br>
  * -Ddatatree.toml.reader=io.datatree.dom.adapters.TomlJtoml2<br>
  * <br>
  * <b>Set as default (using static methods):</b><br>
@@ -42,7 +48,11 @@ import io.ous.jtoml.JToml;
  * <br>
  * <b>Invoke deserializer:</b><br>
  * <br>
- * Tree node = new Tree(inputString, "toml");
+ * Tree node = new Tree(inputString, "toml");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputString, "TomlJtoml2");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */

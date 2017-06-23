@@ -52,6 +52,12 @@ import io.datatree.dom.builtin.AbstractAdapter;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one MessagePack implementation on classpath, the
+ * preferred implementation is adjustable with the following System Properties.
+ * If there is only one (eg. only the "msgpack")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this implementation automatically.<br>
+ * <br>
  * -Ddatatree.msgpack.reader=io.datatree.dom.adapters.MsgPackOrg<br>
  * -Ddatatree.msgpack.writer=io.datatree.dom.adapters.MsgPackOrg<br>
  * <br>
@@ -64,7 +70,12 @@ import io.datatree.dom.builtin.AbstractAdapter;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputBytes, "msgpack");<br>
- * byte[] outputBytes = node.toBytes("msgpack");
+ * byte[] outputBytes = node.toBytes("msgpack");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputBytes, "MsgPackOrg");<br>
+ * byte[] outputBytes = node.toBytes("MsgPackOrg");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
@@ -86,9 +97,15 @@ public class MsgPackOrg extends AbstractAdapter {
 
 	public MsgPackOrg() {
 
+		// Install Java / Apache Cassandra serializers
+		addDefaultSerializers();
+		
 		// Install MongoDB / BSON serializers
 		tryToAddSerializers("io.datatree.dom.adapters.MsgPackOrgBsonSerializers", mapper);
+	}
 
+	public void addDefaultSerializers() {
+		
 		// InetAddress
 		addSerializer(mapper, InetAddress.class, (packer, value) -> {
 			packer.write(value.getCanonicalHostName());
@@ -104,7 +121,7 @@ public class MsgPackOrg extends AbstractAdapter {
 			packer.write(BASE64.encode(value));
 		});
 	}
-
+	
 	// --- IMPLEMENTED WRITER METHODS ---
 
 	@Override

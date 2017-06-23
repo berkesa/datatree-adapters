@@ -40,6 +40,12 @@ import io.datatree.dom.Priority;
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
+ * If there is more than one MessagePack implementation on classpath, the
+ * preferred implementation is adjustable with the following System Properties.
+ * If there is only one (eg. only the "jackson-dataformat-msgpack")
+ * implementation on the classpath, this step is NOT necessary, the DataTree API
+ * will use this implementation automatically.<br>
+ * <br>
  * -Ddatatree.msgpack.reader=io.datatree.dom.adapters.MsgPackJackson<br>
  * -Ddatatree.msgpack.writer=io.datatree.dom.adapters.MsgPackJackson<br>
  * <br>
@@ -52,7 +58,12 @@ import io.datatree.dom.Priority;
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
  * Tree node = new Tree(inputBytes, "msgpack");<br>
- * byte[] outputBytes = node.toBytes("msgpack");
+ * byte[] outputBytes = node.toBytes("msgpack");<br>
+ * <br>
+ * Innvoke this implementation directly:<br>
+ * <br>
+ * Tree node = new Tree(inputBytes, "MsgPackJackson");<br>
+ * byte[] outputBytes = node.toBytes("MsgPackJackson");
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
