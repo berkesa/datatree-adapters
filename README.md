@@ -66,7 +66,7 @@ That is all. The table below shows the dependencies of the supported JSON implem
 
 ## Using different JSON implementations for reading and writing
 
-If DataTree detects more JSON implementations on classpath, DataTree will use the fastest implementation for reading and writing. To force DataTree to use the proper APIs, use the `datatree.json.reader` and `datatree.json.writer` System Properties to specify the appropriate Adapter Class (see above in the table) for reading and writing:
+If DataTree detects more JSON implementations on classpath, DataTree will use the fastest implementation. To force DataTree to use the proper APIs, use the `datatree.json.reader` and `datatree.json.writer` System Properties to specify the appropriate Adapter Class (see above in the table) for reading and writing:
 
 ```javascript
 -Ddatatree.json.reader=io.datatree.dom.adapters.JsonBoon
