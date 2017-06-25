@@ -10,48 +10,36 @@ to manipulate (put, get, remove, insert, sort, find, stream, etc.) the content o
 
 ![architecture](https://github.com/berkesa/datatree/blob/master/docs/images/architecture.png)
 
-## Download
+## Using various JSON implementations
 
-Add the following dependency to your pom.xml:
+The following sample demonstrates, how to replace the built-in JSON API to Jackson's JSON API. The only thing you have to do is add Jackson JARs to the classpath. If DataTree detects Jackson API on classpath, DataTree will use Jackson's Object Mapper to read/write JSON documents.
 
 ```xml
+<!-- DATATREE API -->
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
     <version>1.0.0</version>
 </dependency>
-```
 
-## Usage
+<!-- JACKSON JSON API -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.9.0.pr3</version>
+</dependency>
+```
 
 ```javascript
-Tree document = new Tree();
-document.put("address.city", "Phoenix");
+// Parse JSON document using Jackson API
+String json = "{ ... json document ...}";
+Tree document = new Tree(json);
+
+// Generating JSON string from Tree using Jackson API
 String json = document.toString();
-
-Result:
-
-{
-  "address": {
-    "city": "Phoenix"
-  }
-}
-
-Other formats:
-
-String yaml  = document.toString("yaml");
-String xml   = document.toString("xml");
-String toml  = document.toString("toml");
-String prop  = document.toString("properties");
-String csv   = document.toString("csv");
-String tsv   = document.toString("tsv");
-
-byte[] bson  = document.toBinary("bson");
-byte[] ion   = document.toBinary("ion");
-byte[] cbor  = document.toBinary("cbor");
-byte[] smile = document.toBinary("smile");
-byte[] msgpk = document.toBinary("msgpack");
 ```
+
+That is all. The table below shows the dependencies of the supported JSON implementations.
 
 ## Required dependencies of JSON adapters:
 
@@ -64,7 +52,7 @@ byte[] msgpk = document.toBinary("msgpack");
 | Flexjson | JsonFlex | [group: 'net.sf.flexjson', name: 'flexjson', version: '3.3'](https://mvnrepository.com/artifact/net.sf.flexjson/flexjson) |
 | Genson | JsonGenson | [group: 'com.owlike', name: 'genson', version: '1.4'](https://mvnrepository.com/artifact/com.owlike/genson) |
 | Google Gson | JsonGson | [group: 'com.google.code.gson', name: 'gson', version: '2.8.0'](https://mvnrepository.com/artifact/com.google.code.gson/gson) |
-| Jackson JSON API | JsonJackson | [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind) |
+| Jackson JSON | JsonJackson | [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind) |
 | Jodd Json | JsonJodd  | [group: 'org.jodd', name: 'jodd-json', version: '3.8.5'](https://mvnrepository.com/artifact/org.jodd/jodd-json) |
 | Apache Johnzon | JsonJohnzon | [group: 'org.apache.johnzon', name: 'johnzon-normalMapper', version: '1.1.0'](https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-normalMapper) |
 | JsonIO | JsonJsonIO | [group: 'com.cedarsoftware', name: 'json-io', version: '4.9.12'](https://mvnrepository.com/artifact/com.cedarsoftware/json-io) |
@@ -74,4 +62,4 @@ byte[] msgpk = document.toBinary("msgpack");
 | SOJO | JsonSojo | [group: 'net.sf.sojo', name: 'sojo', version: '1.0.8'](https://mvnrepository.com/artifact/net.sf.sojo/sojo) |
 | JsonUtil | JsonUtil | [group: 'org.kopitubruk.util', name: 'JSONUtil', version: '1.10.4'](https://mvnrepository.com/artifact/org.kopitubruk.util/JSONUtil) |
 | Amazon Ion | JsonIon  | [group: 'software.amazon.ion', name: 'ion-java', version: '1.0.2'](https://mvnrepository.com/artifact/software.amazon.ion/ion-java) |
-| Built-in JSON API | JsonBuiltin   | - |
+| Built-in parser | JsonBuiltin | - |
