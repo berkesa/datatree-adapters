@@ -31,7 +31,7 @@ The following sample demonstrates, how to replace the built-in JSON API to Jacks
 ```
 
 ```javascript
-// Parse JSON document using Jackson API
+// Parsing JSON document using Jackson API
 String json = "{ ... json document ...}";
 Tree document = new Tree(json);
 
@@ -63,3 +63,48 @@ That is all. The table below shows the dependencies of the supported JSON implem
 | JsonUtil | JsonUtil | [group: 'org.kopitubruk.util', name: 'JSONUtil', version: '1.10.4'](https://mvnrepository.com/artifact/org.kopitubruk.util/JSONUtil) |
 | Amazon Ion | JsonIon  | [group: 'software.amazon.ion', name: 'ion-java', version: '1.0.2'](https://mvnrepository.com/artifact/software.amazon.ion/ion-java) |
 | Built-in parser | JsonBuiltin | - |
+
+## Using different JSON implementations for reading and writing
+
+If DataTree detects more JSON implementations on classpath, DataTree will use the fastest implementation for reading and writing. To force DataTree to use the proper APIs, use the `datatree.json.reader` and `datatree.json.writer` System Properties to specify the appropriate Adapter Class (see above in the table) for reading and writing:
+
+```javascript
+-Ddatatree.json.reader=io.datatree.dom.adapters.JsonBoon
+-Ddatatree.json.writer=io.datatree.dom.adapters.JsonJackson
+```
+
+Add Boon and Jackson to your pom.xml:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- JACKSON JSON API -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.9.0.pr3</version>
+</dependency>
+
+<!-- BOON JSON API -->
+<dependency>
+    <groupId>io.fastjson</groupId>
+    <artifactId>boon</artifactId>
+    <version>0.34</version>
+</dependency>
+```
+
+After that, DataTree will use Boon API for parsing, and Jackson for generating JSON strings.
+
+```javascript
+// Parsing JSON document using Boon API
+String json = "{ ... json document ...}";
+Tree document = new Tree(json);
+
+// Generating JSON string from Tree using Jackson API
+String json = document.toString();
+```
