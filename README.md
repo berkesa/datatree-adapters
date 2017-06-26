@@ -522,6 +522,53 @@ byte[] ion = document.toBinary("ion");
 | ------------------- | ------------- | ---------- |
 | Amazon ION | IonIon | [group: 'software.amazon.ion', name: 'ion-java', version: '1.0.2'](https://mvnrepository.com/artifact/software.amazon.ion/ion-java) |
 
+## Using MessagePack format:
+
+MessagePack is an efficient binary serialization format.
+It lets you exchange data among multiple languages like JSON. But it's faster and smaller.
+Small integers are encoded into a single byte,
+and typical short strings require only one extra byte in addition to the strings themselves.
+
+Add DataTree Adapters and MessagePack JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- MESSAGEPACK API -->
+<dependency>
+    <groupId>org.msgpack</groupId>
+    <artifactId>msgpack</artifactId>
+    <version>0.6.12</version>
+</dependency>
+```
+
+Reading and writing using MessagePack adapter:
+
+```javascript
+// Parsing MessagePack document
+byte[] msgpack = " ... bytes of the MessagePack document ... ";
+Tree document = new Tree(msgpack, "msgpack");
+
+// Getting / setting values
+InetAddress value = document.get("host").asInetAddress();
+document.put("host", InetAddress.getLocalHost());
+
+// Generating MessagePack byte array from Tree
+byte[] msgpack = document.toBinary("msgpack");
+```
+
+## Required dependencies of MessagePack adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| MessagePack | MsgPackOrg | [group: 'org.msgpack', name: 'msgpack', version: '0.6.12'](https://mvnrepository.com/artifact/org.msgpack/msgpack) |
+| Jackson MsgPack | MsgPackJackson | [group: 'org.msgpack', name: 'jackson-dataformat-msgpack', version: '0.8.12'](https://mvnrepository.com/artifact/org.msgpack/jackson-dataformat-msgpack) |
+
 ## Using Java Object Serializator/Deserializator
 
 Reading and writing serialized data structures:
