@@ -138,3 +138,45 @@ String json = document.toString();
 | ------------------- | ------------- | ---------- |
 | Jackson Properties | PropertiesJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties) |
 | Built-in Properties | PropertiesBuiltin | - |
+
+## Required dependencies of CSV adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| OpenCSV | CsvOpenCSV | [group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'](https://mvnrepository.com/artifact/net.sf.opencsv/opencsv) |
+
+## Required dependencies of TSV adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| OpenCSV | TsvOpenCSV | [group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'](https://mvnrepository.com/artifact/net.sf.opencsv/opencsv) |
+
+## Required dependencies of CBOR adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Jackson CBOR | CborJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor) |
+
+## Required dependencies of BSON adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Jackson BSON | BsonJackson | [group: 'de.undercouch', name: 'bson4jackson', version: '2.7.0'](https://mvnrepository.com/artifact/de.undercouch/bson4jackson) |
+
+## Required dependencies of SMILE adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Jackson SMILE | SmileJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile) |
+
+## Required dependencies of ION adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Amazon ION | IonIon | [group: 'software.amazon.ion', name: 'ion-java', version: '1.0.2'](https://mvnrepository.com/artifact/software.amazon.ion/ion-java) |
+
+## Required dependencies of Java Object Serializator/Deserializator adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Built-in Java Object Serializator/Deserializator | JavaBuiltin  | - |
