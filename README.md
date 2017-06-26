@@ -113,7 +113,7 @@ String json = document.toString();
 
 ```javascript
 // Parsing XML document
-String xml = "< ... xml document ...>";
+String xml = "< ... XML document ...>";
 Tree document = new Tree(xml, "xml");
 
 // Generating XML string from Tree
@@ -150,7 +150,7 @@ Add SnakeYAML JARs to the classpath. If DataTree detects SnakeYAML API on classp
 
 ```javascript
 // Parsing YAML document
-String yaml = " ... yaml document ... ";
+String yaml = " ... YAML document ... ";
 Tree document = new Tree(yaml, "yaml");
 
 // Generating YAML string from Tree
@@ -186,7 +186,7 @@ Add Toml4j JARs to the classpath. If DataTree detects Toml4j API on classpath, D
 
 ```javascript
 // Parsing TOML document
-String toml = " ... toml document ... ";
+String toml = " ... TOML document ... ";
 Tree document = new Tree(toml, "toml");
 
 // Generating TOML string from Tree
@@ -219,11 +219,78 @@ String properties = document.toString("properties");
 | Jackson Properties | PropertiesJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties) |
 | Built-in Properties | PropertiesBuiltin | - |
 
+## Using CSV format:
+
+Comma-separated values (CSV) file stores tabular data (numbers and text) in plain text.
+Each line of the file is a data record. Each record consists of one or more fields,
+separated by commas. The use of the comma as a field separator is the source of the name for this file format.
+
+Add DataTree Adapters and OpenCSV JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- CSV API -->
+<dependency>
+    <groupId>net.sf.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>2.3</version>
+</dependency>
+```
+
+```javascript
+// Parsing CSV document
+String csv = " ... CSV document ... ";
+Tree document = new Tree(csv, "csv");
+
+// Generating CSV string from Tree
+String csv = document.toString("csv");
+```
+
 ## Required dependencies of CSV adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | OpenCSV | CsvOpenCSV | [group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'](https://mvnrepository.com/artifact/net.sf.opencsv/opencsv) |
+
+## Using TSV format:
+
+A tab-separated values (TSV) file is a simple text format for storing data in a tabular structure,
+e.g., database table or spreadsheet data, and a way of exchanging information between databases.
+Each record in the table is one line of the text file.
+Each field value of a record is separated from the next by a tab character.
+
+Add DataTree Adapters and OpenCSV JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- CSV API -->
+<dependency>
+    <groupId>net.sf.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>2.3</version>
+</dependency>
+```
+
+```javascript
+// Parsing TSV document
+String tsv = " ... TSV document ... ";
+Tree document = new Tree(tsv, "tsv");
+
+// Generating TSV string from Tree
+String tsv = document.toString("tsv");
+```
 
 ## Required dependencies of TSV adapters:
 
@@ -403,7 +470,7 @@ byte[] ion = document.toBinary("ion");
 
 ## Using Java Object Serializator/Deserializator
 
-Reading and writing CBOR documents:
+Reading and writing serialized data structures:
 
 ```javascript
 // Reading serialized data structure
