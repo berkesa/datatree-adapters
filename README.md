@@ -231,11 +231,85 @@ String properties = document.toString("properties");
 | ------------------- | ------------- | ---------- |
 | OpenCSV | TsvOpenCSV | [group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'](https://mvnrepository.com/artifact/net.sf.opencsv/opencsv) |
 
+## Using CBOR format:
+
+CBOR is based on the wildly successful JSON data model: numbers,
+strings, arrays, maps (called objects in JSON), and a few values such as
+false, true, and null. One of the major practical wins of JSON is that
+successful data interchange is possible without casting a schema in concrete.
+This works much better in a world where both ends of a communication
+relationship may be evolving at high speed.
+
+Add DataTree Adapters and CBOR JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- CBOR API -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-cbor</artifactId>
+    <version>2.9.0.pr3</version>
+</dependency>
+```
+
+Reading and writing CBOR documents:
+
+```javascript
+// Parsing CBOR document
+byte[] cbor = " ... bytes of the CBOR document ... ";
+Tree document = new Tree(cbor, "cbor");
+
+// Generating CBOR byte array from Tree
+byte[] cbor = document.toBinary("cbor");
+```
+
 ## Required dependencies of CBOR adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | Jackson CBOR | CborJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor) |
+
+## Using BSON format:
+
+BSON is a computer data interchange format used mainly as a data storage and
+network transfer format in the MongoDB database. It is a binary form for
+representing simple data structures, associative arrays
+(called objects or documents in MongoDB), and various data types of specific interest to MongoDB.
+
+Add DataTree Adapters and BSON JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- BSON API -->
+<dependency>
+    <groupId>de.undercouch</groupId>
+    <artifactId>bson4jackson</artifactId>
+    <version>2.7.0</version>
+</dependency>
+```
+
+Reading and writing BSON documents:
+
+```javascript
+// Parsing BSON document
+byte[] bson = " ... bytes of the BSON document ... ";
+Tree document = new Tree(bson, "bson");
+
+// Generating BSON byte array from Tree
+byte[] bson = document.toBinary("bson");
+```
 
 ## Required dependencies of BSON adapters:
 
@@ -243,17 +317,102 @@ String properties = document.toString("properties");
 | ------------------- | ------------- | ---------- |
 | Jackson BSON | BsonJackson | [group: 'de.undercouch', name: 'bson4jackson', version: '2.7.0'](https://mvnrepository.com/artifact/de.undercouch/bson4jackson) |
 
+## Using SMILE format:
+
+Smile is a computer data interchange format based on JSON. It can also be considered
+as a binary serialization of generic JSON data model, which means that tools that operate
+on JSON may be used with Smile as well, as long as proper encoder/decoder exists for tool to use. 
+
+Add DataTree Adapters and SMILE JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- SMILE API -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-smile</artifactId>
+    <version>2.9.0.pr3</version>
+</dependency>
+```
+
+Reading and writing SMILE documents:
+
+```javascript
+// Parsing SMILE document
+byte[] smile = " ... bytes of the SMILE document ... ";
+Tree document = new Tree(smile, "smile");
+
+// Generating SMILE byte array from Tree
+byte[] smile = document.toBinary("smile");
+```
+
 ## Required dependencies of SMILE adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | Jackson SMILE | SmileJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile) |
 
+## Using ION format:
+
+Amazon Ion is a richly-typed, self-describing, hierarchical data serialization format
+offering interchangeable binary and text representations. The text format (a superset of JSON)
+is easy to read and author, supporting rapid prototyping. The binary representation is efficient
+to store, transmit, and skip-scan parse. The rich type system provides unambiguous semantics for
+long-term preservation of business data which can survive multiple generations of software evolution.
+
+Add DataTree Adapters and SMILE JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- ION API -->
+<dependency>
+    <groupId>software.amazon.ion</groupId>
+    <artifactId>ion-java</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+
+Reading and writing ION documents:
+
+```javascript
+// Parsing ION document
+byte[] ion = " ... bytes of the ION document ... ";
+Tree document = new Tree(ion, "ion");
+
+// Generating ION byte array from Tree
+byte[] ion = document.toBinary("ion");
+```
+
 ## Required dependencies of ION adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | Amazon ION | IonIon | [group: 'software.amazon.ion', name: 'ion-java', version: '1.0.2'](https://mvnrepository.com/artifact/software.amazon.ion/ion-java) |
+
+## Using Java Object Serializator/Deserializator
+
+Reading and writing CBOR documents:
+
+```javascript
+// Reading serialized data structure
+byte[] bytes = " ... bytes of the document ... ";
+Tree document = new Tree(bytes, "java");
+
+// Serialize Java Objects into byte array
+byte[] bytes = document.toBinary("java");
+```
 
 ## Required dependencies of Java Object Serializator/Deserializator adapters:
 
