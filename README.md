@@ -116,3 +116,11 @@ String json = document.toString();
 | Jackson XML | XmlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml) |
 | XMLStream | XmlXStream | [group: 'xstream', name: 'xstream', version: '1.2.2'](https://mvnrepository.com/artifact/xstream/xstream) |
 | Built-in XML | XmlBuiltin | - |
+
+## Required dependencies of YAML adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Jackson YAML | YamlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml) |
+| SnakeYAML | YamlSnakeYaml | [compile group: 'org.yaml', name: 'snakeyaml', version: '1.18'](https://mvnrepository.com/artifact/org.yaml/snakeyaml) |
+
