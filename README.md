@@ -114,18 +114,21 @@ String json = document.toString();
 ```
 ## Performance comparison JSON Readers
 
-*The higher values are better.*
+*The higher values are better:*
 
 ![JSON Readers](https://github.com/berkesa/datatree/blob/master/docs/images/json-readers.png)
 
-Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM
+Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 [Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
 
 ## Performance comparison JSON Writers
 
-*The higher values are better.*
+*The higher values are better:*
 
 ![JSON Writers](https://github.com/berkesa/datatree/blob/master/docs/images/json-writers.png)
+
+Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
+[Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
 
 ## Using XML format:
 
