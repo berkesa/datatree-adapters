@@ -105,6 +105,10 @@ After that, DataTree will use Boon API for parsing, and Jackson for generating J
 String json = "{ ... json document ...}";
 Tree document = new Tree(json);
 
+// Getting / setting values
+int number = document.get("node.subnode.subnode").asInteger();
+document.put("node.subnode.subnode", 5);
+
 // Generating JSON string from Tree using Jackson API
 String json = document.toString();
 ```
@@ -115,6 +119,10 @@ String json = document.toString();
 // Parsing XML document
 String xml = "< ... XML document ...>";
 Tree document = new Tree(xml, "xml");
+
+// Getting / setting values
+String value = document.get("node.subnode.subnode", "defaultValue");
+document.put("node.subnode.subnode", "newValue");
 
 // Generating XML string from Tree
 String xml = document.toString("xml");
@@ -153,6 +161,12 @@ Add SnakeYAML JARs to the classpath. If DataTree detects SnakeYAML API on classp
 String yaml = " ... YAML document ... ";
 Tree document = new Tree(yaml, "yaml");
 
+// Getting / setting values
+for (Tree child: document.get("listOfItems")) {
+  ...
+}
+document.clear("listOfItems");
+
 // Generating YAML string from Tree
 String yaml = document.toString("yaml");
 ```
@@ -189,6 +203,12 @@ Add Toml4j JARs to the classpath. If DataTree detects Toml4j API on classpath, D
 String toml = " ... TOML document ... ";
 Tree document = new Tree(toml, "toml");
 
+// Getting / setting values
+document.get("subObject").forEach((child) -> {
+  ...
+});
+document.putList("newList").add(1).add(2).add(3);
+
 // Generating TOML string from Tree
 String toml = document.toString("toml");
 ```
@@ -207,6 +227,10 @@ String toml = document.toString("toml");
 // Parsing Java Properties file
 String properties = "< ... properties ...>";
 Tree document = new Tree(properties, "properties");
+
+// Getting / setting values
+boolean value = document.get("array[2].subItem.value", false);
+document.put("path.to.item", true);
 
 // Generating Java Properties string from Tree
 String properties = document.toString("properties");
@@ -248,6 +272,13 @@ Add DataTree Adapters and OpenCSV JARs to the classpath:
 String csv = " ... CSV document ... ";
 Tree document = new Tree(csv, "csv");
 
+// Getting / setting values
+for (Tree row: document) {
+  for (Tree cell: row) {
+    ...
+  }
+}
+
 // Generating CSV string from Tree
 String csv = document.toString("csv");
 ```
@@ -287,6 +318,13 @@ Add DataTree Adapters and OpenCSV JARs to the classpath:
 // Parsing TSV document
 String tsv = " ... TSV document ... ";
 Tree document = new Tree(tsv, "tsv");
+
+// Getting / setting values
+for (Tree row: document) {
+  for (Tree cell: row) {
+    ...
+  }
+}
 
 // Generating TSV string from Tree
 String tsv = document.toString("tsv");
@@ -332,6 +370,10 @@ Reading and writing CBOR documents:
 byte[] cbor = " ... bytes of the CBOR document ... ";
 Tree document = new Tree(cbor, "cbor");
 
+// Getting / setting values
+long value = document.get("longValue", 0L);
+document.put("longValue", 1L);
+
 // Generating CBOR byte array from Tree
 byte[] cbor = document.toBinary("cbor");
 ```
@@ -374,6 +416,10 @@ Reading and writing BSON documents:
 byte[] bson = " ... bytes of the BSON document ... ";
 Tree document = new Tree(bson, "bson");
 
+// Getting / setting values
+int value = document.get("intValue", 0);
+document.put("intValue", 1);
+
 // Generating BSON byte array from Tree
 byte[] bson = document.toBinary("bson");
 ```
@@ -414,6 +460,10 @@ Reading and writing SMILE documents:
 // Parsing SMILE document
 byte[] smile = " ... bytes of the SMILE document ... ";
 Tree document = new Tree(smile, "smile");
+
+// Getting / setting values
+Date value = document.get("timestamp").asDate();
+document.put("timestamp", new Date());
 
 // Generating SMILE byte array from Tree
 byte[] smile = document.toBinary("smile");
@@ -458,6 +508,10 @@ Reading and writing ION documents:
 byte[] ion = " ... bytes of the ION document ... ";
 Tree document = new Tree(ion, "ion");
 
+// Getting / setting values
+UUID value = document.get("id").asUUID();
+document.put("id", UUID.randomUUID());
+
 // Generating ION byte array from Tree
 byte[] ion = document.toBinary("ion");
 ```
@@ -476,6 +530,10 @@ Reading and writing serialized data structures:
 // Reading serialized data structure
 byte[] bytes = " ... bytes of the document ... ";
 Tree document = new Tree(bytes, "java");
+
+// Getting / setting values
+document.stream().limit(10).forEach(System.out::println);
+document.remove("path.to.subnode");
 
 // Serialize Java Objects into byte array
 byte[] bytes = document.toBinary("java");
