@@ -112,6 +112,13 @@ document.put("node.subnode.subnode", 5);
 // Generating JSON string from Tree using Jackson API
 String json = document.toString();
 ```
+## Performance comparison JSON Readers
+
+![JSON Readers](https://github.com/berkesa/datatree/blob/master/docs/images/json-readers.png)
+
+## Performance comparison JSON Writers
+
+![JSON Writers](https://github.com/berkesa/datatree/blob/master/docs/images/json-writers.png)
 
 ## Using XML format:
 
