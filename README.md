@@ -12,7 +12,7 @@ to manipulate (put, get, remove, insert, sort, find, stream, etc.) the content o
 
 ## Using various JSON implementations
 
-The following sample demonstrates, how to replace the built-in JSON API to Jackson's JSON API. The only thing you have to do is add Jackson JARs to the classpath. If DataTree detects Jackson API on classpath, DataTree will use Jackson's Object Mapper to read/write JSON documents.
+DataTree API supports 18 popular JSON implementations, you can use your favorite one for reading/writing JSON structures. The following sample demonstrates, how to replace the built-in JSON API to Jackson's JSON API. The only thing you have to do is add Jackson JARs to the classpath. If DataTree detects Jackson API on classpath, DataTree will use Jackson's Object Mapper to read/write JSON documents.
 
 ```xml
 <!-- DATATREE API -->
@@ -115,6 +115,8 @@ String json = document.toString();
 
 ## Using XML format:
 
+DataTree API supports 3 XML reader/writer implementations. The default (built-in) XML adapter has no dependencies.
+
 ```javascript
 // Parsing XML document
 String xml = "< ... XML document ...>";
@@ -128,6 +130,13 @@ document.put("node.subnode.subnode", "newValue");
 String xml = document.toString("xml");
 ```
 
+If you would like to use the Jackson or XMLStream reader/writer add the proper dependency (see the table below) to the application's classpath. If there is more than one XML implementation on classpath, the preferred implementation is adjustable with the following System Properties:
+
+```javascript
+-Ddatatree.xml.reader=io.datatree.dom.adapters.XmlXStream<br>
+-Ddatatree.xml.writer=io.datatree.dom.adapters.XmlXStream<br>
+```
+
 ## Required dependencies of XML adapters:
 
 | API Name            | Adapter Class | Dependency |
@@ -138,7 +147,7 @@ String xml = document.toString("xml");
 
 ## Using YAML format:
 
-Add SnakeYAML JARs to the classpath. If DataTree detects SnakeYAML API on classpath, DataTree will use SnakeYAML API to read/write YAML documents.
+DataTree API supports 2 YAML reader/writer implementations. For example, to use SnakeYAML's version, just add SnakeYAML JARs to the classpath. If DataTree detects SnakeYAML API on classpath, DataTree will use SnakeYAML API to read/write YAML documents.
 
 ```xml
 <!-- DATATREE API -->
@@ -180,7 +189,7 @@ String yaml = document.toString("yaml");
 
 ## Using TOML format:
 
-Add Toml4j JARs to the classpath. If DataTree detects Toml4j API on classpath, DataTree will use Toml4j API to read/write TOML documents.
+DataTree API supports 3 TOML implementations. For example, to use Toml4j's version, just add Toml4j JARs to the classpath. If DataTree detects Toml4j API on classpath, DataTree will use Toml4j API to read/write TOML documents.
 
 ```xml
 <!-- DATATREE API -->
@@ -223,6 +232,8 @@ String toml = document.toString("toml");
 
 ## Using Java Property format:
 
+DataTree API supports 2 Java Property reader/writer implementations. The default (built-in) Property adapter has no dependencies.
+
 ```javascript
 // Parsing Java Properties file
 String properties = "< ... properties ...>";
@@ -235,6 +246,8 @@ document.put("path.to.item", true);
 // Generating Java Properties string from Tree
 String properties = document.toString("properties");
 ```
+
+If you would like to use the Jackson's Java Property reader/writer add the proper dependency (see the table below) to the application's classpath.
 
 ## Required dependencies of Java Property adapters:
 
@@ -529,7 +542,7 @@ It lets you exchange data among multiple languages like JSON. But it's faster an
 Small integers are encoded into a single byte,
 and typical short strings require only one extra byte in addition to the strings themselves.
 
-Add DataTree Adapters and MessagePack JARs to the classpath:
+DataTree API supports 2 MessagePack implementations. For example, to use the official MessagePack API, just add DataTree Adapters and MessagePack JARs to the classpath:
 
 ```xml
 <!-- DATATREE API -->
