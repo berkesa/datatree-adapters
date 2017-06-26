@@ -109,6 +109,17 @@ Tree document = new Tree(json);
 String json = document.toString();
 ```
 
+## Using XML format:
+
+```javascript
+// Parsing XML document
+String xml = "< ... xml document ...>";
+Tree document = new Tree(xml, "xml");
+
+// Generating XML string from Tree
+String xml = document.toString("xml");
+```
+
 ## Required dependencies of XML adapters:
 
 | API Name            | Adapter Class | Dependency |
@@ -117,12 +128,70 @@ String json = document.toString();
 | XMLStream | XmlXStream | [group: 'xstream', name: 'xstream', version: '1.2.2'](https://mvnrepository.com/artifact/xstream/xstream) |
 | Built-in XML | XmlBuiltin | - |
 
+## Using YAML format:
+
+Add SnakeYAML JARs to the classpath. If DataTree detects SnakeYAML API on classpath, DataTree will use SnakeYAML API to read/write YAML documents.
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- SNAKEYAML API -->
+<dependency>
+    <groupId>org.yaml</groupId>
+    <artifactId>snakeyaml</artifactId>
+    <version>1.18</version>
+</dependency>
+```
+
+```javascript
+// Parsing YAML document
+String yaml = " ... yaml document ... ";
+Tree document = new Tree(yaml, "yaml");
+
+// Generating YAML string from Tree
+String yaml = document.toString("yaml");
+```
+
 ## Required dependencies of YAML adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | Jackson YAML | YamlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml) |
 | SnakeYAML | YamlSnakeYaml | [compile group: 'org.yaml', name: 'snakeyaml', version: '1.18'](https://mvnrepository.com/artifact/org.yaml/snakeyaml) |
+
+## Using TOML format:
+
+Add Toml4j JARs to the classpath. If DataTree detects Toml4j API on classpath, DataTree will use Toml4j API to read/write TOML documents.
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<!-- TOML4J API -->
+<dependency>
+    <groupId>com.moandjiezana.toml</groupId>
+    <artifactId>toml4j</artifactId>
+    <version>0.7.1</version>
+</dependency>
+```
+
+```javascript
+// Parsing TOML document
+String toml = " ... toml document ... ";
+Tree document = new Tree(toml, "toml");
+
+// Generating TOML string from Tree
+String toml = document.toString("toml");
+```
 
 ## Required dependencies of TOML adapters:
 
@@ -131,6 +200,17 @@ String json = document.toString();
 | JToml | TomlJtoml | [group: 'me.grison', name: 'jtoml', version: '1.0.0'](https://mvnrepository.com/artifact/me.grison/jtoml) |
 | JToml | TomlJtoml2 | [group: 'io.ous', name: 'jtoml', version: '2.0.0'](https://mvnrepository.com/artifact/io.ous/jtoml) |
 | Toml4j | TomlToml4j | [group: 'com.moandjiezana.toml', name: 'toml4j', version: '0.7.1'](https://mvnrepository.com/artifact/com.moandjiezana.toml/toml4j) |
+
+## Using Java Property format:
+
+```javascript
+// Parsing Java Properties file
+String properties = "< ... properties ...>";
+Tree document = new Tree(properties, "properties");
+
+// Generating Java Properties string from Tree
+String properties = document.toString("properties");
+```
 
 ## Required dependencies of Java Property adapters:
 
