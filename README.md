@@ -39,7 +39,7 @@ Tree document = new Tree(json);
 String json = document.toString();
 ```
 
-That is all. The table below shows the dependencies of the supported JSON implementations.
+That is all. The table below shows the dependencies of the supported JSON implementations. If you add FastJson dependency to classpath instead of Jackson, DataTree will use FastJson, and so on.
 
 ## Required dependencies of JSON adapters:
 
@@ -108,3 +108,11 @@ Tree document = new Tree(json);
 // Generating JSON string from Tree using Jackson API
 String json = document.toString();
 ```
+
+## Required dependencies of XML adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Jackson XML | XmlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml) |
+| XMLStream | XmlXStream | [group: 'xstream', name: 'xstream', version: '1.2.2'](https://mvnrepository.com/artifact/xstream/xstream) |
+| Built-in XML | XmlBuiltin | - |
