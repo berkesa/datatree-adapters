@@ -112,7 +112,7 @@ document.put("node.subnode.subnode", 5);
 // Generating JSON string from Tree using Jackson API
 String json = document.toString();
 ```
-## Performance comparison JSON Readers
+## Performance comparison of JSON Readers
 
 *The higher values are better:*
 
@@ -121,7 +121,7 @@ String json = document.toString();
 Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 [Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
 
-## Performance comparison JSON Writers
+## Performance comparison of JSON Writers
 
 *The higher values are better:*
 
