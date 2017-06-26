@@ -131,3 +131,10 @@ String json = document.toString();
 | JToml | TomlJtoml | [group: 'me.grison', name: 'jtoml', version: '1.0.0'](https://mvnrepository.com/artifact/me.grison/jtoml) |
 | JToml | TomlJtoml2 | [group: 'io.ous', name: 'jtoml', version: '2.0.0'](https://mvnrepository.com/artifact/io.ous/jtoml) |
 | Toml4j | TomlToml4j | [group: 'com.moandjiezana.toml', name: 'toml4j', version: '0.7.1'](https://mvnrepository.com/artifact/com.moandjiezana.toml/toml4j) |
+
+## Required dependencies of Java Property adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| Jackson Properties | PropertiesJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.0.pr3'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties) |
+| Built-in Properties | PropertiesBuiltin | - |
