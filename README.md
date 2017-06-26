@@ -133,8 +133,8 @@ String xml = document.toString("xml");
 If you would like to use the Jackson or XMLStream reader/writer add the proper dependency (see the table below) to the application's classpath. If there is more than one XML implementation on classpath, the preferred implementation is adjustable with the following System Properties:
 
 ```javascript
--Ddatatree.xml.reader=io.datatree.dom.adapters.XmlXStream<br>
--Ddatatree.xml.writer=io.datatree.dom.adapters.XmlXStream<br>
+-Ddatatree.xml.reader=io.datatree.dom.adapters.XmlXStream
+-Ddatatree.xml.writer=io.datatree.dom.adapters.XmlXStream
 ```
 
 ## Required dependencies of XML adapters:
@@ -384,8 +384,8 @@ byte[] cbor = " ... bytes of the CBOR document ... ";
 Tree document = new Tree(cbor, "cbor");
 
 // Getting / setting values
-long value = document.get("longValue", 0L);
-document.put("longValue", 1L);
+int value = document.get("intValue").asInteger();
+document.put("intValue", 1);
 
 // Generating CBOR byte array from Tree
 byte[] cbor = document.toBinary("cbor");
