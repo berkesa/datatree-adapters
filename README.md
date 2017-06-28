@@ -1,3 +1,7 @@
+[![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/berkesa/datatree-adapters/master/LICENSE)
+[![Javadocs](https://www.javadoc.io/badge/com.github.berkesa/datatree-adapters.svg)](https://www.javadoc.io/doc/com.github.berkesa/datatree-adapters)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/berkesa/datatree-adapters.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+
 # DataTree Adapter Pack
 Various text and binary adapters to [DataTree Core API](https://github.com/berkesa/datatree).
 
@@ -621,3 +625,11 @@ byte[] bytes = document.toBinary("java");
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | Built-in Java Object Serializator/Deserializator | JavaBuiltin  | - |
+
+## Requirements:
+
+The DataTree APIs require Java 8.
+
+## License:
+
+DataTree is licensed under the Apache License V2, you can use it in your commercial products for free.
