@@ -22,17 +22,15 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 
-@Suite.SuiteClasses({ PerformanceTestWithBoon.class, PerformanceTestWithBson.class, PerformanceTestWithGenson.class,
-		PerformanceTestWithGson.class, PerformanceTestWithJackson.class, PerformanceTestWithBuiltin.class,
-		PerformanceTestWithJsonSimple.class, PerformanceTestWithFastJson.class, PerformanceTestWithJsonIO.class,
-		PerformanceTestWithJsonSmart.class, PerformanceTestWithNanoJson.class, PerformanceTestWithDSLJson.class,
-		PerformanceTestWithJohnzon.class, PerformanceTestWithJodd.class, PerformanceTestWithSojo.class,
-		PerformanceTestWithJsonUtil.class, PerformanceTestWithFlexjson.class, PerformanceTestWithIon.class })
+@Suite.SuiteClasses({ PerformanceBinaryTestWithJava.class, PerformanceBinaryTestWithBson.class,
+		PerformanceBinaryTestWithCbor.class, PerformanceBinaryTestWithIon.class,
+		PerformanceBinaryTestWithMsgPackJackson.class, PerformanceBinaryTestWithMsgPackOrg.class,
+		PerformanceBinaryTestWithSmile.class })
 
 /**
- * Performance tests of JSON APIs.
+ * Performance tests of binary APIs.
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
-public class PerformanceTestSuite {
+public class PerformanceBinaryTestSuite {
 }

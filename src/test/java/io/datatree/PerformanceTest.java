@@ -51,6 +51,14 @@ public abstract class PerformanceTest extends TestCase {
 
 	private static final int LARGE_WRITER_LOOPS = 10;
 
+	// --- FORMAT ---
+
+	// null = json
+	protected String format;
+
+	// toBinary / toString
+	protected boolean binaryTest;
+
 	// --- TEST CASES ---
 
 	@Test
@@ -98,14 +106,32 @@ public abstract class PerformanceTest extends TestCase {
 	protected final long doWriterTest(String name, int loops) throws Exception {
 		Tree node = loadQNode(name);
 		System.gc();
+		if (binaryTest) {
+			long start = System.currentTimeMillis();
+			for (int i = 0; i < loops; i++) {
+				node.toBinary(format, false);
+			}
+			return System.currentTimeMillis() - start;			
+		}
 		long start = System.currentTimeMillis();
 		for (int i = 0; i < loops; i++) {
-			node.toString(null, false);
+			node.toString(format, false);
 		}
 		return System.currentTimeMillis() - start;
 	}
 
 	protected final long doReaderTest(String name, int loops) throws Exception {
+		if (binaryTest) {
+			String json = loadString(name);
+			Tree t = new Tree(json);
+			byte[] bytes = t.toBinary(format);
+			System.gc();
+			long start = System.currentTimeMillis();
+			for (int i = 0; i < loops; i++) {
+				new Tree(bytes, format);
+			}
+			return System.currentTimeMillis() - start;
+		}
 		String json = loadString(name);
 		System.gc();
 		long start = System.currentTimeMillis();
@@ -118,10 +144,10 @@ public abstract class PerformanceTest extends TestCase {
 	protected final void printResult(long duration, boolean small, boolean reader) {
 		String api;
 		if (reader) {
-			api = TreeReaderRegistry.getReader("json").getClass().toString();
+			api = TreeReaderRegistry.getReader(format).getClass().toString();
 			api = api.replace("Reader", "");
 		} else {
-			api = TreeWriterRegistry.getWriter("json").getClass().toString();
+			api = TreeWriterRegistry.getWriter(format).getClass().toString();
 			api = api.replace("Writer", "");
 		}
 		int i = api.lastIndexOf('.');
