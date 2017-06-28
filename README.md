@@ -8,7 +8,7 @@ during the software development without any code modifications.
 In addition, the DataTree API provides you with a logical set of tools
 to manipulate (put, get, remove, insert, sort, find, stream, etc.) the content of the hierarchical documents.
 
-![architecture](https://github.com/berkesa/datatree/blob/master/docs/images/architecture.png)
+![architecture](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/architecture.png)
 
 ## Using various JSON implementations
 
@@ -116,7 +116,7 @@ String json = document.toString();
 
 *The higher values are better:*
 
-![JSON Readers](https://github.com/berkesa/datatree/blob/master/docs/images/json-readers.png)
+![JSON Readers](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/json-readers.png)
 
 Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 [Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
@@ -125,7 +125,7 @@ Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 
 *The higher values are better:*
 
-![JSON Writers](https://github.com/berkesa/datatree/blob/master/docs/images/json-writers.png)
+![JSON Writers](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/json-writers.png)
 
 Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 [Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
