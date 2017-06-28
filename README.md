@@ -3,7 +3,7 @@
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/berkesa/datatree-adapters.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
 # DataTree Adapter Pack
-Various text and binary adapters to [DataTree Core API](https://github.com/berkesa/datatree).
+Various text and binary adapters to [DataTree Core API](https://berkesa.github.io/datatree/).
 
 DataTree is an extensible Java Library for reading, manipulating and writing hierarchical data structures from/to various formats. DataTree is NOT an another JSON parser. It's a top-level API layer that uses existing JSON implementations.
 Even though the JSON format is the default, DataTree supports other formats, such as XML, YAML, TOML, etc.
