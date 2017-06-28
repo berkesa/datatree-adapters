@@ -1,5 +1,9 @@
+[![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/berkesa/datatree-adapters/master/LICENSE)
+[![Javadocs](https://www.javadoc.io/badge/com.github.berkesa/datatree-adapters.svg)](https://www.javadoc.io/doc/com.github.berkesa/datatree-adapters)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/berkesa/datatree-adapters.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+
 # DataTree Adapter Pack
-Various text and binary adapters to [DataTree Core API](https://github.com/berkesa/datatree).
+Various text and binary adapters to [DataTree Core API](https://berkesa.github.io/datatree/).
 
 DataTree is an extensible Java Library for reading, manipulating and writing hierarchical data structures from/to various formats. DataTree is NOT an another JSON parser. It's a top-level API layer that uses existing JSON implementations.
 Even though the JSON format is the default, DataTree supports other formats, such as XML, YAML, TOML, etc.
@@ -8,7 +12,7 @@ during the software development without any code modifications.
 In addition, the DataTree API provides you with a logical set of tools
 to manipulate (put, get, remove, insert, sort, find, stream, etc.) the content of the hierarchical documents.
 
-![architecture](https://github.com/berkesa/datatree/blob/master/docs/images/architecture.png)
+![architecture](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/architecture.png)
 
 ## Using various JSON implementations
 
@@ -41,7 +45,7 @@ String json = document.toString();
 
 That is all. The table below shows the dependencies of the supported JSON implementations. If you add FastJson dependency to classpath instead of Jackson, DataTree will use FastJson, and so on.
 
-## Required dependencies of JSON adapters:
+### Required dependencies of JSON adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -116,7 +120,7 @@ String json = document.toString();
 
 *The higher values are better:*
 
-![JSON Readers](https://github.com/berkesa/datatree/blob/master/docs/images/json-readers.png)
+![JSON Readers](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/json-readers.png)
 
 Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 [Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
@@ -125,7 +129,7 @@ Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 
 *The higher values are better:*
 
-![JSON Writers](https://github.com/berkesa/datatree/blob/master/docs/images/json-writers.png)
+![JSON Writers](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/json-writers.png)
 
 Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 [Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
@@ -154,7 +158,7 @@ If you would like to use the Jackson or XMLStream reader/writer add the proper d
 -Ddatatree.xml.writer=io.datatree.dom.adapters.XmlXStream
 ```
 
-## Required dependencies of XML adapters:
+### Required dependencies of XML adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -197,7 +201,7 @@ document.clear("listOfItems");
 String yaml = document.toString("yaml");
 ```
 
-## Required dependencies of YAML adapters:
+### Required dependencies of YAML adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -239,7 +243,7 @@ document.putList("newList").add(1).add(2).add(3);
 String toml = document.toString("toml");
 ```
 
-## Required dependencies of TOML adapters:
+### Required dependencies of TOML adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -266,7 +270,7 @@ String properties = document.toString("properties");
 
 If you would like to use the Jackson's Java Property reader/writer add the proper dependency (see the table below) to the application's classpath.
 
-## Required dependencies of Java Property adapters:
+### Required dependencies of Java Property adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -313,7 +317,7 @@ for (Tree row: document) {
 String csv = document.toString("csv");
 ```
 
-## Required dependencies of CSV adapters:
+### Required dependencies of CSV adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -360,7 +364,7 @@ for (Tree row: document) {
 String tsv = document.toString("tsv");
 ```
 
-## Required dependencies of TSV adapters:
+### Required dependencies of TSV adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -408,7 +412,7 @@ document.put("intValue", 1);
 byte[] cbor = document.toBinary("cbor");
 ```
 
-## Required dependencies of CBOR adapters:
+### Required dependencies of CBOR adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -454,7 +458,7 @@ document.put("intValue", 1);
 byte[] bson = document.toBinary("bson");
 ```
 
-## Required dependencies of BSON adapters:
+### Required dependencies of BSON adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -499,7 +503,7 @@ document.put("timestamp", new Date());
 byte[] smile = document.toBinary("smile");
 ```
 
-## Required dependencies of SMILE adapters:
+### Required dependencies of SMILE adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -546,7 +550,7 @@ document.put("id", UUID.randomUUID());
 byte[] ion = document.toBinary("ion");
 ```
 
-## Required dependencies of ION adapters:
+### Required dependencies of ION adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -592,7 +596,7 @@ document.put("host", InetAddress.getLocalHost());
 byte[] msgpack = document.toBinary("msgpack");
 ```
 
-## Required dependencies of MessagePack adapters:
+### Required dependencies of MessagePack adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
@@ -616,8 +620,34 @@ document.remove("path.to.subnode");
 byte[] bytes = document.toBinary("java");
 ```
 
-## Required dependencies of Java Object Serializator/Deserializator adapters:
+### Required dependencies of Java Object Serializator/Deserializator adapters:
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | Built-in Java Object Serializator/Deserializator | JavaBuiltin  | - |
+
+## Performance comparison of Binary Readers
+
+*The higher values are better:*
+
+![Binary Readers](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/binary-readers.png)
+
+Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
+[Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
+
+## Performance comparison of Binary Writers
+
+*The higher values are better:*
+
+![Binary Writers](https://raw.githubusercontent.com/berkesa/datatree/master/docs/images/binary-writers.png)
+
+Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
+[Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
+
+## Requirements:
+
+The DataTree APIs require Java 8.
+
+## License:
+
+DataTree is licensed under the Apache License V2, you can use it in your commercial products for free.
