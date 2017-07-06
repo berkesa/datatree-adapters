@@ -153,9 +153,21 @@ Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 | FlexJson | Y | N | N | Y | Y | base64 | Y | Y |
 | Boon | Y | N | N | Y | Y | array | Y | Y |
 | Bson | Y | N | N | Y | Y | special base64 | Y | special |
-| Sojo | Y | N | N | Y | Y | array | Y | special |
+| Sojo | Y | N | N | Y | Y | array | Y | fixed |
 | Johnzon | N | N | N | Y | Y | base64 | Y | Y |
 | JSON.Simple | Y | N | N | N | N | N | Y | N |
+
+The meanings of the columns are as follows:
+
+* JSON API: Name of the underlying JSON API
+* Long: Deserializes 64-bit integers as Long, without overflowing
+* BigInteger: Automatically deserializes very long (>64-bit) integers as BigInteger
+* BigDecimal: Automatically deserializes very long floating-point numbers as BigDecimal
+* MongoDB: Able to serialize MongoDB types (ObjectID, BsonDateTime, BsonRegularExpression, etc.)
+* Cassandra: Serializes all datatypes of Appache Cassandra (UUID, Date, Set, InetAddress, etc.)
+* Binary: Output format of byte arrays in the generated JSON file
+* Pretty: Supports pretty-printing (formatted JSON output)
+* Date: Able to serialize Date objects in custom timestamp format
 
 ## Using XML format:
 
