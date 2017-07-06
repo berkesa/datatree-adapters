@@ -136,26 +136,26 @@ Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 
 ## Feature comparison of JSON APIs
 
-| JSON API | Integers | Longs | BigIntegers | BigDecimals | MongoDB | Cassandra | Pretty | Dates |
-| -------- | -------- | ----- | ----------- | ----------- | ------- | --------- | ------ | ----- |
-| Built-in | Y | Y | Y | Y | Y | Y | Y | Y |
-| FastJson | Y | Y | Y | Y | Y | Y | Y | Y |
-| SmartJson | Y | Y | Y | Y | Y | Y | Y | Y |
-| DSLJson | Y | Y | Y | Y | Y | Y | Y | Y |
-| Amazon Ion | Y | Y | Y | Y | Y | Y | Y | Y |
-| JsonUtil | Y | Y | Y | Y | N | Y | Y | Y |
-| NanoJson | Y | Y | Y | N | Y | Y | Y | Y |
-| Jackson | Y | Y | Y | N | Y | Y | Y | Y |
-| Jodd | Y | Y | Y | N | Y | Y | Y | Y |
-| Genson | Y | Y | N | N | Y | Y | Y | Y |
-| Gson | Y | Y | N | N | Y | Y | Y | Y |
-| JsonIO | Y | Y | N | N | Y | Y | Y | Y |
-| FlexJson | Y | Y | N | N | Y | Y | Y | Y |
-| Boon | Y | Y | N | N | Y | Y | Y | Y |
-| Bson | Y | Y | N | N | Y | Y | Y | special |
-| Sojo | Y | Y | N | N | Y | Y | Y | special |
-| Johnzon | Y | N | N | N | Y | Y | Y | Y |
-| JSON.Simple | Y | Y | N | N | N | N | Y | N |
+| JSON API | Long | BigInteger | BigDecimal | MongoDB | Cassandra | Binary | Pretty | Date |
+| -------- | ---- | ---------- | ---------- | ------- | --------- | ------ | ------ | ---- |
+| Built-in | Y | Y | Y | Y | Y | base64 | Y | Y |
+| FastJson | Y | Y | Y | Y | Y | base64 | Y | Y |
+| SmartJson | Y | Y | Y | Y | Y | base64 | Y | Y |
+| DSLJson | Y | Y | Y | Y | Y | base64 | Y | Y |
+| Amazon Ion | Y | Y | Y | Y | Y | special base64 | Y | Y |
+| JsonUtil | Y | Y | Y | N | Y | array | Y | Y |
+| NanoJson | Y | Y | N | Y | Y | base64 | Y | Y |
+| Jackson | Y | Y | N | Y | Y | base64 | Y | Y |
+| Jodd | Y | Y | N | Y | Y | base64 | Y | Y |
+| Genson | Y | N | N | Y | Y | base64 | Y | Y |
+| Gson | Y | N | N | Y | Y | base64 | Y | Y |
+| JsonIO | Y | N | N | Y | Y | base64 | Y | Y |
+| FlexJson | Y | N | N | Y | Y | base64 | Y | Y |
+| Boon | Y | N | N | Y | Y | array | Y | Y |
+| Bson | Y | N | N | Y | Y | special base64 | Y | special |
+| Sojo | Y | N | N | Y | Y | array | Y | special |
+| Johnzon | N | N | N | Y | Y | base64 | Y | Y |
+| JSON.Simple | Y | N | N | N | N | N | Y | N |
 
 ## Using XML format:
 
