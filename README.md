@@ -138,24 +138,24 @@ Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 
 | JSON API | Long | BigInteger | BigDecimal | MongoDB | Cassandra | Binary | Pretty | Date |
 | -------- | ---- | ---------- | ---------- | ------- | --------- | ------ | ------ | ---- |
-| Built-in | Y | Y | Y | Y | Y | base64 | Y | Y |
-| FastJson | Y | Y | Y | Y | Y | base64 | Y | Y |
-| SmartJson | Y | Y | Y | Y | Y | base64 | Y | Y |
-| DSLJson | Y | Y | Y | Y | Y | base64 | Y | Y |
-| Amazon Ion | Y | Y | Y | Y | Y | special base64 | Y | Y |
-| JsonUtil | Y | Y | Y | N | Y | array | Y | Y |
-| NanoJson | Y | Y | N | Y | Y | base64 | Y | Y |
-| Jackson | Y | Y | N | Y | Y | base64 | Y | Y |
-| Jodd | Y | Y | N | Y | Y | base64 | Y | Y |
-| Genson | Y | N | N | Y | Y | base64 | Y | Y |
-| Gson | Y | N | N | Y | Y | base64 | Y | Y |
-| JsonIO | Y | N | N | Y | Y | base64 | Y | Y |
-| FlexJson | Y | N | N | Y | Y | base64 | Y | Y |
-| Boon | Y | N | N | Y | Y | array | Y | Y |
-| Bson | Y | N | N | Y | Y | special base64 | Y | special |
-| Sojo | Y | N | N | Y | Y | array | Y | fixed |
-| Johnzon | N | N | N | Y | Y | base64 | Y | Y |
-| JSON.Simple | Y | N | N | N | N | N | Y | N |
+| Built-in | Yes | Yes | Yes | Yes | Yes | base64 | Yes | Yes |
+| FastJson | Yes | Yes | Yes | Yes | Yes | base64 | Yes | Yes |
+| SmartJson | Yes | Yes | Yes | Yes | Yes | base64 | Yes | Yes |
+| DSLJson | Yes | Yes | Yes | Yes | Yes | base64 | Yes | Yes |
+| Amazon Ion | Yes | Yes | Yes | Yes | Yes | special base64 | Yes | Yes |
+| JsonUtil | Yes | Yes | Yes | No | Yes | array | Yes | Yes |
+| NanoJson | Yes | Yes | No | Yes | Yes | base64 | Yes | Yes |
+| Jackson | Yes | Yes | No | Yes | Yes | base64 | Yes | Yes |
+| Jodd | Yes | Yes | No | Yes | Yes | base64 | Yes | Yes |
+| Genson | Yes | No | No | Yes | Yes | base64 | Yes | Yes |
+| Gson | Yes | No | No | Yes | Yes | base64 | Yes | Yes |
+| JsonIO | Yes | No | No | Yes | Yes | base64 | Yes | Yes |
+| FlexJson | Yes | No | No | Yes | Yes | base64 | Yes | Yes |
+| Boon | Yes | No | No | Yes | Yes | array | Yes | Yes |
+| Bson | Yes | No | No | Yes | Yes | special base64 | Yes | special |
+| Sojo | Yes | No | No | Yes | Yes | array | Yes | fixed |
+| Johnzon | No | No | No | Yes | Yes | base64 | Yes | Yes |
+| JSON.Simple | Yes | No | No | No | No | No | Yes | No |
 
 The meanings of the columns are as follows:
 
