@@ -58,8 +58,8 @@ import org.bson.types.ObjectId;
 import org.bson.types.Symbol;
 import org.junit.Test;
 
-import io.datatree.Tree;
 import io.datatree.dom.Config;
+import io.datatree.dom.TreeReaderRegistry;
 import io.datatree.dom.TreeWriter;
 import io.datatree.dom.TreeWriterRegistry;
 import io.datatree.dom.adapters.JsonIon;
@@ -125,7 +125,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 	public void testParsers() throws Exception {
 		Tree t = new Tree(JSON);
 
-		assertJsonEquals(JSON , t.toString(false));
+		assertJsonEquals(JSON, t.toString(false));
 		testSerializationAndCloning(t);
 	}
 
@@ -2041,14 +2041,14 @@ public abstract class ExtendedTreeTest extends TestCase {
 
 	@Test
 	public void testMongoTypes() throws Exception {
-		
+
 		// JSON-Simple and JsonUtil aren't extendable APIs
 		String writerClass = TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).getClass().toString();
 		boolean unsupportedAPI = writerClass.contains("Simple") || writerClass.contains("JsonUtil");
 		if (unsupportedAPI) {
 			return;
 		}
-		
+
 		Document doc = new Document();
 		doc.put("BsonBoolean", new BsonBoolean(true));
 		long time = System.currentTimeMillis();
@@ -2078,21 +2078,21 @@ public abstract class ExtendedTreeTest extends TestCase {
 		t = new Tree(json);
 
 		assertTrue(t.get("BsonBoolean", false));
-		
+
 		Date date = t.get("BsonDateTime", new Date());
 		assertEquals(time / 1000L, date.getTime() / 1000L);
-		
+
 		assertEquals(123.456, t.get("BsonDouble", 1d));
 		assertEquals(123, t.get("BsonInt32", 1));
 		assertEquals(123456L, t.get("BsonInt64", 1L));
-				assertNull(t.get("BsonNull", "?"));
+		assertNull(t.get("BsonNull", "?"));
 		assertEquals("abc", t.get("BsonRegularExpression", "?"));
 		assertEquals("abcdefgh", t.get("BsonString", "?"));
-		
+
 		// String or Number
 		date = t.get("BsonTimestamp", new Date());
 		assertEquals(12000L, date.getTime());
-		
+
 		assertNull(t.get("BsonUndefined", "?"));
 		assertEquals("abcdefgh", new String(t.get("Binary", "?".getBytes())));
 		assertEquals("var a = 5;", t.get("Code", "?"));
@@ -2154,6 +2154,65 @@ public abstract class ExtendedTreeTest extends TestCase {
 			txt = txt.replace("e0,", ",");
 		}
 		return txt.replace("\t", " ").replace("\r", " ").replace("\n", " ").replace(" ", "").replace(".0", "");
+	}
+
+	// --- TEST LARGE NUMBERS ---
+
+	@Test
+	public void testLargeNumbers() throws Exception {
+		String readerClass = TreeReaderRegistry.getReader(TreeWriterRegistry.JSON).getClass().toString();
+
+		try {
+			Tree t = new Tree();
+			Integer i = Integer.MAX_VALUE;
+			t.put("i", i);
+			t = new Tree(t.toString("JsonBuiltin"));
+			Integer i2 = t.get("i").asInteger();
+			assertEquals(i, i2);
+			System.out.println(readerClass + " can deserialize large numbers as Integers.");
+		} catch (Throwable e) {
+			System.out.println(readerClass + " does NOT able to deserialize large numbers as Integers!");
+		}
+
+		try {
+			Tree t = new Tree();
+			Long l = Long.MAX_VALUE;
+			t.put("l", l);
+			t = new Tree(t.toString("JsonBuiltin"));
+			Long l2 = t.get("l").asLong();
+			assertEquals(l, l2);
+			System.out.println(readerClass + " can deserialize large numbers as Longs.");
+		} catch (Throwable e) {
+			System.out.println(readerClass + " does NOT able to deserialize large numbers as Longs!");
+		}
+
+		try {
+			Tree t = new Tree();
+			BigInteger bi = new BigInteger(Long.toString(Long.MAX_VALUE));
+			bi = bi.add(BigInteger.TEN);
+			t.put("bi", bi);
+			t = new Tree(t.toString("JsonBuiltin"));
+			BigInteger bi2 = t.get("bi").asBigInteger();
+			assertEquals(bi, bi2);
+			System.out.println(readerClass + " can deserialize large numbers as BigIntegers.");
+		} catch (Throwable e) {
+			System.out.println(readerClass + " does NOT able to deserialize large numbers as BigIntegers!");
+		}
+
+		try {
+			Tree t = new Tree();
+			BigDecimal bd = new BigDecimal(Long.toString(Long.MAX_VALUE) + ".123");
+			bd = bd.add(BigDecimal.TEN);
+			t.put("bd", bd);
+			t = new Tree(t.toString("JsonBuiltin"));
+			BigDecimal bd2 = t.get("bd").asBigDecimal();
+			assertEquals(bd, bd2);
+			System.out.println(readerClass + " can deserialize large numbers as BigDecimals.");
+		} catch (Throwable e) {
+			System.out.println(readerClass + " does NOT able to deserialize large numbers as BigDecimals!");
+			e.printStackTrace();
+		}
+
 	}
 
 }
