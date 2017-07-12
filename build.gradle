@@ -215,8 +215,8 @@ version = '1.0.0'
 modifyPom {
     project {
         artifactId 'datatree-adapters'
-        name 'DataTree Core API'
-        description 'Extensible Java Library for reading, manipulating and writing hierarchical data structures from/to various formats.'
+        name 'DataTree Adapters'
+        description 'Various text and binary adapters for DataTree API.'
         url 'https://berkesa.github.io/datatree-adapters/'
         inceptionYear '2017'
 
