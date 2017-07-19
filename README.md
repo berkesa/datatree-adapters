@@ -23,7 +23,7 @@ DataTree API supports 18 popular JSON implementations, you can use your favorite
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- JACKSON JSON API -->
@@ -84,7 +84,7 @@ Add Boon and Jackson to your pom.xml:
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- JACKSON JSON API -->
@@ -210,7 +210,7 @@ DataTree API supports 2 YAML reader/writer implementations. For example, to use 
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- SNAKEYAML API -->
@@ -252,7 +252,7 @@ DataTree API supports 3 TOML implementations. For example, to use Toml4j's versi
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- TOML4J API -->
@@ -325,7 +325,7 @@ Add DataTree Adapters and OpenCSV JARs to the classpath:
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- CSV API -->
@@ -372,7 +372,7 @@ Add DataTree Adapters and OpenCSV JARs to the classpath:
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- CSV API -->
@@ -421,7 +421,7 @@ Add DataTree Adapters and CBOR JARs to the classpath:
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- CBOR API -->
@@ -467,7 +467,7 @@ Add DataTree Adapters and BSON JARs to the classpath:
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- BSON API -->
@@ -512,7 +512,7 @@ Add DataTree Adapters and SMILE JARs to the classpath:
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- SMILE API -->
@@ -559,7 +559,7 @@ Add DataTree Adapters and SMILE JARs to the classpath:
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- ION API -->
@@ -605,7 +605,7 @@ DataTree API supports 2 MessagePack implementations. For example, to use the off
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 <!-- MESSAGEPACK API -->
