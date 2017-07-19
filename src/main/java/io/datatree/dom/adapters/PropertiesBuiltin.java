@@ -28,6 +28,7 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import io.datatree.Tree;
+import io.datatree.dom.Config;
 import io.datatree.dom.Priority;
 import io.datatree.dom.builtin.AbstractTextAdapter;
 
@@ -91,7 +92,7 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 		}
 		StringBuilder builder = new StringBuilder(512);
 		Tree node = new ParsedTree(value, meta);
-		Tree zeroIndexes = node.get(Tree.META + '.' + FIRST_INDEX);
+		Tree zeroIndexes = node.get(Config.META + '.' + FIRST_INDEX);
 		write(builder, node, zeroIndexes);
 		if (insertMeta && meta != null) {
 			write(builder, node.getMeta(), zeroIndexes);
@@ -350,7 +351,7 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 
 			// Pushback metadata into the value map
 			if (result instanceof Map) {
-				((Map) result).put(Tree.META, meta.asObject());
+				((Map) result).put(Config.META, meta.asObject());
 			}
 		}
 		return result;

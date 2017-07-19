@@ -456,7 +456,11 @@ public class DataFormatTest extends TestCase {
 		t2 = new Tree(source, format);
 
 		// Standard JSON types
-		assertNull(t2.get("null", (String) null));
+		if (!writerClass.contains("PropertiesJackson")) {
+			
+			// Jackson writes empty string instead of "null"
+			assertNull(t2.get("null", (String) null));
+		}
 		assertEquals(true, t2.get("bool", false));
 		assertEquals((byte) 3, t2.get("byte", (byte) 0));
 		assertEquals(4d, t2.get("double", 0d));
@@ -536,7 +540,8 @@ public class DataFormatTest extends TestCase {
 
 	@Test
 	public void testMongoTypes(String format) throws Exception {
-
+		String writerClass = TreeWriterRegistry.getWriter(format).getClass().toString();
+		
 		Document doc = new Document();
 		doc.put("BsonBoolean", new BsonBoolean(true));
 		long time = System.currentTimeMillis();
@@ -570,9 +575,13 @@ public class DataFormatTest extends TestCase {
 		assertEquals(123, t.get("BsonInt32", 1));
 		assertEquals(123456L, t.get("BsonInt64", 1L));
 
-		assertNull(t.get("BsonNull", (String) null));
-		assertNull(t.get("BsonUndefined", (String) null));
-
+		if (!writerClass.contains("PropertiesJackson")) {
+			
+			// Jackson writes empty string instead of "null"
+			assertNull(t.get("BsonNull", (String) null));
+			assertNull(t.get("BsonUndefined", (String) null));
+		}
+		
 		assertEquals("abc", t.get("BsonRegularExpression", "?"));
 		assertEquals("abcdefgh", t.get("BsonString", "?"));
 
