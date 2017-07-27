@@ -405,6 +405,55 @@ String tsv = document.toString("tsv");
 | ------------------- | ------------- | ---------- |
 | OpenCSV | TsvOpenCSV | [group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'](https://mvnrepository.com/artifact/net.sf.opencsv/opencsv) |
 
+## Using XML-RPC format:
+
+XML-RPC is a remote procedure call (RPC) protocol which uses XML to encode its calls and HTTP as a transport mechanism.[1] "XML-RPC" also refers generically to the use of XML for remote procedure call, independently of the specific protocol. 
+
+To use XML-RPC format add DataTree Adapters and XML-RPC JARs to the classpath:
+
+```xml
+<!-- DATATREE API -->
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>1.0.1</version>
+</dependency>
+
+<!-- SOJO XML-RPC API -->
+<dependency>
+    <groupId>net.sf.sojo</groupId>
+    <artifactId>sojo</artifactId>
+    <version>1.0.8</version>
+</dependency>
+```
+
+```javascript
+// Parsing XML-RPC request / response
+String xmlRpc = " ... XML-RPC XML document ... ";
+Tree document = new Tree(xmlRpc, "xmlrpc");
+
+// Getting / setting values
+for (Tree row: document) {
+  for (Tree cell: row) {
+    ...
+  }
+}
+
+// Generating XML-RPC method response from Tree
+String xmlRpc = document.toString("xmlrpc");
+
+// Generating XML-RPC method call from Tree
+document.getMeta().put("method", "methodName");
+String xmlRpc = document.toString("xmlrpc");
+
+```
+
+### Required dependencies of TSV adapters:
+
+| API Name            | Adapter Class | Dependency |
+| ------------------- | ------------- | ---------- |
+| SOJO | XmlRpcSojo | [group: 'net.sf.sojo', name: 'sojo', version: '1.0.8'](https://mvnrepository.com/artifact/net.sf.sojo/sojo) |
+
 ## Using CBOR format:
 
 CBOR is based on the wildly successful JSON data model: numbers,
