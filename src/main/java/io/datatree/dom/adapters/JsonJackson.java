@@ -42,7 +42,7 @@ import io.datatree.dom.Priority;
  * https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-
  * databind<br>
  * compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind',
- * version: '2.9.0.pr3'<br>
+ * version: '2.9.0.pr4'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

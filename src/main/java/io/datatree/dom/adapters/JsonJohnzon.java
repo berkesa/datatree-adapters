@@ -48,12 +48,15 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * specification like an Object normalMapper, some JAX-RS providers and a
  * WebSocket module provides a basic integration with Java WebSocket API.<br>
  * <br>
- * <b>Dependency:</b><br>
+ * <b>Dependencies:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-normalMapper
  * <br>
  * compile group: 'org.apache.johnzon', name: 'johnzon-normalMapper', version:
- * '1.1.0'<br>
+ * '1.1.1'<br>
+ * <br>
+ * https://mvnrepository.com/artifact/javax.json/javax.json-api<br>
+ * compile group: 'javax.json', name: 'javax.json-api', version: '1.0'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

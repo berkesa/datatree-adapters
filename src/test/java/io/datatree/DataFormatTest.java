@@ -387,10 +387,27 @@ public class DataFormatTest extends TestCase {
 		testMongoTypes("IonIon");
 	}
 
+	// ---XML-RPC ---
+
+	@Test
+	public void testXmlRpc() throws Exception {
+
+		// XML-RPC test
+		testConvert("XmlRpcSojo");
+		testMongoTypes("XmlRpcSojo");
+		
+		Tree t = new Tree();
+		t.getMeta().put("method", "sampleMethod");
+		testConvert(t, "XmlRpcSojo");
+	}
+
 	// --- CONVERTER TEST ---
 
 	private Tree testConvert(String format) throws Exception {
-		Tree t = new Tree();
+		return testConvert(new Tree(), format);
+	}
+	
+	private Tree testConvert(Tree t, String format) throws Exception {
 		Date date = new Date();
 		InetAddress inet = InetAddress.getLocalHost();
 		UUID uuid = UUID.randomUUID();
@@ -401,7 +418,13 @@ public class DataFormatTest extends TestCase {
 
 		// Standard JSON types
 		t.put("null", (String) null);
-		t.put("empty", "");
+		
+		if (!writerClass.contains("XmlRpcSojo")) {
+			
+			// XML-RPC Sojo implementation fails from empty strings
+			t.put("empty", "");
+		}
+		
 		t.put("bool", true);
 		t.put("byte", (byte) 3);
 		t.put("double", 4d);
@@ -457,7 +480,7 @@ public class DataFormatTest extends TestCase {
 
 		// Standard JSON types
 		if (!writerClass.contains("PropertiesJackson")) {
-			
+
 			// Jackson writes empty string instead of "null"
 			assertNull(t2.get("null", (String) null));
 		}
@@ -541,7 +564,7 @@ public class DataFormatTest extends TestCase {
 	@Test
 	public void testMongoTypes(String format) throws Exception {
 		String writerClass = TreeWriterRegistry.getWriter(format).getClass().toString();
-		
+
 		Document doc = new Document();
 		doc.put("BsonBoolean", new BsonBoolean(true));
 		long time = System.currentTimeMillis();
@@ -576,12 +599,12 @@ public class DataFormatTest extends TestCase {
 		assertEquals(123456L, t.get("BsonInt64", 1L));
 
 		if (!writerClass.contains("PropertiesJackson")) {
-			
+
 			// Jackson writes empty string instead of "null"
 			assertNull(t.get("BsonNull", (String) null));
 			assertNull(t.get("BsonUndefined", (String) null));
 		}
-		
+
 		assertEquals("abc", t.get("BsonRegularExpression", "?"));
 		assertEquals("abcdefgh", t.get("BsonString", "?"));
 
