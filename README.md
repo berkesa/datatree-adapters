@@ -122,7 +122,7 @@ String json = document.toString();
 
 ![JSON Readers](https://raw.githubusercontent.com/berkesa/datatree-adapters/master/docs/images/json-readers.png)
 
-Test machine: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
+Test PC: Intel Core i5-4590 CPU @ 3.3GHz, 16GB RAM,
 [Sample JSON](https://github.com/berkesa/datatree-adapters/blob/master/src/test/resources/sample-small.json)
 
 ## Performance comparison of JSON Writers
