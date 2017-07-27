@@ -238,8 +238,8 @@ modifyPom {
             dependency {
                 groupId 'com.github.berkesa'
                 artifactId 'datatree-core'
-                // version '1.0.1-SNAPSHOT'
-                version '1.0.1'
+                // version '1.0.2-SNAPSHOT'
+                version '1.0.2'
                 scope 'runtime'
             }        
         }
