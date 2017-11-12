@@ -61,7 +61,7 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/org.mongodb/bson<br>
- * compile group: 'org.mongodb', name: 'bson', version: '3.4.2'<br>
+ * compile group: 'org.mongodb', name: 'bson', version: '3.5.0'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
@@ -104,8 +104,8 @@ public class JsonBson extends AbstractTextAdapter {
 
 	public BsonTypeClassMap bsonTypeClassMap = new BsonTypeClassMap();
 
-	public JsonWriterSettings normalJsonWriterSettings = new JsonWriterSettings(false);
-	public JsonWriterSettings prettyJsonWriterSettings = new JsonWriterSettings(true);
+	public JsonWriterSettings normalJsonWriterSettings = JsonWriterSettings.builder().indent(false).build();
+	public JsonWriterSettings prettyJsonWriterSettings = JsonWriterSettings.builder().indent(true).build();
 
 	public DocumentCodec documentCodec = new DocumentCodec(codecRegistry, bsonTypeClassMap);
 	public IterableCodec iterableCodec = new IterableCodec(codecRegistry, bsonTypeClassMap);

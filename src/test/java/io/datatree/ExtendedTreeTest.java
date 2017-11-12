@@ -1326,24 +1326,14 @@ public abstract class ExtendedTreeTest extends TestCase {
 		o.put("c", 7d);
 		o.put("d", "8");
 
-		// BSON API produces different JSON output for long numbers
-		String writerClass = TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).getClass().toString();
-		boolean useBsonAPI = writerClass.contains("Bson");
-
 		Tree t = createTarget();
 		t.copyFrom(o);
 		String test = "{\"a\":5,\"b\":6,\"c\":7.0,\"d\":\"8\"}";
-		if (useBsonAPI) {
-			test = test.replace("\"b\":6", "\"b\":{\"$numberLong\":\"6\"}");
-		}
 		assertJsonEquals(test, t.toString(false));
 
 		t = createTarget();
 		t.copyFrom(o, false);
 		test = "{\"a\":1,\"b\":2,\"c\":3.0,\"d\":\"4\"}";
-		if (useBsonAPI) {
-			test = test.replace("\"b\":2", "\"b\":{\"$numberLong\":\"2\"}");
-		}
 		assertJsonEquals(test, t.toString(false));
 
 		t = createTarget();
@@ -1351,9 +1341,6 @@ public abstract class ExtendedTreeTest extends TestCase {
 			return from.asInteger() > 6;
 		});
 		test = "{\"a\":1,\"b\":2,\"c\":7.0,\"d\":\"8\"}";
-		if (useBsonAPI) {
-			test = test.replace("\"b\":2", "\"b\":{\"$numberLong\":\"2\"}");
-		}
 		assertJsonEquals(test, t.toString(false));
 
 		t = createTarget();
@@ -1361,9 +1348,6 @@ public abstract class ExtendedTreeTest extends TestCase {
 			return from.asDouble() < 7;
 		});
 		test = "{\"a\":5,\"b\":6,\"c\":3.0,\"d\":\"4\"}";
-		if (useBsonAPI) {
-			test = test.replace("\"b\":6", "\"b\":{\"$numberLong\":\"6\"}");
-		}
 		assertJsonEquals(test, t.toString(false));
 
 		t = new Tree();
@@ -2203,6 +2187,21 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertEquals("s", t.get("Symbol", "?"));
 	}
 
+	// --- NULLPOINTER (NUMBER/BOOLEAN) TEST ---
+	
+	@Test
+	public void testNullPointerNumbers() throws Exception {
+		Tree t = new Tree();
+		t.put("a", (String) null);
+		t.put("b", (String) null);
+		t.put("c", (String) null);
+		t.put("d", (String) null);
+		assertEquals(3, t.get("a", 3));
+		assertTrue(t.get("b", true));
+		assertFalse(t.get("c", false));
+		assertNull(t.get("d", "X"));
+	}
+	
 	// --- SERIALIZATION / DESERIALIZATION / CLONE ---
 
 	private final void testSerializationAndCloning(Tree node) throws Exception {

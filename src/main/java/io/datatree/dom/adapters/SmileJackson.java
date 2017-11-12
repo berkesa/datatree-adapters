@@ -37,7 +37,7 @@ import io.datatree.dom.Priority;
  * https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/
  * jackson-dataformat-smile<br>
  * compile group: 'com.fasterxml.jackson.dataformat', name:
- * 'jackson-dataformat-smile', version: '2.9.0.pr3'<br>
+ * 'jackson-dataformat-smile', version: '2.9.1'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

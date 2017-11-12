@@ -50,7 +50,7 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.google.code.gson/gson<br>
- * compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'<br>
+ * compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

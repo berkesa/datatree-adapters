@@ -37,7 +37,7 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.moandjiezana.toml/toml4j<br>
- * compile group: 'com.moandjiezana.toml', name: 'toml4j', version: '0.7.1' <br>
+ * compile group: 'com.moandjiezana.toml', name: 'toml4j', version: '0.7.2' <br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
