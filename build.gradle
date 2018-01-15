@@ -201,6 +201,11 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/software.amazon.ion/ion-java
 	compile group: 'software.amazon.ion', name: 'ion-java', version: '1.0.3'
+
+	// ====================== KRYO ============================
+
+	// https://mvnrepository.com/artifact/com.esotericsoftware/kryo
+	compile group: 'com.esotericsoftware', name: 'kryo', version: '4.0.1'
 	
 }
 

@@ -143,6 +143,18 @@ public class DataFormatTest extends TestCase {
 		assertEquals("Helvetica-Bold", t.get("helvetica.latin1.bold", ""));
 	}
 
+	// --- KRYO ---
+	
+	@Test
+	public void testKryo() throws Exception {
+
+		// Implementation based on SnakeYAML
+		testConvert("KryoKryo");
+		
+		// Currently not implemented
+		// testMongoTypes("KryoKryo");
+	}
+	
 	// --- YAML ---
 
 	@Test
