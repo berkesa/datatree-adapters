@@ -19,13 +19,13 @@ package io.datatree.dom.adapters;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import de.undercouch.bson4jackson.BsonFactory;
-import de.undercouch.bson4jackson.BsonGenerator;
-import de.undercouch.bson4jackson.serializers.BsonSerializer;
 import io.datatree.dom.Priority;
 
 /**
@@ -36,7 +36,7 @@ import io.datatree.dom.Priority;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/de.undercouch/bson4jackson<br>
- * compile group: 'de.undercouch', name: 'bson4jackson', version: '2.7.0'<br>
+ * compile group: 'de.undercouch', name: 'bson4jackson', version: '2.9.0'<br>
  * <br>
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
@@ -72,11 +72,11 @@ public class BsonJackson extends AbstractJacksonBinaryAdapter {
 	// --- ADD CUSTOM SERIALIZER ---
 	
 	public static final <T> void addSerializer(SimpleModule module, Class<T> type,
-			CheckedBiConsumer<T, BsonGenerator> consumer) {
-		module.addSerializer(type, new BsonSerializer<T>() {
+			CheckedBiConsumer<T, JsonGenerator> consumer) {
+		module.addSerializer(type, new JsonSerializer<T>() {
 
 			@Override
-			public final void serialize(T value, BsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
+			public final void serialize(T value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
 				consumer.accept(value, gen);
 			}
 

@@ -579,7 +579,7 @@ public class DataFormatTest extends TestCase {
 		doc.put("BsonUndefined", new BsonUndefined());
 		doc.put("Binary", new Binary("abcdefgh".getBytes()));
 		doc.put("Code", new Code("var a = 5;"));
-		doc.put("Decimal128", new Decimal128(123456789));
+		doc.put("Decimal128", new Decimal128(123456));
 		ObjectId objectID = new ObjectId();
 		doc.put("ObjectId", objectID);
 		doc.put("Symbol", new Symbol("s"));
@@ -614,7 +614,7 @@ public class DataFormatTest extends TestCase {
 
 		assertEquals("abcdefgh", new String(t.get("Binary", "?".getBytes())));
 		assertEquals("var a = 5;", t.get("Code", "?"));
-		assertEquals(123456789L, t.get("Decimal128", 1L));
+		assertEquals(123456L, t.get("Decimal128", 1L));
 		assertEquals(objectID.toHexString(), t.get("ObjectId", "?"));
 		assertEquals("s", t.get("Symbol", "?"));
 	}

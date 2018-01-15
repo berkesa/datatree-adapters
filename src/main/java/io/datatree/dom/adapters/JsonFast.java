@@ -41,7 +41,7 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.alibaba/fastjson<br>
- * compile group: 'com.alibaba', name: 'fastjson', version: '1.2.38'<br>
+ * compile group: 'com.alibaba', name: 'fastjson', version: '1.2.44'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
