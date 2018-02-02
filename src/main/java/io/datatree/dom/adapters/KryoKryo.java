@@ -1,3 +1,20 @@
+/**
+ * This software is licensed under the Apache 2 license, quoted below.<br>
+ * <br>
+ * Copyright 2017 Andras Berkes [andras.berkes@europe.com]<br>
+ * <br>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at<br>
+ * <br>
+ * http://www.apache.org/licenses/LICENSE-2.0<br>
+ * <br>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.datatree.dom.adapters;
 
 import java.io.ByteArrayOutputStream;
@@ -39,12 +56,21 @@ public class KryoKryo extends AbstractAdapter {
 
 	// --- OBJECT MAPPER INSTANCE ---
 
-	public Kryo kryo = new Kryo();
+	public Kryo mapper = new Kryo();
 
 	// --- CONSTRUCTOR ---
 
 	public KryoKryo() {
-		kryo.register(UUID.class, new Serializer<UUID>() {
+
+		// Install basic serializers
+		addDefaultSerializers();
+		
+		// Install MongoDB / BSON serializers
+		tryToAddSerializers("io.datatree.dom.adapters.KryoKryoBsonSerializers", mapper);
+	}
+
+	public void addDefaultSerializers() {
+		mapper.register(UUID.class, new Serializer<UUID>() {
 
 			@Override
 			public final void write(final Kryo kryo, final Output output, final UUID obj) {
@@ -58,7 +84,7 @@ public class KryoKryo extends AbstractAdapter {
 			}
 			
 		});
-		kryo.register(Inet4Address.class, new Serializer<Inet4Address>() {
+		mapper.register(Inet4Address.class, new Serializer<Inet4Address>() {
 
 			@Override
 			public final void write(final Kryo kryo, final Output output, final Inet4Address obj) {
@@ -75,7 +101,7 @@ public class KryoKryo extends AbstractAdapter {
 			}
 			
 		});
-		kryo.register(Inet6Address.class, new Serializer<Inet6Address>() {
+		mapper.register(Inet6Address.class, new Serializer<Inet6Address>() {
 
 			@Override
 			public final void write(final Kryo kryo, final Output output, final Inet6Address obj) {
@@ -93,7 +119,7 @@ public class KryoKryo extends AbstractAdapter {
 			
 		});		
 	}
-
+	
 	// --- NAME OF THE FORMAT ---
 
 	@Override
@@ -112,7 +138,7 @@ public class KryoKryo extends AbstractAdapter {
 		return toBinary(value, meta, insertMeta, (input) -> {
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream(1024);
 			Output out = new Output(buffer);
-			kryo.writeClassAndObject(out, input);
+			mapper.writeClassAndObject(out, input);
 			out.flush();
 			return buffer.toByteArray();
 		});
@@ -126,7 +152,7 @@ public class KryoKryo extends AbstractAdapter {
 	}
 
 	public Object parse(byte[] source) throws Exception {
-		return kryo.readClassAndObject(new Input(source));
+		return mapper.readClassAndObject(new Input(source));
 	}
 
 }

@@ -152,7 +152,7 @@ public class DataFormatTest extends TestCase {
 		testConvert("KryoKryo");
 		
 		// TODO Currently not implemented
-		// testMongoTypes("KryoKryo");
+		testMongoTypes("KryoKryo");
 	}
 	
 	// --- YAML ---
