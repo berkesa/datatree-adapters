@@ -214,8 +214,8 @@ targetCompatibility = 1.8
 
 group = 'com.github.berkesa'
 
-// version = '1.0.4-SNAPSHOT'
-version = '1.0.4'
+// version = '1.0.5-SNAPSHOT'
+version = '1.0.5'
   
 modifyPom {
     project {
@@ -243,8 +243,8 @@ modifyPom {
             dependency {
                 groupId 'com.github.berkesa'
                 artifactId 'datatree-core'
-                // version '1.0.4-SNAPSHOT'
-                version '1.0.4'
+                // version '1.0.5-SNAPSHOT'
+                version '1.0.5'
                 scope 'runtime'
             }        
         }
