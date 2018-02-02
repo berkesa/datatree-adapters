@@ -40,6 +40,8 @@ io.datatree.dom.adapters.JsonUtil.*
 io.datatree.dom.adapters.MsgPackJackson.*
 io.datatree.dom.adapters.MsgPackOrg.*
 io.datatree.dom.adapters.MsgPackOrgBsonSerializers.*
+io.datatree.dom.adapters.KryoKryo.*
+io.datatree.dom.adapters.KryoKryoBsonSerializers.*
 io.datatree.dom.adapters.ParsedTree.*
 io.datatree.dom.adapters.PropertiesBuiltin.*
 io.datatree.dom.adapters.PropertiesJackson.*
