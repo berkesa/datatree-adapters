@@ -214,13 +214,8 @@ targetCompatibility = 1.8
 
 group = 'com.github.berkesa'
 
-<<<<<<< HEAD
 // version = '1.0.5-SNAPSHOT'
 version = '1.0.5'
-=======
-version = '1.0.5-SNAPSHOT'
-// version = '1.0.4'
->>>>>>> branch 'master' of https://github.com/berkesa/datatree-adapters.git
   
 modifyPom {
     project {
@@ -248,13 +243,8 @@ modifyPom {
             dependency {
                 groupId 'com.github.berkesa'
                 artifactId 'datatree-core'
-<<<<<<< HEAD
                 // version '1.0.5-SNAPSHOT'
                 version '1.0.5'
-=======
-                version '1.0.5-SNAPSHOT'
-                // version '1.0.4'
->>>>>>> branch 'master' of https://github.com/berkesa/datatree-adapters.git
                 scope 'runtime'
             }        
         }
