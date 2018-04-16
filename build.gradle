@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'jacoco'
 
 buildscript {
     repositories {
@@ -13,10 +14,23 @@ buildscript {
     }
 }
 
+// --- REPOSITORIES ---
+
 repositories {
     mavenCentral()
     jcenter()
 }
+
+// --- JACOCO ---
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+// --- DEPENDENCIES ---
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'

@@ -1,6 +1,7 @@
+[![Build Status](https://travis-ci.org/berkesa/datatree-adapters.svg?branch=master)](https://travis-ci.org/berkesa/datatree-adapters)
+[![codecov](https://codecov.io/gh/berkesa/datatree-adapters/branch/master/graph/badge.svg)](https://codecov.io/gh/berkesa/datatree-adapters)
 [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/berkesa/datatree-adapters/master/LICENSE)
 [![Javadocs](https://www.javadoc.io/badge/com.github.berkesa/datatree-adapters.svg)](https://www.javadoc.io/doc/com.github.berkesa/datatree-adapters)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/berkesa/datatree-adapters.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
 # DataTree Adapter Pack
 Text and binary adapters for [DataTree Core API](https://berkesa.github.io/datatree/).
