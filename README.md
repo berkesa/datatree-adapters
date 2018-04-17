@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/berkesa/datatree-adapters.svg?branch=master)](https://travis-ci.org/berkesa/datatree-adapters)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f056532e4cff4950ab1e10e1f1cc5909)](https://www.codacy.com/app/berkesa/datatree-adapters?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=berkesa/datatree-adapters&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/berkesa/datatree-adapters/branch/master/graph/badge.svg)](https://codecov.io/gh/berkesa/datatree-adapters)
 [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/berkesa/datatree-adapters/master/LICENSE)
 [![Javadocs](https://www.javadoc.io/badge/com.github.berkesa/datatree-adapters.svg)](https://www.javadoc.io/doc/com.github.berkesa/datatree-adapters)
