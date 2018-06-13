@@ -31,7 +31,7 @@ import io.datatree.dom.Priority;
  * https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/
  * jackson-dataformat-xml<br>
  * compile group: 'com.fasterxml.jackson.dataformat', name:
- * 'jackson-dataformat-xml', version: '2.9.3'<br>
+ * 'jackson-dataformat-xml', version: '2.9.5'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

@@ -1,4 +1,4 @@
-include ':datatree'
-project(':datatree').projectDir = new File(settingsDir, '../datatree')
+// include ':datatree'
+// project(':datatree').projectDir = new File(settingsDir, '../datatree')
 
 rootProject.name = 'datatree-adapters'

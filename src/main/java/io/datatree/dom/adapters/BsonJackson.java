@@ -36,7 +36,7 @@ import io.datatree.dom.Priority;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/de.undercouch/bson4jackson<br>
- * compile group: 'de.undercouch', name: 'bson4jackson', version: '2.9.0'<br>
+ * compile group: 'de.undercouch', name: 'bson4jackson', version: '2.9.2'<br>
  * <br>
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>

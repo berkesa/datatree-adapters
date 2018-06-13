@@ -486,10 +486,16 @@ public class XmlBuiltin extends AbstractTextAdapter {
 		}
 		boolean isNumeric = true;
 		boolean isInteger = true;
+		boolean wasPoint = false;
 		char[] chars = value.toCharArray();
 		for (char c : chars) {
 			if (c == '.') {
+				if (wasPoint) {
+					isNumeric = false;
+					break;					
+				}
 				isInteger = false;
+				wasPoint = true;
 				continue;
 			}
 			if (c < '0' || c > '9') {

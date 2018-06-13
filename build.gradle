@@ -19,6 +19,13 @@ buildscript {
 repositories {
     mavenCentral()
     jcenter()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+// --- CONFIGURATIONS ---
+
+configurations.all {
+    // resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 // --- JACOCO ---
@@ -40,7 +47,7 @@ dependencies {
 	    
     // compile project(':datatree')
     // https://mvnrepository.com/artifact/com.github.berkesa/datatree-core
-	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.5'
+	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.6-SNAPSHOT'
     
 	// ====================== JSON ============================
 	    
@@ -52,12 +59,12 @@ dependencies {
     // --- JACKSON PARSER ---
     
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.3'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.5'
 
 	// --- GSON PARSER ---
 	
 	// https://mvnrepository.com/artifact/com.google.code.gson/gson
-	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'	
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
 
 	// --- GENSON JSON PARSER ---
 	
@@ -67,7 +74,7 @@ dependencies {
 	// --- BSON JSON PARSER ---
 
 	// https://mvnrepository.com/artifact/org.mongodb/bson
-	compile group: 'org.mongodb', name: 'bson', version: '3.6.1'
+	compile group: 'org.mongodb', name: 'bson', version: '3.7.1'
 
     // --- JSON-SIMPLE PARSER ---
     	
@@ -77,7 +84,7 @@ dependencies {
 	// --- FAST JSON ---
 	
 	// https://mvnrepository.com/artifact/com.alibaba/fastjson
-	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.44'
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.47'
 	
 	// --- JSON-IO ---
 	
@@ -97,12 +104,12 @@ dependencies {
 	// --- DSL JSON ---
 	
 	// https://mvnrepository.com/artifact/com.dslplatform/dsl-json
-	compile group: 'com.dslplatform', name: 'dsl-json', version: '1.5.2'
+	compile group: 'com.dslplatform', name: 'dsl-json', version: '1.7.4'
 	
 	// --- APACHE JOHNZON ---
 	
 	// https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-mapper
-	compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version: '1.1.5'
+	compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version: '1.1.7'
 	
 	// --- JSON API FOR APACHE JOHNZON ---
 	
@@ -112,7 +119,7 @@ dependencies {
 	// --- JODD JSON ---
 	
 	// https://mvnrepository.com/artifact/org.jodd/jodd-json
-	compile group: 'org.jodd', name: 'jodd-json', version: '3.9.1'
+	compile group: 'org.jodd', name: 'jodd-json', version: '4.3.2'
 	
 	// --- SOJO ---
 	
@@ -139,7 +146,7 @@ dependencies {
 	// --- JACKSON YAML ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.3'	
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.5'
 
 	// ====================== CSV ============================
 
@@ -153,14 +160,14 @@ dependencies {
 	// --- JACKSON PROPERTIES ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.3'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.5'
 
 	// ====================== XML ============================
 
 	// --- JACKSON XML ---
 
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.3'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.5'
 
 	// --- XSTREAM ---
 	
@@ -189,19 +196,19 @@ dependencies {
 	// --- JACKSON SMILE (BINARY) ---
 
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.3'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.5'
 
 	// ====================== CBOR ============================
 
 	// --- JACKSON CBOR (BINARY) ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.3'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.5'
 
 	// ====================== BSON BINARY ============================
 	
 	// https://mvnrepository.com/artifact/de.undercouch/bson4jackson
-	compile group: 'de.undercouch', name: 'bson4jackson', version: '2.9.0'
+	compile group: 'de.undercouch', name: 'bson4jackson', version: '2.9.2'
 
 	// ====================== MESSAGE PACK ============================
 	
@@ -213,17 +220,17 @@ dependencies {
 	// --- JACKSON MSGPACK ---
 	
 	// https://mvnrepository.com/artifact/org.msgpack/jackson-dataformat-msgpack
-	compile group: 'org.msgpack', name: 'jackson-dataformat-msgpack', version: '0.8.14'
+	compile group: 'org.msgpack', name: 'jackson-dataformat-msgpack', version: '0.8.16'
 	
 	// ====================== ION ============================
 	
 	// https://mvnrepository.com/artifact/software.amazon.ion/ion-java
-	compile group: 'software.amazon.ion', name: 'ion-java', version: '1.0.3'
+	compile group: 'software.amazon.ion', name: 'ion-java', version: '1.1.2'
 
 	// ====================== KRYO ============================
 
 	// https://mvnrepository.com/artifact/com.esotericsoftware/kryo
-	compile group: 'com.esotericsoftware', name: 'kryo', version: '4.0.1'
+	compile group: 'com.esotericsoftware', name: 'kryo', version: '4.0.2'
 	
 }
 
@@ -232,8 +239,8 @@ targetCompatibility = 1.8
 
 group = 'com.github.berkesa'
 
-// version = '1.0.5-SNAPSHOT'
-version = '1.0.5'
+// version = '1.0.6-SNAPSHOT'
+version = '1.0.6'
   
 modifyPom {
     project {
@@ -261,8 +268,8 @@ modifyPom {
             dependency {
                 groupId 'com.github.berkesa'
                 artifactId 'datatree-core'
-                // version '1.0.5-SNAPSHOT'
-                version '1.0.5'
+                // version '1.0.6-SNAPSHOT'
+                version '1.0.6'
                 scope 'runtime'
             }        
         }

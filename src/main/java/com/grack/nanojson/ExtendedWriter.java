@@ -74,8 +74,17 @@ public class ExtendedWriter extends JsonWriterBase<ExtendedWriter> {
 			return value(key, isTrue);
 		}
 		boolean isNumber = true;
+		boolean wasPoint = false;
 		for (char c : txt.toCharArray()) {
-			if (!Character.isDigit(c) && c != '.') {
+			if (c == '.') {
+				if (wasPoint) {
+					isNumber = false;
+					break;					
+				}
+				wasPoint = true;
+				continue;
+			}
+			if (!Character.isDigit(c)) {
 				isNumber = false;
 				break;
 			}

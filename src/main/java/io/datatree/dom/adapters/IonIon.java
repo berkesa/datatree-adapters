@@ -40,7 +40,7 @@ import software.amazon.ion.system.IonBinaryWriterBuilder;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/software.amazon.ion/ion-java<br>
- * compile group: 'software.amazon.ion', name: 'ion-java', version: '1.0.3'<br>
+ * compile group: 'software.amazon.ion', name: 'ion-java', version: '1.1.2'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
