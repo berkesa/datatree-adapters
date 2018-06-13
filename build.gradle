@@ -47,7 +47,7 @@ dependencies {
 	    
     // compile project(':datatree')
     // https://mvnrepository.com/artifact/com.github.berkesa/datatree-core
-	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.6-SNAPSHOT'
+	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.6'
     
 	// ====================== JSON ============================
 	    
