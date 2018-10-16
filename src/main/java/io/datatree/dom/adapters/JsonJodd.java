@@ -83,6 +83,10 @@ public class JsonJodd extends AbstractTextAdapter {
 
 	public JsonSerializer mapper = new JsonSerializer().deep(true);
 
+	// --- READER CACHE ---
+
+	public Queue<JsonParser> parsers = new ConcurrentLinkedQueue<>();
+
 	// --- CONSTRUCTOR ---
 
 	public JsonJodd() {
@@ -147,10 +151,6 @@ public class JsonJodd extends AbstractTextAdapter {
 			return json;
 		});
 	}
-
-	// --- READER CACHE ---
-
-	public Queue<JsonParser> parsers = new ConcurrentLinkedQueue<>();
 
 	// --- IMPLEMENTED PARSER METHOD ---
 

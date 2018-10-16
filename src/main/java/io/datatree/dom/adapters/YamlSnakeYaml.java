@@ -79,17 +79,17 @@ import io.datatree.dom.converters.DataConverterRegistry;
 @Priority(10)
 public class YamlSnakeYaml extends AbstractTextAdapter {
 
+	// --- MAPPER INSTANCES ---
+
+	public Yaml mapper;
+	public Yaml prettyMapper;
+
 	// --- NAME OF THE FORMAT ---
 
 	@Override
 	public String getFormat() {
 		return "yaml";
 	}
-
-	// --- MAPPER INSTANCES ---
-
-	public Yaml mapper;
-	public Yaml prettyMapper;
 
 	// --- CONSTRUCTOR ---
 

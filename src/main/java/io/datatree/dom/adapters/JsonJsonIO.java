@@ -187,6 +187,8 @@ public class JsonJsonIO extends AbstractTextAdapter {
 
 			@Override
 			public void write(Object o, boolean showType, Writer output) throws IOException {
+				
+				// Not used
 			}
 
 			@SuppressWarnings("unchecked")

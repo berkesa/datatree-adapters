@@ -77,16 +77,16 @@ import io.datatree.dom.converters.DataConverterRegistry;
 @Priority(30)
 public class XmlXStream extends AbstractTextAdapter {
 
+	// --- COMMON MAPPER INSTANCE ---
+
+	public XStream mapper;
+
 	// --- NAME OF THE FORMAT ---
 
 	@Override
 	public String getFormat() {
 		return "xml";
 	}
-
-	// --- COMMON MAPPER INSTANCE ---
-
-	public XStream mapper;
 
 	// --- MAPPER FACTORY ---
 

@@ -82,16 +82,16 @@ import io.datatree.dom.builtin.AbstractAdapter;
 @Priority(20)
 public class MsgPackOrg extends AbstractAdapter {
 
+	// --- OBJECT MAPPER INSTANCE ---
+
+	public MessagePack mapper = new MessagePack();
+
 	// --- NAME OF THE FORMAT ---
 
 	@Override
 	public String getFormat() {
 		return "msgpack";
 	}
-
-	// --- OBJECT MAPPER INSTANCE ---
-
-	public MessagePack mapper = new MessagePack();
 
 	// --- COSNTRUCTOR ---
 

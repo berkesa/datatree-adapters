@@ -99,6 +99,19 @@ import software.amazon.ion.system.IonTextWriterBuilder;
 @Priority(80)
 public class JsonIon extends AbstractTextAdapter {
 
+	// --- CONVERTERS ---
+
+	public HashMap<Class<?>, Function<Object, Object>> converters = new HashMap<>();
+
+	// --- ION WRITER CACHES ---
+
+	public Queue<CachedWriter> writers = new ConcurrentLinkedQueue<>();
+	public Queue<CachedWriter> prettyWriters = new ConcurrentLinkedQueue<>();
+
+	// --- COMMON PARSER INSTANCE ---
+
+	public IonSystem parser = IonSystemBuilder.standard().build();
+
 	// --- CONSTRUCTOR ---
 
 	public JsonIon() {
@@ -129,10 +142,6 @@ public class JsonIon extends AbstractTextAdapter {
 		});
 	}
 
-	// --- CONVERTERS ---
-
-	public HashMap<Class<?>, Function<Object, Object>> converters = new HashMap<>();
-
 	// --- WRITER FACTORY ---
 
 	public CachedWriter createWriter(boolean pretty) throws IOException {
@@ -147,9 +156,6 @@ public class JsonIon extends AbstractTextAdapter {
 	}
 
 	// --- ION WRITER CACHES ---
-
-	public Queue<CachedWriter> writers = new ConcurrentLinkedQueue<>();
-	public Queue<CachedWriter> prettyWriters = new ConcurrentLinkedQueue<>();
 
 	public final class CachedWriter {
 		public ByteArrayOutputStream buffer;
@@ -308,10 +314,6 @@ public class JsonIon extends AbstractTextAdapter {
 		writer.writeString(String.valueOf(value));
 	}
 
-	// --- COMMON PARSER INSTANCE ---
-
-	public IonSystem parser = IonSystemBuilder.standard().build();
-
 	// --- IMPLEMENTED PARSER METHODS ---
 
 	@Override
@@ -395,12 +397,13 @@ public class JsonIon extends AbstractTextAdapter {
 				switch (reader.getIntegerSize()) {
 				case INT:
 					add(map, list, name, reader.intValue());
-					continue;
+					break;
 				case LONG:
 					add(map, list, name, reader.longValue());
-					continue;
+					break;
 				default:
 					add(map, list, name, reader.bigIntegerValue());
+					break;
 				}
 				continue;
 

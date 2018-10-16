@@ -70,12 +70,14 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 
 	// --- CONSTANTS ---
 
+	public static final String FIRST_INDEX = "firstIndex";
+
 	protected static final String LINE_SEPARATOR = System.getProperty("line.separator", "\r\n");
 	protected static final char[] HEX = "0123456789ABCDEF".toCharArray();
 	protected static final int UNICODE_ESCAPE = -1;
 	protected static final int[] VALUE_ESCAPES;
 	protected static final int[] KEY_ESCAPES;
-
+	
 	// --- NAME OF THE FORMAT ---
 
 	@Override
@@ -121,12 +123,12 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 	protected static final void append(StringBuilder builder, String key, String value) {
 
 		// Convert key
-		key = key.replace('[', '.').replace("]", "");
+		String formattedKey = key.replace('[', '.').replace("]", "");
 
 		// Append key
 		char c;
 		boolean replace = false;
-		char[] chars = key.toCharArray();
+		char[] chars = formattedKey.toCharArray();
 		for (int i = 0; i < chars.length; i++) {
 			c = chars[i];
 			if ((c > 0xFF) || KEY_ESCAPES[c] != 0) {
@@ -135,9 +137,9 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 			}
 		}
 		if (replace) {
-			appendWithEscapes(builder, key, KEY_ESCAPES);
+			appendWithEscapes(builder, formattedKey, KEY_ESCAPES);
 		} else {
-			builder.append(key);
+			builder.append(formattedKey);
 		}
 		builder.append('=');
 
@@ -210,10 +212,6 @@ public class PropertiesBuiltin extends AbstractTextAdapter {
 		table[' '] = ' ';
 		KEY_ESCAPES = table;
 	}
-
-	// --- CONSTANTS ---
-
-	public static final String FIRST_INDEX = "firstIndex";
 
 	// --- IMPLEMENTED PARSER METHOD ---
 

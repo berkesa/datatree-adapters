@@ -67,16 +67,16 @@ import net.sf.sojo.interchange.xmlrpc.XmlRpcSerializer;
 @Priority(10)
 public class XmlRpcSojo extends AbstractTextAdapter {
 
+	// --- OBJECT MAPPER ---
+
+	public XmlRpcSerializer mapper = create();
+
 	// --- NAME OF THE FORMAT ---
 
 	@Override
 	public String getFormat() {
 		return "xmlrpc";
 	}
-
-	// --- OBJECT MAPPER ---
-
-	public XmlRpcSerializer mapper = create();
 
 	// --- IMPLEMENTED WRITER METHOD ---
 
@@ -128,6 +128,8 @@ public class XmlRpcSojo extends AbstractTextAdapter {
 
 				@Override
 				public final void onError(Exception exception) {
+					
+					// Do nothing
 				}
 
 				@Override

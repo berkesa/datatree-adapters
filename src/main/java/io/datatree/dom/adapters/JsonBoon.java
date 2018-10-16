@@ -83,6 +83,10 @@ public class JsonBoon extends AbstractTextAdapter {
 
 	public ObjectMapper mapper;
 
+	// --- READER CACHE ---
+
+	public Queue<JsonFastParser> parsers = new ConcurrentLinkedQueue<>();
+
 	// --- CONSTRUCTOR ---
 
 	public JsonBoon() {
@@ -115,10 +119,6 @@ public class JsonBoon extends AbstractTextAdapter {
 			return json;
 		});
 	}
-
-	// --- READER CACHE ---
-
-	public Queue<JsonFastParser> parsers = new ConcurrentLinkedQueue<>();
 
 	// --- IMPLEMENTED PARSER METHOD ---
 

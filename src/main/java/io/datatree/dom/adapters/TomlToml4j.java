@@ -71,16 +71,20 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
 @Priority(20)
 public class TomlToml4j extends AbstractTextAdapter {
 
+	// --- OBJECT MAPPER INSTANCE ---
+
+	public TomlWriter mapper;
+
+	// --- PARSER CACHE ---
+
+	public Queue<Toml> parsers = new ConcurrentLinkedQueue<>();
+
 	// --- NAME OF THE FORMAT ---
 
 	@Override
 	public String getFormat() {
 		return "toml";
 	}
-
-	// --- OBJECT MAPPER INSTANCE ---
-
-	public TomlWriter mapper;
 
 	// --- CONSTRUCTOR ---
 
@@ -100,10 +104,6 @@ public class TomlToml4j extends AbstractTextAdapter {
 			return mapper.write(input);
 		});
 	}
-
-	// --- PARSER CACHE ---
-
-	public Queue<Toml> parsers = new ConcurrentLinkedQueue<>();
 
 	// --- IMPLEMENTED PARSER METHODS ---
 

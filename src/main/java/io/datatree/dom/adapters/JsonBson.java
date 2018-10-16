@@ -27,12 +27,11 @@ import java.math.BigInteger;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
-import java.util.Arrays;
 import java.util.Map;
 
+import org.bson.AbstractBsonWriter.State;
 import org.bson.BsonReader;
 import org.bson.Document;
-import org.bson.AbstractBsonWriter.State;
 import org.bson.codecs.BsonArrayCodec;
 import org.bson.codecs.BsonTypeClassMap;
 import org.bson.codecs.BsonValueCodecProvider;
@@ -138,7 +137,7 @@ public class JsonBson extends AbstractTextAdapter {
 			} else if (input.getClass().isArray()) {
 
 				writer.setState(State.VALUE);
-				iterableCodec.encode(writer, Arrays.asList(input), encoderContext);
+				iterableCodec.encode(writer, asList(input), encoderContext);
 
 			} else {
 				writer.close();
@@ -264,7 +263,7 @@ public class JsonBson extends AbstractTextAdapter {
 			if (codec == null) {
 				codec = new IterableCodec(codecRegistry, bsonTypeClassMap);
 			}
-			codec.encode(writer, Arrays.asList(array), encoderContext);
+			codec.encode(writer, asList(array), encoderContext);
 		}
 
 		@Override

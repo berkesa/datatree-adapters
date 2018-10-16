@@ -107,6 +107,8 @@ public class JsonSojo extends AbstractTextAdapter {
 
 				@Override
 				public final void onError(Exception exception) {
+					
+					// Do nothing
 				}
 
 				@Override

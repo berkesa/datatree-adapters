@@ -68,6 +68,10 @@ public class XmlBuiltin extends AbstractTextAdapter {
 	protected static final char[] ITEM_BEGIN = "<item>".toCharArray();
 	protected static final char[] ITEM_END = "<item>".toCharArray();
 
+	// --- COMMON XML BUILDER FACTORY ---
+
+	public DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+
 	// --- NAME OF THE FORMAT ---
 	
 	@Override
@@ -75,10 +79,6 @@ public class XmlBuiltin extends AbstractTextAdapter {
 		return "xml";
 	}
 	
-	// --- COMMON XML BUILDER FACTORY ---
-
-	public DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-
 	// --- CONSTRUCTOR ---
 
 	public XmlBuiltin() {
@@ -95,10 +95,7 @@ public class XmlBuiltin extends AbstractTextAdapter {
 		StringBuilder out = new StringBuilder(512);
 		out.append(XML_HEADER);
 		Tree node = new ParsedTree(value, meta);
-		if (insertMeta && node.isMeta()) {
-			insertMeta = false;
-		}
-		toXML(out, pretty ? 0 : -1, insertMeta, node);
+		toXML(out, pretty ? 0 : -1, insertMeta && node.isMeta() ? false : insertMeta, node);
 		return out.toString();
 	}
 
@@ -153,10 +150,10 @@ public class XmlBuiltin extends AbstractTextAdapter {
 			if (childName.isEmpty() || node.isEnumeration()) {
 				childName = "item";
 			} else {
-				if (childName.startsWith("@") || childName.equals("_name")) {
+				if (childName.startsWith("@") || "_name".equals(childName)) {
 					continue;
 				}
-				if (childName.equals("_text")) {
+				if ("_text".equals(childName)) {
 					text = child.asString();
 					continue;
 				}
@@ -296,6 +293,7 @@ public class XmlBuiltin extends AbstractTextAdapter {
 					break;
 				default:
 					builder.append(c);
+					break;
 				}
 			}
 		}

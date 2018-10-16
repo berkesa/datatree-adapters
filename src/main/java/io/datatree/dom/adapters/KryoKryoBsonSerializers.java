@@ -127,6 +127,8 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 
 			@Override
 			public final void write(final Kryo kryo, final Output output, final BsonNull obj) {
+				
+				// Do nothing
 			}
 
 			@Override
@@ -183,6 +185,8 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 
 			@Override
 			public final void write(final Kryo kryo, final Output output, final BsonUndefined obj) {
+				
+				// Do nothing
 			}
 
 			@Override
@@ -230,7 +234,6 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			@Override
 			public final void write(final Kryo kryo, final Output output, final Decimal128 obj) {
 				output.writeString(obj.bigDecimalValue().toPlainString());
-			
 			}
 
 			@Override

@@ -78,16 +78,20 @@ import me.grison.jtoml.impl.SimpleTomlParser;
 @Priority(10)
 public class TomlJtoml extends AbstractTextAdapter {
 
+	// --- OBJECT MAPPER INSTANCE ---
+
+	public TomlSerializer mapper;
+
+	// --- PARSER CACHE ---
+
+	public Queue<TomlParser> parsers = new ConcurrentLinkedQueue<>();
+
 	// --- NAME OF THE FORMAT ---
 
 	@Override
 	public String getFormat() {
 		return "toml";
 	}
-
-	// --- OBJECT MAPPER INSTANCE ---
-
-	public TomlSerializer mapper;
 
 	// --- CONSTRUCTOR ---
 
@@ -107,10 +111,6 @@ public class TomlJtoml extends AbstractTextAdapter {
 			return mapper.serialize(null, input);
 		});
 	}
-
-	// --- PARSER CACHE ---
-
-	public Queue<TomlParser> parsers = new ConcurrentLinkedQueue<>();
 
 	// --- IMPLEMENTED PARSER METHOD ---
 

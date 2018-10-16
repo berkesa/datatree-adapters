@@ -82,6 +82,10 @@ public class JsonFlex extends AbstractTextAdapter {
 	public JSONSerializer normalMapper;
 	public JSONSerializer prettyMapper;
 
+	// --- OBJECT MAPPER INSTANCE ---
+
+	public JSONDeserializer<Object> mapper = new JSONDeserializer<>();
+
 	// --- CONSTRUCTOR ---
 
 	public JsonFlex() {
@@ -146,10 +150,6 @@ public class JsonFlex extends AbstractTextAdapter {
 			return normalMapper.deepSerialize(input);
 		});
 	}
-
-	// --- OBJECT MAPPER INSTANCE ---
-
-	public JSONDeserializer<Object> mapper = new JSONDeserializer<>();
 
 	// --- IMPLEMENTED PARSER METHOD ---
 

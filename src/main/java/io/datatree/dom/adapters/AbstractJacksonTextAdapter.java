@@ -31,17 +31,17 @@ import io.datatree.dom.Config;
  */
 public abstract class AbstractJacksonTextAdapter extends AbstractJacksonAdapter {
 
+	// --- PRETTY WRITER ---
+
+	public ObjectMapper prettyMapper;
+
 	// --- NAME OF THE FORMAT ---
 	
 	@Override
 	public String getFormat() {
 		return "json";
 	}
-	
-	// --- PRETTY WRITER ---
-
-	public ObjectMapper prettyMapper;
-	
+		
 	// --- CONSTRUCTOR ---
 
 	public AbstractJacksonTextAdapter(ObjectMapper mapper) {

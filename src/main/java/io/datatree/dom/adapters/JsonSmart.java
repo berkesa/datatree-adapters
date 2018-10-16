@@ -86,6 +86,10 @@ import net.minidev.json.reader.JsonWriterI;
 @Priority(130)
 public class JsonSmart extends AbstractTextAdapter {
 
+	// --- PARSER CACHE ---
+
+	public Queue<JSONParser> parsers = new ConcurrentLinkedQueue<>();
+
 	// --- IMPLEMENTED WRITER METHOD ---
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -162,10 +166,6 @@ public class JsonSmart extends AbstractTextAdapter {
 			}
 		});
 	}
-
-	// --- PARSER CACHE ---
-
-	public Queue<JSONParser> parsers = new ConcurrentLinkedQueue<>();
 
 	// --- IMPLEMENTED PARSER METHOD ---
 

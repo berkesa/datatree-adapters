@@ -57,6 +57,8 @@ public class JsonSojoBsonSerializers implements Consumer<Converter> {
 
 			@Override
 			public final void onError(Exception exception) {
+				
+				// Do nothing
 			}
 
 			@Override
