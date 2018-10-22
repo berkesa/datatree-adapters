@@ -47,7 +47,7 @@ dependencies {
 	    
     // compile project(':datatree')
     // https://mvnrepository.com/artifact/com.github.berkesa/datatree-core
-	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.6'
+	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.8'
     
 	// ====================== JSON ============================
 	    
@@ -59,7 +59,7 @@ dependencies {
     // --- JACKSON PARSER ---
     
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.5'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
 
 	// --- GSON PARSER ---
 	
@@ -74,7 +74,7 @@ dependencies {
 	// --- BSON JSON PARSER ---
 
 	// https://mvnrepository.com/artifact/org.mongodb/bson
-	compile group: 'org.mongodb', name: 'bson', version: '3.7.1'
+	compile group: 'org.mongodb', name: 'bson', version: '3.8.2'
 
     // --- JSON-SIMPLE PARSER ---
     	
@@ -84,12 +84,12 @@ dependencies {
 	// --- FAST JSON ---
 	
 	// https://mvnrepository.com/artifact/com.alibaba/fastjson
-	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.47'
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.48'
 	
 	// --- JSON-IO ---
 	
 	// https://mvnrepository.com/artifact/com.cedarsoftware/json-io
-	compile group: 'com.cedarsoftware', name: 'json-io', version: '4.10.0'
+	compile group: 'com.cedarsoftware', name: 'json-io', version: '4.10.1'
 	
 	// --- JSON-SMART ---
 	
@@ -104,12 +104,12 @@ dependencies {
 	// --- DSL JSON ---
 	
 	// https://mvnrepository.com/artifact/com.dslplatform/dsl-json
-	compile group: 'com.dslplatform', name: 'dsl-json', version: '1.7.4'
+	compile group: 'com.dslplatform', name: 'dsl-json', version: '1.8.3'
 	
 	// --- APACHE JOHNZON ---
 	
 	// https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-mapper
-	compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version: '1.1.7'
+	compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version: '1.1.10'
 	
 	// --- JSON API FOR APACHE JOHNZON ---
 	
@@ -119,7 +119,7 @@ dependencies {
 	// --- JODD JSON ---
 	
 	// https://mvnrepository.com/artifact/org.jodd/jodd-json
-	compile group: 'org.jodd', name: 'jodd-json', version: '4.3.2'
+	compile group: 'org.jodd', name: 'jodd-json', version: '5.0.5'
 	
 	// --- SOJO ---
 	
@@ -141,12 +141,12 @@ dependencies {
 	// --- BUILTIN YAML / SNAKEYAML ---
 	
 	// https://mvnrepository.com/artifact/org.yaml/snakeyaml
-	compile group: 'org.yaml', name: 'snakeyaml', version: '1.19'
+	compile group: 'org.yaml', name: 'snakeyaml', version: '1.23'
 	
 	// --- JACKSON YAML ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.5'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.7'
 
 	// ====================== CSV ============================
 
@@ -160,14 +160,14 @@ dependencies {
 	// --- JACKSON PROPERTIES ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.5'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.7'
 
 	// ====================== XML ============================
 
 	// --- JACKSON XML ---
 
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.5'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.7'
 
 	// --- XSTREAM ---
 	
@@ -196,14 +196,14 @@ dependencies {
 	// --- JACKSON SMILE (BINARY) ---
 
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.5'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.7'
 
 	// ====================== CBOR ============================
 
 	// --- JACKSON CBOR (BINARY) ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.5'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.7'
 
 	// ====================== BSON BINARY ============================
 	
@@ -225,7 +225,7 @@ dependencies {
 	// ====================== ION ============================
 	
 	// https://mvnrepository.com/artifact/software.amazon.ion/ion-java
-	compile group: 'software.amazon.ion', name: 'ion-java', version: '1.1.2'
+	compile group: 'software.amazon.ion', name: 'ion-java', version: '1.2.0'
 
 	// ====================== KRYO ============================
 
@@ -239,8 +239,8 @@ targetCompatibility = 1.8
 
 group = 'com.github.berkesa'
 
-// version = '1.0.6-SNAPSHOT'
-version = '1.0.6'
+// version = '1.0.7-SNAPSHOT'
+version = '1.0.7'
   
 modifyPom {
     project {
@@ -268,8 +268,8 @@ modifyPom {
             dependency {
                 groupId 'com.github.berkesa'
                 artifactId 'datatree-core'
-                // version '1.0.6-SNAPSHOT'
-                version '1.0.6'
+                // version '1.0.8-SNAPSHOT'
+                version '1.0.8'
                 scope 'runtime'
             }        
         }

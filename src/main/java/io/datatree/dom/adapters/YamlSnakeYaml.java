@@ -48,7 +48,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/org.yaml/snakeyaml<br>
- * compile group: 'org.yaml', name: 'snakeyaml', version: '1.19'<br>
+ * compile group: 'org.yaml', name: 'snakeyaml', version: '1.23'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
@@ -177,9 +177,9 @@ public class YamlSnakeYaml extends AbstractTextAdapter {
 			public Node representData(Object data) {
 				String txt = function.apply((T) data);
 				if (txt == null) {
-					return new ScalarNode(Tag.NULL, "null", null, null, null);
+					return new ScalarNode(Tag.NULL, "null", null, null, DumperOptions.ScalarStyle.PLAIN);
 				}
-				return new ScalarNode(Tag.STR, txt, null, null, null);
+				return new ScalarNode(Tag.STR, txt, null, null, DumperOptions.ScalarStyle.DOUBLE_QUOTED);
 			}
 
 		});

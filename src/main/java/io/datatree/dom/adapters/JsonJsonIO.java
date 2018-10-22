@@ -47,7 +47,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.cedarsoftware/json-io<br>
- * compile group: 'com.cedarsoftware', name: 'json-io', version: '4.10.0' <br>
+ * compile group: 'com.cedarsoftware', name: 'json-io', version: '4.10.1' <br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

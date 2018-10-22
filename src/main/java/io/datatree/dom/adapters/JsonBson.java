@@ -60,7 +60,7 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/org.mongodb/bson<br>
- * compile group: 'org.mongodb', name: 'bson', version: '3.7.1'<br>
+ * compile group: 'org.mongodb', name: 'bson', version: '3.8.2'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

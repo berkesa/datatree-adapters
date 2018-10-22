@@ -609,6 +609,8 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertEquals(3.5, t.get(metaName + ".b", 0d));
 
 		// Serialization and cloning
+		t = new Tree("{\"a\":3,\"t\":{\"b\":3.5},\"c\":true}");
+		System.out.println(t.toString("debug", true));
 		testSerializationAndCloning(t);
 	}
 
