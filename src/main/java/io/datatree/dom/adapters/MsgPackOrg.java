@@ -29,6 +29,7 @@ import org.msgpack.packer.Packer;
 import org.msgpack.template.Template;
 import org.msgpack.type.ArrayValue;
 import org.msgpack.type.MapValue;
+import org.msgpack.type.RawValue;
 import org.msgpack.type.Value;
 import org.msgpack.unpacker.Unpacker;
 
@@ -118,7 +119,11 @@ public class MsgPackOrg extends AbstractAdapter {
 		
 		// Byte array
 		addSerializer(mapper, byte[].class, (packer, value) -> {
-			packer.write(BASE64.encode(value));
+			packer.writeArrayBegin(value.length);
+			for (int i = 0; i < value.length; i++) {
+				packer.write(value[i]);
+			}
+			packer.writeArrayEnd();
 		});
 	}
 	
@@ -151,7 +156,7 @@ public class MsgPackOrg extends AbstractAdapter {
 	// --- RECURSIVE CONVERTER ---
 
 	protected static final Object toObject(Value value) {
-		if (value.isNilValue()) {
+		if (value == null || value.isNilValue()) {
 			return null;
 		}
 		if (value.isBooleanValue()) {
@@ -179,7 +184,12 @@ public class MsgPackOrg extends AbstractAdapter {
 			}
 			return map;
 		}
-		return value.asRawValue().getString();
+		RawValue raw = value.asRawValue();
+		try {
+			return raw.getString();			
+		} catch (Throwable ignored) {
+			return raw.getByteArray();
+		}
 	}
 
 	// --- ADD CUSTOM SERIALIZER ---

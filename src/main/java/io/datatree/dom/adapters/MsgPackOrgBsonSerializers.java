@@ -38,8 +38,6 @@ import org.bson.types.ObjectId;
 import org.bson.types.Symbol;
 import org.msgpack.MessagePack;
 
-import io.datatree.dom.BASE64;
-
 /**
  * <b>ORG.MSGPACK BSON EXTENSIONS</b><br>
  * <br>
@@ -93,7 +91,12 @@ public class MsgPackOrgBsonSerializers implements Consumer<MessagePack> {
 		});
 
 		addSerializer(mapper, Binary.class, (packer, value) -> {
-			packer.write(BASE64.encode(value.getData()));
+			byte[] data = value.getData();
+			packer.writeArrayBegin(data.length);
+			for (int i = 0; i < data.length; i++) {
+				packer.write(data[i]);
+			}
+			packer.writeArrayEnd();
 		});
 
 		addSerializer(mapper, Code.class, (packer, value) -> {

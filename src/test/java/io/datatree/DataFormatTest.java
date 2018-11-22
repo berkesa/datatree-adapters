@@ -368,6 +368,9 @@ public class DataFormatTest extends TestCase {
 		t.put("date", date);
 		t.put("uuid", uuid);
 
+		byte[] b = new byte[]{1, 2, 3, 4, 5};
+		t.put("array", b);
+		
 		byte[] bytes = t.toBinary("MsgPackOrg");
 		Tree t2 = new Tree(bytes, "MsgPackJackson");
 
@@ -387,6 +390,12 @@ public class DataFormatTest extends TestCase {
 		assertEquals(inet, t2.get("inet", InetAddress.getLocalHost()));
 		assertEquals(date.getTime() / 1000L, t2.get("date", new Date(0)).getTime() / 1000L);
 		assertEquals(uuid, t2.get("uuid", UUID.randomUUID()));
+		
+		assertEquals(1, t2.get("array[0]", -1));
+		assertEquals(2, t2.get("array[1]", -1));
+		assertEquals(3, t2.get("array[2]", -1));
+		assertEquals(4, t2.get("array[3]", -1));
+		assertEquals(5, t2.get("array[4]", -1));
 	}
 
 	// --- BINARY ION ---
