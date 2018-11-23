@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>datatree-adapters</name>
-	<comment>Project datatree-drivers created by Buildship.</comment>
+	<comment>Various text and binary adapters for DataTree API.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
