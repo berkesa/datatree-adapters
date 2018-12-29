@@ -25,7 +25,7 @@ DataTree API supports 18 popular JSON implementations, you can use your favorite
 <dependency>
     <groupId>com.github.berkesa</groupId>
     <artifactId>datatree-adapters</artifactId>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
 </dependency>
 
 <!-- JACKSON JSON API -->
