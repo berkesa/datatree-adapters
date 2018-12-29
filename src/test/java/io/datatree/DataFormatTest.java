@@ -266,6 +266,11 @@ public class DataFormatTest extends TestCase {
 		assertEquals("Test0", t.get(0).get(0).asString());
 		assertEquals(0, t.get(0).get(6).asInteger().intValue());
 		assertEquals(9L, t.get(9).get(6).asInteger().longValue());
+		
+		String out = t.toString(format, true);
+		csv = csv.replace("\r", "").replace("\n", "").trim();
+		out = out.replace("\r", "").replace("\n", "").trim();
+		assertEquals(csv, out);
 	}
 
 	// --- TSV / TAB-SEPARATED VALUES ---

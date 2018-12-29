@@ -37,7 +37,7 @@ import io.datatree.dom.Priority;
  * https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/
  * jackson-dataformat-cbor<br>
  * compile group: 'com.fasterxml.jackson.dataformat', name:
- * 'jackson-dataformat-cbor', version: '2.9.7'<br>
+ * 'jackson-dataformat-cbor', version: '2.9.8'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

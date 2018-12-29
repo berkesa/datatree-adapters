@@ -32,7 +32,7 @@ DataTree API supports 18 popular JSON implementations, you can use your favorite
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
-    <version>2.9.7</version>
+    <version>2.9.8</version>
 </dependency>
 ```
 
@@ -52,15 +52,15 @@ That is all. The table below shows the dependencies of the supported JSON implem
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
 | Boon JSON API | JsonBoon | [group: 'io.fastjson', name: 'boon', version: '0.34'](https://mvnrepository.com/artifact/io.fastjson/boon) |
-| BSON (MongoDB) | JsonBson | [group: 'org.mongodb', name: 'bson', version: '3.8.2'](https://mvnrepository.com/artifact/org.mongodb/bson) |
-| DSLJson | JsonDSL | [group: 'com.dslplatform', name: 'dsl-json', version: '1.8.3'](https://mvnrepository.com/artifact/com.dslplatform/dsl-json) |
-| FastJson | JsonFast | [group: 'com.alibaba', name: 'fastjson', version: '1.2.48'](https://mvnrepository.com/artifact/com.alibaba/fastjson) |
+| BSON (MongoDB) | JsonBson | [group: 'org.mongodb', name: 'bson', version: '3.9.1'](https://mvnrepository.com/artifact/org.mongodb/bson) |
+| DSLJson | JsonDSL | [group: 'com.dslplatform', name: 'dsl-json', version: '1.8.4'](https://mvnrepository.com/artifact/com.dslplatform/dsl-json) |
+| FastJson | JsonFast | [group: 'com.alibaba', name: 'fastjson', version: '1.2.54'](https://mvnrepository.com/artifact/com.alibaba/fastjson) |
 | Flexjson | JsonFlex | [group: 'net.sf.flexjson', name: 'flexjson', version: '3.3'](https://mvnrepository.com/artifact/net.sf.flexjson/flexjson) |
 | Genson | JsonGenson | [group: 'com.owlike', name: 'genson', version: '1.4'](https://mvnrepository.com/artifact/com.owlike/genson) |
 | Google Gson | JsonGson | [group: 'com.google.code.gson', name: 'gson', version: '2.8.5'](https://mvnrepository.com/artifact/com.google.code.gson/gson) |
-| Jackson JSON | JsonJackson | [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind) |
-| Jodd Json | JsonJodd  | [group: 'org.jodd', name: 'jodd-json', version: '5.0.5'](https://mvnrepository.com/artifact/org.jodd/jodd-json) |
-| Apache Johnzon | JsonJohnzon | [group: 'org.apache.johnzon', name: 'johnzon-normalMapper', version: '1.1.10'](https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-normalMapper) |
+| Jackson JSON | JsonJackson | [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind) |
+| Jodd Json | JsonJodd  | [group: 'org.jodd', name: 'jodd-json', version: '5.0.6'](https://mvnrepository.com/artifact/org.jodd/jodd-json) |
+| Apache Johnzon | JsonJohnzon | [group: 'org.apache.johnzon', name: 'johnzon-normalMapper', version: '1.1.11'](https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-normalMapper) |
 | JsonIO | JsonJsonIO | [group: 'com.cedarsoftware', name: 'json-io', version: '4.10.1'](https://mvnrepository.com/artifact/com.cedarsoftware/json-io) |
 | NanoJson | JsonNano | [group: 'com.grack', name: 'nanojson', version: '1.2'](https://mvnrepository.com/artifact/com.grack/nanojson) |
 | JSON.simple | JsonSimple | [group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'](https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple) |
@@ -93,7 +93,7 @@ Add Boon and Jackson to your pom.xml:
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
-    <version>2.9.7</version>
+    <version>2.9.8</version>
 </dependency>
 
 <!-- BOON JSON API -->
@@ -199,7 +199,7 @@ If you would like to use the Jackson or XMLStream reader/writer add the proper d
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
-| Jackson XML | XmlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.7'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml) |
+| Jackson XML | XmlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.8'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml) |
 | XMLStream | XmlXStream | [group: 'xstream', name: 'xstream', version: '1.2.2'](https://mvnrepository.com/artifact/xstream/xstream) |
 | Built-in XML | XmlBuiltin | - |
 
@@ -242,7 +242,7 @@ String yaml = document.toString("yaml");
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
-| Jackson YAML | YamlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.7'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml) |
+| Jackson YAML | YamlJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.8'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml) |
 | SnakeYAML | YamlSnakeYaml | [compile group: 'org.yaml', name: 'snakeyaml', version: '1.23'](https://mvnrepository.com/artifact/org.yaml/snakeyaml) |
 
 ## Using TOML format:
@@ -311,7 +311,7 @@ If you would like to use the Jackson's Java Property reader/writer add the prope
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
-| Jackson Properties | PropertiesJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.7'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties) |
+| Jackson Properties | PropertiesJackson  | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.9.8'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties) |
 | Built-in Properties | PropertiesBuiltin | - |
 
 ## Using CSV format:
@@ -479,7 +479,7 @@ Add DataTree Adapters and CBOR JARs to the classpath:
 <dependency>
     <groupId>com.fasterxml.jackson.dataformat</groupId>
     <artifactId>jackson-dataformat-cbor</artifactId>
-    <version>2.9.7</version>
+    <version>2.9.8</version>
 </dependency>
 ```
 
@@ -502,7 +502,7 @@ byte[] cbor = document.toBinary("cbor");
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
-| Jackson CBOR | CborJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.7'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor) |
+| Jackson CBOR | CborJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.9.8'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor) |
 
 ## Using BSON format:
 
@@ -570,7 +570,7 @@ Add DataTree Adapters and SMILE JARs to the classpath:
 <dependency>
     <groupId>com.fasterxml.jackson.dataformat</groupId>
     <artifactId>jackson-dataformat-smile</artifactId>
-    <version>2.9.7</version>
+    <version>2.9.8</version>
 </dependency>
 ```
 
@@ -593,7 +593,7 @@ byte[] smile = document.toBinary("smile");
 
 | API Name            | Adapter Class | Dependency |
 | ------------------- | ------------- | ---------- |
-| Jackson SMILE | SmileJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.7'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile) |
+| Jackson SMILE | SmileJackson | [group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.9.8'](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile) |
 
 ## Using ION format:
 

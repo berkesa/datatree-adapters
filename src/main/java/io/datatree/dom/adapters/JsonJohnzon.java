@@ -53,7 +53,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-normalMapper
  * <br>
  * compile group: 'org.apache.johnzon', name: 'johnzon-normalMapper', version:
- * '1.1.10'<br>
+ * '1.1.11'<br>
  * <br>
  * https://mvnrepository.com/artifact/javax.json/javax.json-api<br>
  * compile group: 'javax.json', name: 'javax.json-api', version: '1.0'<br>
