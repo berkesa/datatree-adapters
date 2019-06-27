@@ -36,7 +36,7 @@ import net.sf.sojo.interchange.xmlrpc.XmlRpcSerializer;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/net.sf.sojo/sojo<br>
- * compile group: 'net.sf.sojo', name: 'sojo', version: '1.0.8'<br>
+ * compile group: 'net.sf.sojo', name: 'sojo', version: '1.0.13'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

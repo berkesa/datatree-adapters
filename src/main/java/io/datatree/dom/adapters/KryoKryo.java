@@ -61,7 +61,7 @@ public class KryoKryo extends AbstractAdapter {
 	// --- CONSTRUCTOR ---
 
 	public KryoKryo() {
-
+		
 		// Install basic serializers
 		addDefaultSerializers();
 		
@@ -78,7 +78,7 @@ public class KryoKryo extends AbstractAdapter {
 				output.writeLong(obj.getLeastSignificantBits());
 			}
 
-			@Override
+			//@Override
 			public final UUID read(final Kryo kryo, final Input input, final Class<UUID> clazz) {
 				return new UUID(input.readLong(), input.readLong());
 			}

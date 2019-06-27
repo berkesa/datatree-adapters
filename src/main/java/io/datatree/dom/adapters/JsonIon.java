@@ -65,7 +65,7 @@ import software.amazon.ion.system.IonTextWriterBuilder;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/software.amazon.ion/ion-java<br>
- * compile group: 'software.amazon.ion', name: 'ion-java', version: '1.2.0'<br>
+ * compile group: 'software.amazon.ion', name: 'ion-java', version: '1.4.0'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

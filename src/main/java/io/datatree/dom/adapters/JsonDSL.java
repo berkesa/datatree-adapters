@@ -52,7 +52,7 @@ import com.dslplatform.json.StringConverter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.dslplatform/dsl-json<br>
- * compile group: 'com.dslplatform', name: 'dsl-json', version: '1.8.4'<br>
+ * compile group: 'com.dslplatform', name: 'dsl-json', version: '1.9.3'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
