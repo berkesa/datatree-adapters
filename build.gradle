@@ -25,7 +25,7 @@ repositories {
 // --- CONFIGURATIONS ---
 
 configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    // resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 // --- JACOCO ---
@@ -47,7 +47,7 @@ dependencies {
 	    
     // compile project(':datatree')
     // https://mvnrepository.com/artifact/com.github.berkesa/datatree-core
-	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.11-SNAPSHOT', changing: true
+	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.11'
     
 	// ====================== JSON ============================
 	    
@@ -239,8 +239,8 @@ targetCompatibility = 1.8
 
 group = 'com.github.berkesa'
 
-version = '1.0.12-SNAPSHOT'
-// version = '1.0.12'
+// version = '1.0.12-SNAPSHOT'
+version = '1.0.12'
   
 modifyPom {
     project {
@@ -268,7 +268,7 @@ modifyPom {
             dependency {
                 groupId 'com.github.berkesa'
                 artifactId 'datatree-core'
-                version '1.0.11-SNAPSHOT'
+                version '1.0.11'
                 scope 'runtime'
             }        
         }
