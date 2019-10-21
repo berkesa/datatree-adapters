@@ -42,7 +42,7 @@ import io.datatree.dom.builtin.AbstractAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.esotericsoftware/kryo<br>
- * compile group: 'com.esotericsoftware', name: 'kryo', version: '4.0.2'<br>
+ * compile group: 'com.esotericsoftware', name: 'kryo', version: '5.0.0-RC4'<br>
  * <br>
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>
@@ -61,15 +61,16 @@ public class KryoKryo extends AbstractAdapter {
 	// --- CONSTRUCTOR ---
 
 	public KryoKryo() {
-		
+
 		// Install basic serializers
 		addDefaultSerializers();
-		
+
 		// Install MongoDB / BSON serializers
 		tryToAddSerializers("io.datatree.dom.adapters.KryoKryoBsonSerializers", mapper);
 	}
 
 	public void addDefaultSerializers() {
+		mapper.setRegistrationRequired(false);
 		mapper.register(UUID.class, new Serializer<UUID>() {
 
 			@Override
@@ -78,11 +79,11 @@ public class KryoKryo extends AbstractAdapter {
 				output.writeLong(obj.getLeastSignificantBits());
 			}
 
-			//@Override
-			public final UUID read(final Kryo kryo, final Input input, final Class<UUID> clazz) {
+			@Override
+			public final UUID read(final Kryo kryo, final Input input, final Class<? extends UUID> type) {
 				return new UUID(input.readLong(), input.readLong());
 			}
-			
+
 		});
 		mapper.register(Inet4Address.class, new Serializer<Inet4Address>() {
 
@@ -92,14 +93,15 @@ public class KryoKryo extends AbstractAdapter {
 			}
 
 			@Override
-			public final Inet4Address read(final Kryo kryo, final Input input, final Class<Inet4Address> clazz) {
+			public final Inet4Address read(final Kryo kryo, final Input input,
+					final Class<? extends Inet4Address> type) {
 				try {
-					return (Inet4Address) Inet4Address.getByName(input.readString());					
+					return (Inet4Address) Inet4Address.getByName(input.readString());
 				} catch (Exception e) {
 					return null;
 				}
 			}
-			
+
 		});
 		mapper.register(Inet6Address.class, new Serializer<Inet6Address>() {
 
@@ -109,17 +111,18 @@ public class KryoKryo extends AbstractAdapter {
 			}
 
 			@Override
-			public final Inet6Address read(final Kryo kryo, final Input input, final Class<Inet6Address> clazz) {
+			public final Inet6Address read(final Kryo kryo, final Input input,
+					final Class<? extends Inet6Address> type) {
 				try {
-					return (Inet6Address) Inet6Address.getByName(input.readString());					
+					return (Inet6Address) Inet6Address.getByName(input.readString());
 				} catch (Exception e) {
 					return null;
 				}
 			}
-			
-		});		
+
+		});
 	}
-	
+
 	// --- NAME OF THE FORMAT ---
 
 	@Override

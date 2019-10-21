@@ -26,8 +26,8 @@ import io.datatree.dom.Priority;
  * <br>
  * <b>Dependency:</b><br>
  * <br>
- * https://mvnrepository.com/artifact/net.sf.opencsv/opencsv<br>
- * compile group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'<br>
+ * https://mvnrepository.com/artifact/com.opencsv/opencsv<br>
+ * compile group: 'com.opencsv', name: 'opencsv', version: '5.0'<br>
  * <br>
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>

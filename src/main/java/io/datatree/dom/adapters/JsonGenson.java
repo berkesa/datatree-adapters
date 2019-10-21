@@ -43,7 +43,7 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.owlike/genson<br>
- * compile group: 'com.owlike', name: 'genson', version: '1.5'<br>
+ * compile group: 'com.owlike', name: 'genson', version: '1.6'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

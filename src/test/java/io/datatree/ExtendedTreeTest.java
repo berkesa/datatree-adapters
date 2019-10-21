@@ -63,7 +63,6 @@ import io.datatree.dom.TreeReaderRegistry;
 import io.datatree.dom.TreeWriter;
 import io.datatree.dom.TreeWriterRegistry;
 import io.datatree.dom.adapters.JsonIon;
-import io.datatree.dom.adapters.JsonJohnzon;
 import io.datatree.dom.adapters.JsonJsonIO;
 import io.datatree.dom.adapters.JsonSimple;
 import junit.framework.TestCase;
@@ -105,6 +104,21 @@ public abstract class ExtendedTreeTest extends TestCase {
 		isEmptyTree(new Tree((String) null));
 		isEmptyTree(new Tree(""));
 		isEmptyTree(new Tree("{}"));
+	}
+
+	@Test
+	public void testCopyFrom() throws Exception {
+		Tree s = new Tree();
+		for (int i = 0; i < 10; i++) {
+			s.put("k" + i, "v" + i);
+		}
+		Tree d = new Tree();
+		d.copyFrom(s, "k1", "k3", "k6", "k11");
+		assertEquals(3, d.size());
+		assertTrue(d.isMap());
+		assertEquals("v1", d.get("k1", ""));
+		assertEquals("v3", d.get("k3", ""));
+		assertEquals("v6", d.get("k6", ""));
 	}
 
 	private final void isEmptyTree(Tree t) throws Exception {
@@ -594,7 +608,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertNotNull(t.getMeta(true));
 
 		String metaName = Config.META;
-		
+
 		Tree meta = t.getMeta();
 		assertEquals(meta, t.get(Config.META));
 
@@ -632,10 +646,8 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertJsonEquals("{\"a\":[2]}", t.toString(false));
 
 		Class<? extends TreeWriter> writerClass = TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).getClass();
-		if (writerClass != JsonJohnzon.class) {
-			t.put("a[3]", 4);
-			assertJsonEquals("{\"a\":[2,null,null,4]}", t.toString(false));
-		}
+		t.put("a[3]", 4);
+		assertJsonEquals("{\"a\":[2,null,null,4]}", t.toString(false));
 
 		t.putObject("a", new int[] { 1, 2, 3 });
 		t.put("a[3]", 4);
@@ -653,12 +665,8 @@ public abstract class ExtendedTreeTest extends TestCase {
 			t.get("a").getLastChild().remove();
 			assertJsonEquals("{\"a\":[2]}", t.toString(false));
 
-			if (writerClass != JsonJohnzon.class) {
-
-				// Johnzon bug
-				t.put("a[3]", 4);
-				assertJsonEquals("{\"a\":[2,null,null,4]}", t.toString(false));
-			}
+			t.put("a[3]", 4);
+			assertJsonEquals("{\"a\":[2,null,null,4]}", t.toString(false));
 
 			t.putObject("a", new int[] { 1, 2, 3 });
 			t.get("a").remove((child) -> {
@@ -668,13 +676,9 @@ public abstract class ExtendedTreeTest extends TestCase {
 
 		}
 
-		if (writerClass != JsonJohnzon.class) {
-
-			// Johnzon bug
-			t.putObject("a", new int[] { 1 });
-			t.put("a[3]", "b");
-			assertJsonEquals("{\"a\":[1,null,null,\"b\"]}", t.toString(false));
-		}
+		t.putObject("a", new int[] { 1 });
+		t.put("a[3]", "b");
+		assertJsonEquals("{\"a\":[1,null,null,\"b\"]}", t.toString(false));
 
 		t.putObject("a", new int[] { 1, 2, 3 });
 		t.get("a").add(true);
@@ -1920,19 +1924,14 @@ public abstract class ExtendedTreeTest extends TestCase {
 
 		t.clear();
 		t.put("a.b[3].c", 12);
-		if (TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).toString().contains("Johnzon")) {
 
-			// Johnzon API has a bug: doesn't write null array values
-			
-		} else {
-			assertJsonEquals("{\"a\":{\"b\":[null,null,null,{\"c\":12}]}}", t.toString(false));
-			t.remove("a.b[1]");
-			assertJsonEquals("{\"a\":{\"b\":[null,null,{\"c\":12}]}}", t.toString(false));
-			t.remove("a.b[1]");
-			assertJsonEquals("{\"a\":{\"b\":[null,{\"c\":12}]}}", t.toString(false));
-			t.remove("a.b[1]");
-			assertJsonEquals("{\"a\":{\"b\":[null]}}", t.toString(false));
-		}
+		assertJsonEquals("{\"a\":{\"b\":[null,null,null,{\"c\":12}]}}", t.toString(false));
+		t.remove("a.b[1]");
+		assertJsonEquals("{\"a\":{\"b\":[null,null,{\"c\":12}]}}", t.toString(false));
+		t.remove("a.b[1]");
+		assertJsonEquals("{\"a\":{\"b\":[null,{\"c\":12}]}}", t.toString(false));
+		t.remove("a.b[1]");
+		assertJsonEquals("{\"a\":{\"b\":[null]}}", t.toString(false));
 	}
 
 	// --- EMPTY ARRAY TESTS ---
@@ -2028,21 +2027,21 @@ public abstract class ExtendedTreeTest extends TestCase {
 	// --- TEST "PUT IF ABSENT" MODIFIER ---
 
 	@Test
-	public void testPutIfAbsent() throws Exception {			
+	public void testPutIfAbsent() throws Exception {
 		Tree rsp = new Tree();
-		
+
 		// Map
-		
+
 		Tree meta = rsp.getMeta();
 		Tree headers = meta.putMap("headers", true);
 		headers.put("a", 1);
 		headers.put("b", 2);
 		headers.put("c", 3);
-		
+
 		int size = rsp.getMeta().get("headers").size();
 		assertEquals(3, size);
 		assertEquals(2, rsp.getMeta().get("headers.b", -1));
-		
+
 		meta = rsp.getMeta();
 		headers = meta.putMap("headers", true);
 		headers.put("d", 4);
@@ -2051,7 +2050,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertEquals(4, size);
 		assertEquals(2, rsp.getMeta().get("headers.b", -1));
 		assertEquals(4, rsp.getMeta().get("headers.d", -1));
-		
+
 		meta = rsp.getMeta();
 		headers = meta.putMap("headers", false);
 		headers.put("d", 4);
@@ -2060,63 +2059,63 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertEquals(1, size);
 		assertEquals(-1, rsp.getMeta().get("headers.b", -1));
 		assertEquals(4, rsp.getMeta().get("headers.d", -1));
-		
+
 		// List
-		
+
 		Tree node = new Tree();
 
 		Tree list1 = node.putList("a.b.c");
 		list1.add(1).add(2).add(3);
-		
+
 		Tree list2 = node.putList("a.b.c", true);
 		list2.add(4).add(5).add(6);
-		
+
 		// The "list2" contains 1, 2, 3, 4, 5 and 6.
 		assertEquals(6, list2.size());
 		assertJsonEquals("[1,2,3,4,5,6]", list2.toString(false));
-		
+
 		Tree list3 = node.putList("a.b.c", false);
 		list3.add(7).add(8).add(9);
-		
+
 		assertEquals(3, list3.size());
 		assertJsonEquals("[7,8,9]", list3.toString(false));
-		
+
 		// Set
-		
+
 		node = new Tree();
 
 		Tree set1 = node.putSet("a.b.c");
 		set1.add(1).add(2).add(3);
-		
+
 		Tree set2 = node.putSet("a.b.c", true);
 		set2.add(4).add(5).add(6);
-		
+
 		// The "list2" contains 1, 2, 3, 4, 5 and 6.
 		assertEquals(6, set2.size());
 		assertJsonEquals("[1,2,3,4,5,6]", set2.toString(false));
-		
+
 		Tree set3 = node.putSet("a.b.c", false);
 		set3.add(7).add(8).add(9);
-		
+
 		assertEquals(3, set3.size());
 		assertJsonEquals("[7,8,9]", set3.toString(false));
 	}
-	
+
 	// --- TEST NULL DEFAULTS ---
 
 	@Test
-	public void testNullDefaults() throws Exception {	
+	public void testNullDefaults() throws Exception {
 		Tree t = new Tree();
 		UUID uuid = UUID.randomUUID();
 		InetAddress inet = InetAddress.getLocalHost();
-		
+
 		t.put("array", "value1".getBytes());
 		t.put("string", "value2");
 		t.put("uuid", uuid);
 		t.put("inet", inet);
 		t.put("bi", BigDecimal.TEN);
 		t.put("bd", BigInteger.TEN);
-		
+
 		assertEquals("value1", new String(t.get("array", (byte[]) null)));
 		assertEquals("value2", t.get("string", (String) null));
 		assertEquals(uuid, t.get("uuid", (UUID) null));
@@ -2124,7 +2123,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertEquals(BigDecimal.TEN, t.get("bi", (BigDecimal) null));
 		assertEquals(BigInteger.TEN, t.get("bd", (BigInteger) null));
 	}
-	
+
 	// --- TEST MONGO TYPES ---
 
 	@Test
@@ -2190,7 +2189,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 	}
 
 	// --- NULLPOINTER (NUMBER/BOOLEAN) TEST ---
-	
+
 	@Test
 	public void testNullPointerNumbers() throws Exception {
 		Tree t = new Tree();
@@ -2203,7 +2202,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertFalse(t.get("c", false));
 		assertNull(t.get("d", "X"));
 	}
-	
+
 	// --- SERIALIZATION / DESERIALIZATION / CLONE ---
 
 	private final void testSerializationAndCloning(Tree node) throws Exception {
@@ -2264,18 +2263,18 @@ public abstract class ExtendedTreeTest extends TestCase {
 	@Test
 	public void testExtendedJSON() throws Exception {
 		Tree t = new Tree();
-		
-		long now = System.currentTimeMillis(); 
-		
-		t.putMap("a").put("$date", now);	
+
+		long now = System.currentTimeMillis();
+
+		t.putMap("a").put("$date", now);
 		t.putMap("b").put("$regex", "abc");
 		t.putMap("c").put("$oid", "5926c396121e2710341361da");
 		t.putMap("d").put("$numberLong", 123L);
 		t.putMap("e").put("$binary", "teszt".getBytes(), true);
 		t.putMap("f").put("$symbol", "X");
 		t.putMap("g").put("$code", "var a=3;");
-		
-		assertEquals(now, t.get("a", 1L));	
+
+		assertEquals(now, t.get("a", 1L));
 		assertEquals("abc", t.get("b", "-"));
 		assertEquals("5926c396121e2710341361da", t.get("c", "x"));
 		assertEquals(123L, t.get("d", 1L));
@@ -2284,7 +2283,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		assertEquals("var a=3;", t.get("g", "-"));
 
 	}
-	
+
 	// --- TEST LARGE NUMBERS ---
 
 	@Test

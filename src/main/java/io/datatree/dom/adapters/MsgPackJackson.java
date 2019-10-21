@@ -36,7 +36,7 @@ import io.datatree.dom.Priority;
  * <br>
  * https://mvnrepository.com/artifact/org.msgpack/jackson-dataformat-msgpack<br>
  * compile group: 'org.msgpack', name: 'jackson-dataformat-msgpack', version:
- * '0.8.17'<br>
+ * '0.8.18'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

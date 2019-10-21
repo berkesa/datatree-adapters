@@ -26,9 +26,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-import au.com.bytecode.opencsv.CSVParser;
-import au.com.bytecode.opencsv.CSVReader;
-import au.com.bytecode.opencsv.CSVWriter;
+import com.opencsv.CSVParserBuilder;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
+import com.opencsv.ICSVParser;
+
 import io.datatree.dom.Priority;
 import io.datatree.dom.builtin.AbstractTextAdapter;
 import io.datatree.dom.converters.DataConverterRegistry;
@@ -40,8 +43,8 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * <b>Dependency:</b><br>
  * <br>
- * https://mvnrepository.com/artifact/net.sf.opencsv/opencsv<br>
- * compile group: 'net.sf.opencsv', name: 'opencsv', version: '2.3'<br>
+ * https://mvnrepository.com/artifact/com.opencsv/opencsv<br>
+ * compile group: 'com.opencsv', name: 'opencsv', version: '5.0'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
@@ -77,13 +80,14 @@ public class CsvOpenCSV extends AbstractTextAdapter {
 
 	// --- PARSING PROPERTIES ---
 
-	public char defaultSeparatorChar = CSVParser.DEFAULT_SEPARATOR;
-	public char defaultQuoteChar = CSVParser.DEFAULT_QUOTE_CHARACTER;
-	public char defaultEscapeChar = CSVParser.DEFAULT_ESCAPE_CHARACTER;
-	public int defaultSkipLines = CSVReader.DEFAULT_SKIP_LINES;
-	public boolean defaultStrictQuotes = CSVParser.DEFAULT_STRICT_QUOTES;
-	public boolean defaultIgnoreLeadingWhiteSpace = CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE;
+	public char defaultSeparatorChar = ICSVParser.DEFAULT_SEPARATOR;
+	public char defaultQuoteChar = ICSVParser.DEFAULT_QUOTE_CHARACTER;
+	public char defaultEscapeChar = ICSVParser.DEFAULT_ESCAPE_CHARACTER;
+	public boolean ignoreQuotations = ICSVParser.DEFAULT_IGNORE_QUOTATIONS;
+	public boolean defaultIgnoreLeadingWhiteSpace = ICSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE;
 
+	public int defaultSkipLines = CSVReader.DEFAULT_SKIP_LINES;
+	
 	// --- WRITING PROPERTIES ---
 
 	public String defaultLineEnd = CSVWriter.DEFAULT_LINE_END;
@@ -158,11 +162,22 @@ public class CsvOpenCSV extends AbstractTextAdapter {
 
 	// --- IMPLEMENTED PARSER METHOD ---
 
-	@SuppressWarnings("resource")
 	@Override
 	public Object parse(String source) throws Exception {
-		return new CSVReader(new StringReader(source), defaultSeparatorChar, defaultQuoteChar, defaultEscapeChar,
-				defaultSkipLines, defaultStrictQuotes, defaultIgnoreLeadingWhiteSpace).readAll();
+		CSVParserBuilder parserBuilder = new CSVParserBuilder();
+		
+		parserBuilder.withSeparator(defaultSeparatorChar);
+		parserBuilder.withQuoteChar(defaultQuoteChar);
+		parserBuilder.withEscapeChar(defaultEscapeChar);		
+		parserBuilder.withIgnoreQuotations(ignoreQuotations);
+		parserBuilder.withIgnoreLeadingWhiteSpace(defaultIgnoreLeadingWhiteSpace);
+		
+		CSVReaderBuilder readerBuilder = new CSVReaderBuilder(new StringReader(source));
+
+		readerBuilder.withCSVParser(parserBuilder.build());	
+		readerBuilder.withSkipLines(defaultSkipLines);
+		
+		return readerBuilder.build().readAll();
 	}
 
 }

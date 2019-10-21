@@ -32,7 +32,7 @@ import io.datatree.dom.builtin.AbstractTextAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.grack/nanojson<br>
- * compile group: 'com.grack', name: 'nanojson', version: '1.3'<br>
+ * compile group: 'com.grack', name: 'nanojson', version: '1.4'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

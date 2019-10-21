@@ -150,8 +150,6 @@ public class DataFormatTest extends TestCase {
 
 		// Implementation based on SnakeYAML
 		testConvert("KryoKryo");
-		
-		// TODO Currently not implemented
 		testMongoTypes("KryoKryo");
 	}
 	
@@ -285,9 +283,9 @@ public class DataFormatTest extends TestCase {
 
 	public void testTsv(String format) throws Exception {
 
-		String csv = PerformanceTest.loadString("sample-small.tsv");
-		Tree t = new Tree(csv, format);
-
+		String tsv = PerformanceTest.loadString("sample-small.tsv");
+		Tree t = new Tree(tsv, format);
+		
 		testSerializationAndCloning(t);
 
 		assertTrue(t.isEnumeration());

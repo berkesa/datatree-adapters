@@ -17,19 +17,33 @@
  */
 package io.datatree.dom.adapters;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
+import java.nio.charset.Charset;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Function;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.JsonReaderFactory;
+import javax.json.JsonStructure;
 
 import org.apache.johnzon.mapper.Adapter;
 import org.apache.johnzon.mapper.Mapper;
@@ -53,10 +67,10 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-normalMapper
  * <br>
  * compile group: 'org.apache.johnzon', name: 'johnzon-normalMapper', version:
- * '1.1.12'<br>
+ * '1.2.1'<br>
  * <br>
  * https://mvnrepository.com/artifact/javax.json/javax.json-api<br>
- * compile group: 'javax.json', name: 'javax.json-api', version: '1.0'<br>
+ * compile group: 'javax.json', name: 'javax.json-api', version: '1.1.4'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
@@ -142,10 +156,11 @@ public class JsonJohnzon extends AbstractTextAdapter {
 	public Object parse(String source) throws Exception {
 		char c = source.charAt(0);
 		if (c == '{') {
-			return mapper.readObject(source, LinkedHashMap.class);
+			return mapper.readObject(new StringReader(source), LinkedHashMap.class);
 		}
 		if (c == '[') {
-			return mapper.readObject(source, Object[].class);
+			Map<String, Object> map = mapper.readObject(new StringReader("{\"a\":" + source + "}"), Map.class);
+			return map.get("a");
 		}
 		throw new IllegalArgumentException("Malformed JSON: " + source);
 	}
@@ -192,6 +207,58 @@ public class JsonJohnzon extends AbstractTextAdapter {
 
 		// Pretty printing
 		builder.setPretty(pretty);
+
+		builder.setReaderFactory(new JsonReaderFactory() {
+
+			@Override
+			public final Map<String, ?> getConfigInUse() {
+				return Collections.emptyMap();
+			}
+
+			@Override
+			public final JsonReader createReader(InputStream in, Charset charset) {
+				return Json.createReader(new InputStreamReader(in, charset));
+			}
+
+			@Override
+			public final JsonReader createReader(InputStream in) {
+				return Json.createReader(in);
+			}
+
+			@Override
+			public final JsonReader createReader(Reader reader) {
+				JsonReader jsonReader = Json.createReader(reader);
+				return new JsonReader() {
+
+					@Override
+					public final JsonObject readValue() {
+						return jsonReader.readObject();
+					}
+
+					@Override
+					public final JsonObject readObject() {
+						return jsonReader.readObject();
+					}
+
+					@Override
+					public final JsonArray readArray() {
+						return jsonReader.readArray();
+					}
+
+					@Override
+					public final JsonStructure read() {
+						return jsonReader.read();
+					}
+
+					@Override
+					public final void close() {
+						jsonReader.close();
+					}
+
+				};
+			}
+
+		});
 
 		return builder.build();
 	}

@@ -61,7 +61,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonBoolean read(final Kryo kryo, final Input input, final Class<BsonBoolean> clazz) {
+			public final BsonBoolean read(final Kryo kryo, final Input input, final Class<? extends BsonBoolean> clazz) {
 				return new BsonBoolean(input.readBoolean());
 			}
 			
@@ -75,7 +75,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonDateTime read(final Kryo kryo, final Input input, final Class<BsonDateTime> clazz) {
+			public final BsonDateTime read(final Kryo kryo, final Input input, final Class<? extends BsonDateTime> clazz) {
 				return new BsonDateTime(input.readLong());
 			}
 			
@@ -89,7 +89,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonDouble read(final Kryo kryo, final Input input, final Class<BsonDouble> clazz) {
+			public final BsonDouble read(final Kryo kryo, final Input input, final Class<? extends BsonDouble> clazz) {
 				return new BsonDouble(input.readDouble());
 			}
 			
@@ -103,7 +103,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonInt32 read(final Kryo kryo, final Input input, final Class<BsonInt32> clazz) {
+			public final BsonInt32 read(final Kryo kryo, final Input input, final Class<? extends BsonInt32> clazz) {
 				return new BsonInt32(input.readInt());
 			}
 			
@@ -117,7 +117,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonInt64 read(final Kryo kryo, final Input input, final Class<BsonInt64> clazz) {
+			public final BsonInt64 read(final Kryo kryo, final Input input, final Class<? extends BsonInt64> clazz) {
 				return new BsonInt64(input.readLong());
 			}
 			
@@ -132,7 +132,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonNull read(final Kryo kryo, final Input input, final Class<BsonNull> clazz) {
+			public final BsonNull read(final Kryo kryo, final Input input, final Class<? extends BsonNull> clazz) {
 				return new BsonNull();
 			}
 			
@@ -146,7 +146,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonRegularExpression read(final Kryo kryo, final Input input, final Class<BsonRegularExpression> clazz) {
+			public final BsonRegularExpression read(final Kryo kryo, final Input input, final Class<? extends BsonRegularExpression> clazz) {
 				return new BsonRegularExpression(input.readString());
 			}
 			
@@ -160,7 +160,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonString read(final Kryo kryo, final Input input, final Class<BsonString> clazz) {
+			public final BsonString read(final Kryo kryo, final Input input, final Class<? extends BsonString> clazz) {
 				return new BsonString(input.readString());
 			}
 			
@@ -175,7 +175,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonTimestamp read(final Kryo kryo, final Input input, final Class<BsonTimestamp> clazz) {
+			public final BsonTimestamp read(final Kryo kryo, final Input input, final Class<? extends BsonTimestamp> clazz) {
 				return new BsonTimestamp(input.readInt(), input.readInt());
 			}
 			
@@ -190,7 +190,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final BsonUndefined read(final Kryo kryo, final Input input, final Class<BsonUndefined> clazz) {
+			public final BsonUndefined read(final Kryo kryo, final Input input, final Class<? extends BsonUndefined> clazz) {
 				return new BsonUndefined();
 			}
 			
@@ -206,7 +206,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final Binary read(final Kryo kryo, final Input input, final Class<Binary> clazz) {
+			public final Binary read(final Kryo kryo, final Input input, final Class<? extends Binary> clazz) {
 				int len = input.readInt();
 				byte[] bytes = new byte[len];
 				input.read(bytes, 0, len);
@@ -223,7 +223,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final Code read(final Kryo kryo, final Input input, final Class<Code> clazz) {
+			public final Code read(final Kryo kryo, final Input input, final Class<? extends Code> clazz) {
 				return new Code(input.readString());
 			}
 			
@@ -237,7 +237,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final Decimal128 read(final Kryo kryo, final Input input, final Class<Decimal128> clazz) {
+			public final Decimal128 read(final Kryo kryo, final Input input, final Class<? extends Decimal128> clazz) {
 				return new Decimal128(new BigDecimal(input.readString()));
 			}
 			
@@ -251,7 +251,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final ObjectId read(final Kryo kryo, final Input input, final Class<ObjectId> clazz) {
+			public final ObjectId read(final Kryo kryo, final Input input, final Class<? extends ObjectId> clazz) {
 				return new ObjectId(input.readString());
 			}
 			
@@ -265,7 +265,7 @@ public class KryoKryoBsonSerializers implements Consumer<Kryo> {
 			}
 
 			@Override
-			public final Symbol read(final Kryo kryo, final Input input, final Class<Symbol> clazz) {
+			public final Symbol read(final Kryo kryo, final Input input, final Class<? extends Symbol> clazz) {
 				return new Symbol(input.readString());
 			}
 			
