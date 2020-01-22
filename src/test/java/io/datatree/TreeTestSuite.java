@@ -26,7 +26,7 @@ import org.junit.runners.Suite;
 		TreeTestWithJackson.class, TreeTestWithBuiltin.class, TreeTestWithJsonSimple.class, TreeTestWithFastJson.class,
 		TreeTestWithJsonIO.class, TreeTestWithJsonSmart.class, TreeTestWithNanoJson.class, TreeTestWithDSLJson.class,
 		TreeTestWithJohnzon.class, TreeTestWithJodd.class, TreeTestWithSojo.class, TreeTestWithJsonUtil.class,
-		TreeTestWithFlexJson.class, TreeTestWithIon.class })
+		TreeTestWithFlexJson.class, TreeTestWithIon.class, TreeTestWithJsoniter.class })
 
 /**
  * Tests for supported JSON serializers (writers) and readers (deserializers).

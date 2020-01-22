@@ -59,15 +59,15 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * Description: Apache Johnzon is a project providing an implementation of
  * JsonProcessing (aka jsr-353) and a set of useful extension for this
- * specification like an Object normalMapper, some JAX-RS providers and a
+ * specification like an Object mapper, some JAX-RS providers and a
  * WebSocket module provides a basic integration with Java WebSocket API.<br>
  * <br>
  * <b>Dependencies:</b><br>
  * <br>
- * https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-normalMapper
+ * https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-mapper
  * <br>
- * compile group: 'org.apache.johnzon', name: 'johnzon-normalMapper', version:
- * '1.2.1'<br>
+ * compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version:
+ * '1.2.2'<br>
  * <br>
  * https://mvnrepository.com/artifact/javax.json/javax.json-api<br>
  * compile group: 'javax.json', name: 'javax.json-api', version: '1.1.4'<br>
@@ -76,7 +76,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
  * classpath, the preferred implementation is adjustable with the following
- * System Properties. If there is only one (eg. only the "johnzon-normalMapper")
+ * System Properties. If there is only one (eg. only the "johnzon-mapper")
  * implementation on the classpath, this step is NOT necessary, the DataTree API
  * will use this JSON API automatically.<br>
  * <br>
