@@ -19,7 +19,7 @@ to manipulate (put, get, remove, insert, sort, find, stream, etc.) the content o
 
 ## Documentation
 
-[![Documentation](https://raw.githubusercontent.com/berkesa/datatree/master/docs/docs-button.png)](https://berkesa.github.io/datatree/introduction.html#datatree-api)
+[![Documentation](https://raw.githubusercontent.com/berkesa/datatree/master/docs/docs-button.png)](https://berkesa.github.io/datatree/introduction.html)
 
 ## License:
 
