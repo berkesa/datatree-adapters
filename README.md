@@ -15,7 +15,7 @@ during the software development without any code modifications.
 In addition, the DataTree API provides you with a logical set of tools
 to manipulate (put, get, remove, insert, sort, find, stream, etc.) the content of the hierarchical documents.
 
-![architecture](https://raw.githubusercontent.com/berkesa/datatree-adapters/master/docs/images/architecture.png)
+![architecture](https://raw.githubusercontent.com/berkesa/datatree/master/docs/architecture.png)
 
 ## Documentation
 
