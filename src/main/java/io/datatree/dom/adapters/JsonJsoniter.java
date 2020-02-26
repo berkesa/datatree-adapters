@@ -46,23 +46,18 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * <b>Dependencies:</b><br>
  * <br>
- * https://mvnrepository.com/artifact/com.jsoniter/jsoniter
- * <br>
- * compile group: 'com.jsoniter', name: 'jsoniter', version: '0.9.23'<br>
- * <br>
  * https://mvnrepository.com/artifact/com.jsoniter/jsoniter<br>
  * compile group: 'com.jsoniter', name: 'jsoniter', version: '0.9.23'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
+ * -Ddatatree.json.reader=io.datatree.dom.adapters.JsonJsoniter<br>
+ * -Ddatatree.json.writer=io.datatree.dom.adapters.JsonJsoniter<br>
  * <br>
  * If there is more than one JSON implementation (Jackson, Bson, Gson, etc.) on
  * classpath, the preferred implementation is adjustable with the following
  * System Properties. If there is only one (eg. only the "Jsoniter")
  * implementation on the classpath, this step is NOT necessary, the DataTree API
  * will use this JSON API automatically.<br>
- * <br>
- * -Ddatatree.json.reader=io.datatree.dom.adapters.JsonJsoniter<br>
- * -Ddatatree.json.writer=io.datatree.dom.adapters.JsonJsoniter<br>
  * <br>
  * <b>Set as default (using static methods):</b><br>
  * <br>
