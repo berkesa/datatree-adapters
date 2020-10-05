@@ -44,7 +44,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.opencsv/opencsv<br>
- * compile group: 'com.opencsv', name: 'opencsv', version: '5.0'<br>
+ * compile group: 'com.opencsv', name: 'opencsv', version: '5.2'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

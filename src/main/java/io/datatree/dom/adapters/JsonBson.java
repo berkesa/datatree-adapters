@@ -32,6 +32,7 @@ import java.util.Map;
 import org.bson.AbstractBsonWriter.State;
 import org.bson.BsonReader;
 import org.bson.Document;
+import org.bson.UuidRepresentation;
 import org.bson.codecs.BsonArrayCodec;
 import org.bson.codecs.BsonTypeClassMap;
 import org.bson.codecs.BsonValueCodecProvider;
@@ -41,6 +42,7 @@ import org.bson.codecs.DocumentCodec;
 import org.bson.codecs.DocumentCodecProvider;
 import org.bson.codecs.EncoderContext;
 import org.bson.codecs.IterableCodec;
+import org.bson.codecs.UuidCodecProvider;
 import org.bson.codecs.ValueCodecProvider;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -98,8 +100,8 @@ public class JsonBson extends AbstractTextAdapter {
 
 	public EncoderContext encoderContext = EncoderContext.builder().isEncodingCollectibleDocument(true).build();
 
-	public CodecRegistry codecRegistry = fromProviders(asList(new ValueCodecProvider(), new BsonValueCodecProvider(),
-			new DocumentCodecProvider(), new CustomProvider()));
+	public CodecRegistry codecRegistry = fromProviders(asList(new UuidCodecProvider(UuidRepresentation.STANDARD),
+			new ValueCodecProvider(), new BsonValueCodecProvider(), new DocumentCodecProvider(), new CustomProvider()));
 
 	public BsonTypeClassMap bsonTypeClassMap = new BsonTypeClassMap();
 

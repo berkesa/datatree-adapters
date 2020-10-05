@@ -67,7 +67,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-mapper
  * <br>
  * compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version:
- * '1.2.2'<br>
+ * '1.2.8'<br>
  * <br>
  * https://mvnrepository.com/artifact/javax.json/javax.json-api<br>
  * compile group: 'javax.json', name: 'javax.json-api', version: '1.1.4'<br>

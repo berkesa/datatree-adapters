@@ -42,7 +42,7 @@ import io.datatree.dom.builtin.AbstractAdapter;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.esotericsoftware/kryo<br>
- * compile group: 'com.esotericsoftware', name: 'kryo', version: '5.0.0-RC4'<br>
+ * compile group: 'com.esotericsoftware', name: 'kryo', version: '5.0.0-RC9'<br>
  * <br>
  * <b>Invoke serializer and deserializer:</b><br>
  * <br>

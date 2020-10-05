@@ -48,7 +48,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/org.yaml/snakeyaml<br>
- * compile group: 'org.yaml', name: 'snakeyaml', version: '1.25'<br>
+ * compile group: 'org.yaml', name: 'snakeyaml', version: '1.27'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

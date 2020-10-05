@@ -47,7 +47,7 @@ import jodd.util.StringPool;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/org.jodd/jodd-json<br>
- * compile group: 'org.jodd', name: 'jodd-json', version: '5.0.13'<br>
+ * compile group: 'org.jodd', name: 'jodd-json', version: '6.0.1'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
