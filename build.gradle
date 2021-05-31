@@ -40,14 +40,14 @@ jacocoTestReport {
 // --- DEPENDENCIES ---
 
 dependencies {
-    implementation 'org.slf4j:slf4j-api:1.7.21'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
     testImplementation 'junit:junit:4.12'
 
 	// ================== DATATREE CORE =======================
 	    
     // implementation project(':datatree')
     // https://mvnrepository.com/artifact/com.github.berkesa/datatree-core
-	implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.15'
+	implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.1.2'
     
 	// ====================== JSON ============================
 	    
@@ -59,12 +59,12 @@ dependencies {
     // --- JACKSON PARSER ---
     
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
 
 	// --- GSON PARSER ---
 	
 	// https://mvnrepository.com/artifact/com.google.code.gson/gson
-	implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.7'
 
 	// --- GENSON JSON PARSER ---
 	
@@ -74,7 +74,7 @@ dependencies {
 	// --- BSON JSON PARSER ---
 
 	// https://mvnrepository.com/artifact/org.mongodb/bson
-	implementation group: 'org.mongodb', name: 'bson', version: '4.1.0'
+	implementation group: 'org.mongodb', name: 'bson', version: '4.2.3'
 
     // --- JSON-SIMPLE PARSER ---
     	
@@ -84,7 +84,7 @@ dependencies {
 	// --- FAST JSON ---
 	
 	// https://mvnrepository.com/artifact/com.alibaba/fastjson
-	implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.73'
+	implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.76'
 	
 	// --- JSON-IO ---
 	
@@ -94,22 +94,22 @@ dependencies {
 	// --- JSON-SMART ---
 	
 	// https://mvnrepository.com/artifact/net.minidev/json-smart
-	implementation group: 'net.minidev', name: 'json-smart', version: '2.3'
+	implementation group: 'net.minidev', name: 'json-smart', version: '2.4.7'
 	
 	// --- NANOJSON ---
 	
 	// https://mvnrepository.com/artifact/com.grack/nanojson
-	implementation group: 'com.grack', name: 'nanojson', version: '1.6'
+	implementation group: 'com.grack', name: 'nanojson', version: '1.7'
 	
 	// --- DSL JSON ---
 	
 	// https://mvnrepository.com/artifact/com.dslplatform/dsl-json
-	implementation group: 'com.dslplatform', name: 'dsl-json', version: '1.9.5'
+	implementation group: 'com.dslplatform', name: 'dsl-json', version: '1.9.8'
 	
 	// --- APACHE JOHNZON ---
 	
 	// https://mvnrepository.com/artifact/org.apache.johnzon/johnzon-mapper
-	implementation group: 'org.apache.johnzon', name: 'johnzon-mapper', version: '1.2.8'
+	implementation group: 'org.apache.johnzon', name: 'johnzon-mapper', version: '1.2.12'
 	
 	// --- JSON API FOR APACHE JOHNZON ---
 	
@@ -119,7 +119,7 @@ dependencies {
 	// --- JODD JSON ---
 	
 	// https://mvnrepository.com/artifact/org.jodd/jodd-json
-	implementation group: 'org.jodd', name: 'jodd-json', version: '6.0.1'
+	implementation group: 'org.jodd', name: 'jodd-json', version: '6.0.3'
 	
 	// --- SOJO ---
 	
@@ -146,33 +146,33 @@ dependencies {
 	// --- BUILTIN YAML / SNAKEYAML ---
 	
 	// https://mvnrepository.com/artifact/org.yaml/snakeyaml
-	implementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
+	implementation group: 'org.yaml', name: 'snakeyaml', version: '1.28'
 	
 	// --- JACKSON YAML ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
-	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.11.3'
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.12.3'
 
 	// ====================== CSV ============================
 
 	// --- OPENCSV ---
 	
 	// https://mvnrepository.com/artifact/com.opencsv/opencsv
-	implementation group: 'com.opencsv', name: 'opencsv', version: '5.2'
+	implementation group: 'com.opencsv', name: 'opencsv', version: '5.4'
 	
 	// ====================== PROPERTIES ============================
 	
 	// --- JACKSON PROPERTIES ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-properties
-	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.11.3'
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.12.3'
 
 	// ====================== XML ============================
 
 	// --- JACKSON XML ---
 
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
-	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.11.3'
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.12.3'
 
 	// --- XSTREAM ---
 	
@@ -201,19 +201,19 @@ dependencies {
 	// --- JACKSON SMILE (BINARY) ---
 
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-smile
-	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.11.3'
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-smile', version: '2.12.3'
 
 	// ====================== CBOR ============================
 
 	// --- JACKSON CBOR (BINARY) ---
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor
-	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.11.3'
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.12.3'
 
 	// ====================== BSON BINARY ============================
 	
 	// https://mvnrepository.com/artifact/de.undercouch/bson4jackson
-	implementation group: 'de.undercouch', name: 'bson4jackson', version: '2.11.0'
+	implementation group: 'de.undercouch', name: 'bson4jackson', version: '2.12.0'
 
 	// ====================== MESSAGE PACK ============================
 	
@@ -225,7 +225,7 @@ dependencies {
 	// --- JACKSON MSGPACK ---
 	
 	// https://mvnrepository.com/artifact/org.msgpack/jackson-dataformat-msgpack
-	implementation group: 'org.msgpack', name: 'jackson-dataformat-msgpack', version: '0.8.21'
+	implementation group: 'org.msgpack', name: 'jackson-dataformat-msgpack', version: '0.8.24'
 	
 	// ====================== ION ============================
 	
@@ -235,7 +235,7 @@ dependencies {
 	// ====================== KRYO ============================
 
 	// https://mvnrepository.com/artifact/com.esotericsoftware/kryo
-	implementation group: 'com.esotericsoftware', name: 'kryo', version: '5.0.0-RC9'
+	implementation group: 'com.esotericsoftware', name: 'kryo', version: '5.1.1'
 	
 }
 
@@ -244,8 +244,8 @@ targetCompatibility = 1.8
 
 group = 'com.github.berkesa'
 
-// version = '1.0.14-SNAPSHOT'
-version = '1.0.14'
+// version = '1.0.15-SNAPSHOT'
+version = '1.0.15'
   
 modifyPom {
     project {
@@ -273,7 +273,7 @@ modifyPom {
             dependency {
                 groupId 'com.github.berkesa'
                 artifactId 'datatree-core'
-                version '1.0.15'
+                version '1.1.2'
                 scope 'runtime'
             }        
         }
@@ -298,12 +298,4 @@ test {
     exclude '**/ExtendedTreeTest.class'
     exclude '**/TreeTestSuite.class'
     exclude '**/Performance*'
-}
-
-jar {
-	into('META-INF') {
-		from ('.') {
-			include 'suspendable-supers'
-		}
-	}
 }

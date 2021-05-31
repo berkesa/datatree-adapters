@@ -503,10 +503,13 @@ public class DataFormatTest extends TestCase {
 		t2 = new Tree(source, format);
 
 		// Standard JSON types
-		if (!writerClass.contains("PropertiesJackson")) {
+		String nullValue = t2.get("null", (String) null);
+		if (writerClass.contains("Jackson")) {
 
 			// Jackson writes empty string instead of "null"
-			assertNull(t2.get("null", (String) null));
+			assertEquals("", nullValue);
+		} else {
+			assertNull(nullValue);
 		}
 		assertEquals(true, t2.get("bool", false));
 		assertEquals((byte) 3, t2.get("byte", (byte) 0));
@@ -622,13 +625,16 @@ public class DataFormatTest extends TestCase {
 		assertEquals(123, t.get("BsonInt32", 1));
 		assertEquals(123456L, t.get("BsonInt64", 1L));
 
-		if (!writerClass.contains("PropertiesJackson")) {
+		if (writerClass.contains("Jackson")) {
 
 			// Jackson writes empty string instead of "null"
+			assertEquals("", t.get("BsonNull", (String) null));
+			assertEquals("", t.get("BsonUndefined", (String) null));
+		} else {
 			assertNull(t.get("BsonNull", (String) null));
 			assertNull(t.get("BsonUndefined", (String) null));
 		}
-
+		
 		assertEquals("abc", t.get("BsonRegularExpression", "?"));
 		assertEquals("abcdefgh", t.get("BsonString", "?"));
 
