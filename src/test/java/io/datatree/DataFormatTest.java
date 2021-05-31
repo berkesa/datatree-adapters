@@ -504,7 +504,7 @@ public class DataFormatTest extends TestCase {
 
 		// Standard JSON types
 		String nullValue = t2.get("null", (String) null);
-		if (writerClass.contains("Jackson")) {
+		if (writerClass.contains("PropertiesJackson") || writerClass.contains("XmlJackson")) {
 
 			// Jackson writes empty string instead of "null"
 			assertEquals("", nullValue);
@@ -625,7 +625,7 @@ public class DataFormatTest extends TestCase {
 		assertEquals(123, t.get("BsonInt32", 1));
 		assertEquals(123456L, t.get("BsonInt64", 1L));
 
-		if (writerClass.contains("Jackson")) {
+		if (writerClass.contains("PropertiesJackson") || writerClass.contains("XmlJackson")) {
 
 			// Jackson writes empty string instead of "null"
 			assertEquals("", t.get("BsonNull", (String) null));
