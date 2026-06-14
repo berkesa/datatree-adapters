@@ -30,6 +30,7 @@ import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
+import com.thoughtworks.xstream.security.AnyTypePermission;
 
 import io.datatree.dom.BASE64;
 import io.datatree.dom.Config;
@@ -91,7 +92,14 @@ public class XmlXStream extends AbstractTextAdapter {
 	// --- MAPPER FACTORY ---
 
 	public XStream newMapper() {
-		return new XStream();
+		XStream xstream = new XStream();
+
+		// XStream 1.4.x enables a type-filtering security framework by default
+		// (the ancient 1.2.2 had none). This adapter (de)serializes the
+		// application's own data structures, so the input is trusted - restore
+		// the permissive behavior the adapter was written against.
+		xstream.addPermission(AnyTypePermission.ANY);
+		return xstream;
 	}
 
 	// --- CONSTRUCTOR ---

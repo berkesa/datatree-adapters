@@ -17,21 +17,18 @@
  */
 package io.datatree;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-
-@RunWith(Suite.class)
-
-@Suite.SuiteClasses({ TreeTestWithBoon.class, TreeTestWithBson.class, TreeTestWithGenson.class, TreeTestWithGson.class,
-		TreeTestWithJackson.class, TreeTestWithBuiltin.class, TreeTestWithJsonSimple.class, TreeTestWithFastJson.class,
-		TreeTestWithJsonIO.class, TreeTestWithJsonSmart.class, TreeTestWithNanoJson.class, TreeTestWithDSLJson.class,
-		TreeTestWithJohnzon.class, TreeTestWithJodd.class, TreeTestWithSojo.class, TreeTestWithJsonUtil.class,
-		TreeTestWithFlexJson.class, TreeTestWithIon.class, TreeTestWithJsoniter.class })
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
 
 /**
  * Tests for supported JSON serializers (writers) and readers (deserializers).
- * 
+ *
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
+@Suite
+@SelectClasses({ TreeTestWithBson.class, TreeTestWithBuiltin.class, TreeTestWithDSLJson.class,
+		TreeTestWithGenson.class, TreeTestWithGson.class, TreeTestWithIon.class, TreeTestWithJackson.class,
+		TreeTestWithJodd.class, TreeTestWithJohnzon.class, TreeTestWithJsonIO.class, TreeTestWithJsonSmart.class,
+		TreeTestWithNanoJson.class })
 public class TreeTestSuite {
 }

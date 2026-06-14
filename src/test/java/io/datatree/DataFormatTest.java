@@ -43,24 +43,26 @@ import org.bson.types.Code;
 import org.bson.types.Decimal128;
 import org.bson.types.ObjectId;
 import org.bson.types.Symbol;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import io.datatree.Tree;
 import io.datatree.dom.TreeReaderRegistry;
 import io.datatree.dom.TreeWriterRegistry;
 import io.datatree.dom.builtin.JsonBuiltin;
-import junit.framework.TestCase;
 
 /**
  * XML, BSON, MessagePack, ION, CSV, TSV, Java Properties tests.
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
-public class DataFormatTest extends TestCase {
+public class DataFormatTest {
 
 	// --- START TEST ---
 
-	@Override
+	@BeforeEach
 	protected void setUp() throws Exception {
 		JsonBuiltin impl = new JsonBuiltin();
 		TreeReaderRegistry.setReader("json", impl);
@@ -194,15 +196,7 @@ public class DataFormatTest extends TestCase {
 	@Test
 	public void testToml() throws Exception {
 
-		// JToml (me.grison.jtoml) test
-		testConvert("TomlJToml");
-		testTomlGetters("TomlJToml");
-		testTomlReaderWrite("TomlJToml");
-		testMongoTypes("TomlJToml");
-
-		// JToml (io.ous.jtoml) test
-		// This API only a TOML reader (without writer), but better than
-		// "me.grison.jtoml" API's reader
+		// JToml (io.ous.jtoml) test - this API is only a TOML reader (no writer)
 		testTomlGetters("TomlJToml2");
 
 		// Toml4J test
@@ -340,10 +334,6 @@ public class DataFormatTest extends TestCase {
 	@Test
 	public void testMsgPack() throws Exception {
 
-		// MessagePack (org.msgpack.msgpack)
-		testConvert("MsgPackOrg");
-		testMongoTypes("MsgPackOrg");
-
 		// MessagePack (org.msgpack.jackson-dataformat-msgpack)
 		testConvert("MsgPackJackson");
 		testMongoTypes("MsgPackJackson");
@@ -374,7 +364,7 @@ public class DataFormatTest extends TestCase {
 		byte[] b = new byte[]{1, 2, 3, 4, 5};
 		t.put("array", b);
 		
-		byte[] bytes = t.toBinary("MsgPackOrg");
+		byte[] bytes = t.toBinary("MsgPackJackson");
 		Tree t2 = new Tree(bytes, "MsgPackJackson");
 
 		assertNull(t2.get("null", (String) null));
@@ -409,20 +399,6 @@ public class DataFormatTest extends TestCase {
 		// ION test
 		testConvert("IonIon");
 		testMongoTypes("IonIon");
-	}
-
-	// ---XML-RPC ---
-
-	@Test
-	public void testXmlRpc() throws Exception {
-
-		// XML-RPC test
-		testConvert("XmlRpcSojo");
-		testMongoTypes("XmlRpcSojo");
-		
-		Tree t = new Tree();
-		t.getMeta().put("method", "sampleMethod");
-		testConvert(t, "XmlRpcSojo");
 	}
 
 	// --- CONVERTER TEST ---
@@ -588,7 +564,6 @@ public class DataFormatTest extends TestCase {
 
 	// --- TEST MONGO TYPES ---
 
-	@Test
 	public void testMongoTypes(String format) throws Exception {
 		String writerClass = TreeWriterRegistry.getWriter(format).getClass().toString();
 

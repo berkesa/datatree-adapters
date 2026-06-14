@@ -1,4 +1,21 @@
-/build/
-/bin/
-/.gradle/
-/docs/xls/
+# Maven
+target/
+
+# Gradle (legacy)
+build/
+.gradle/
+
+# Eclipse
+bin/
+*.class
+.settings/
+.classpath
+.project
+
+# IntelliJ
+*.iml
+.idea/
+
+# OS / editor
+*.log
+*.bak

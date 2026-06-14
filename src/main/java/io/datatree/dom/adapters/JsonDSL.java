@@ -28,7 +28,6 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.dslplatform.json.DslJson;
-import com.dslplatform.json.DslJson.Settings;
 import com.dslplatform.json.JsonReader;
 import com.dslplatform.json.JsonWriter;
 import com.dslplatform.json.JsonWriter.WriteObject;
@@ -42,6 +41,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
 import com.dslplatform.json.NumberConverter;
 import com.dslplatform.json.ObjectConverter;
 import com.dslplatform.json.StringConverter;
+import com.dslplatform.json.runtime.Settings;
 
 /**
  * <b>DSLJSON JSON ADAPTER</b><br>
@@ -134,7 +134,7 @@ public class JsonDSL extends AbstractTextAdapter {
 
 	@SuppressWarnings("unchecked")
 	public static final DslJson<Object> create() {
-		DslJson<Object> mapper = new DslJson<Object>(new Settings<Object>());
+		DslJson<Object> mapper = new DslJson<Object>(Settings.<Object>withRuntime().includeServiceLoader());
 
 		// Install BSON serializers
 		tryToAddSerializers("io.datatree.dom.adapters.JsonDSLBsonSerializers", mapper);

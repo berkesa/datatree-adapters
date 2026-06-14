@@ -22,18 +22,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import io.datatree.dom.TreeReaderRegistry;
 import io.datatree.dom.TreeWriterRegistry;
-import junit.framework.TestCase;
 
 /**
  * PerformanceTest.java
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
-public abstract class PerformanceTest extends TestCase {
+public abstract class PerformanceTest {
+
+	// --- SETUP (subclasses override setUp() to select the format) ---
+
+	@BeforeEach
+	protected void beforeEach() throws Exception {
+		setUp();
+	}
+
+	protected void setUp() throws Exception {
+	}
 
 	// --- SMALL JSON TEST ---
 

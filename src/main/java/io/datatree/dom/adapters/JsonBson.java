@@ -41,7 +41,8 @@ import org.bson.codecs.DecoderContext;
 import org.bson.codecs.DocumentCodec;
 import org.bson.codecs.DocumentCodecProvider;
 import org.bson.codecs.EncoderContext;
-import org.bson.codecs.IterableCodec;
+import org.bson.codecs.IterableCodecProvider;
+import org.bson.codecs.MapCodecProvider;
 import org.bson.codecs.UuidCodecProvider;
 import org.bson.codecs.ValueCodecProvider;
 import org.bson.codecs.configuration.CodecProvider;
@@ -101,7 +102,8 @@ public class JsonBson extends AbstractTextAdapter {
 	public EncoderContext encoderContext = EncoderContext.builder().isEncodingCollectibleDocument(true).build();
 
 	public CodecRegistry codecRegistry = fromProviders(asList(new UuidCodecProvider(UuidRepresentation.STANDARD),
-			new ValueCodecProvider(), new BsonValueCodecProvider(), new DocumentCodecProvider(), new CustomProvider()));
+			new ValueCodecProvider(), new BsonValueCodecProvider(), new DocumentCodecProvider(),
+			new IterableCodecProvider(), new MapCodecProvider(), new CustomProvider()));
 
 	public BsonTypeClassMap bsonTypeClassMap = new BsonTypeClassMap();
 
@@ -109,7 +111,10 @@ public class JsonBson extends AbstractTextAdapter {
 	public JsonWriterSettings prettyJsonWriterSettings = JsonWriterSettings.builder().indent(true).build();
 
 	public DocumentCodec documentCodec = new DocumentCodec(codecRegistry, bsonTypeClassMap);
-	public IterableCodec iterableCodec = new IterableCodec(codecRegistry, bsonTypeClassMap);
+
+	// bson 5.x made IterableCodec non-public; obtain it through its provider via the registry
+	@SuppressWarnings("rawtypes")
+	public Codec iterableCodec = codecRegistry.get(Iterable.class);
 
 	public BsonArrayCodec arrayCodec = new BsonArrayCodec();
 	public DecoderContext context = DecoderContext.builder().build();
@@ -258,14 +263,10 @@ public class JsonBson extends AbstractTextAdapter {
 
 	protected class ArrayCodec implements Codec<Object[]> {
 
-		private IterableCodec codec;
-
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
 		public final void encode(org.bson.BsonWriter writer, Object[] array, EncoderContext encoderContext) {
-			if (codec == null) {
-				codec = new IterableCodec(codecRegistry, bsonTypeClassMap);
-			}
-			codec.encode(writer, asList(array), encoderContext);
+			iterableCodec.encode(writer, asList(array), encoderContext);
 		}
 
 		@Override

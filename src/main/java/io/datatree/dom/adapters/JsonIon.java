@@ -41,14 +41,14 @@ import java.util.function.Function;
 import io.datatree.dom.Config;
 import io.datatree.dom.Priority;
 import io.datatree.dom.builtin.AbstractTextAdapter;
-import software.amazon.ion.IonReader;
-import software.amazon.ion.IonSystem;
-import software.amazon.ion.IonType;
-import software.amazon.ion.IonWriter;
-import software.amazon.ion.SymbolToken;
-import software.amazon.ion.Timestamp;
-import software.amazon.ion.system.IonSystemBuilder;
-import software.amazon.ion.system.IonTextWriterBuilder;
+import com.amazon.ion.IonReader;
+import com.amazon.ion.IonSystem;
+import com.amazon.ion.IonType;
+import com.amazon.ion.IonWriter;
+import com.amazon.ion.SymbolToken;
+import com.amazon.ion.Timestamp;
+import com.amazon.ion.system.IonSystemBuilder;
+import com.amazon.ion.system.IonTextWriterBuilder;
 
 /**
  * <b>AMAZON ION JSON ADAPTER</b><br>
@@ -64,8 +64,8 @@ import software.amazon.ion.system.IonTextWriterBuilder;
  * <br>
  * <b>Dependency:</b><br>
  * <br>
- * https://mvnrepository.com/artifact/software.amazon.ion/ion-java<br>
- * compile group: 'software.amazon.ion', name: 'ion-java', version: '1.4.0'<br>
+ * https://mvnrepository.com/artifact/com.amazon.ion/ion-java<br>
+ * compile group: 'com.amazon.ion', name: 'ion-java', version: '1.4.0'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

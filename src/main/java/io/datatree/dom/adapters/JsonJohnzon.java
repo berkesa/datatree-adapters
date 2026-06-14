@@ -38,12 +38,12 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Function;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.json.JsonReaderFactory;
-import javax.json.JsonStructure;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonReaderFactory;
+import jakarta.json.JsonStructure;
 
 import org.apache.johnzon.mapper.Adapter;
 import org.apache.johnzon.mapper.Mapper;
@@ -69,8 +69,8 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * compile group: 'org.apache.johnzon', name: 'johnzon-mapper', version:
  * '1.2.8'<br>
  * <br>
- * https://mvnrepository.com/artifact/javax.json/javax.json-api<br>
- * compile group: 'javax.json', name: 'javax.json-api', version: '1.1.4'<br>
+ * https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api<br>
+ * compile group: 'jakarta.json', name: 'jakarta.json-api', version: '1.1.4'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

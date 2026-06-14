@@ -56,7 +56,10 @@ import org.bson.types.Code;
 import org.bson.types.Decimal128;
 import org.bson.types.ObjectId;
 import org.bson.types.Symbol;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import io.datatree.dom.Config;
 import io.datatree.dom.TreeReaderRegistry;
@@ -64,15 +67,23 @@ import io.datatree.dom.TreeWriter;
 import io.datatree.dom.TreeWriterRegistry;
 import io.datatree.dom.adapters.JsonIon;
 import io.datatree.dom.adapters.JsonJsonIO;
-import io.datatree.dom.adapters.JsonSimple;
-import junit.framework.TestCase;
 
 /**
  * Test JSON parsers (abstract superclass).
  * 
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
-public abstract class ExtendedTreeTest extends TestCase {
+public abstract class ExtendedTreeTest {
+
+	// --- SETUP (subclasses override setUp() to select the reader/writer) ---
+
+	@BeforeEach
+	protected void beforeEach() throws Exception {
+		setUp();
+	}
+
+	protected void setUp() throws Exception {
+	}
 
 	// --- SUPPORTED DATE / TIME FORMATS ---
 
@@ -164,7 +175,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 	public void testBinaryConverter() throws Exception {
 
 		Class<? extends TreeWriter> writerClass = TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).getClass();
-		if (writerClass == JsonSimple.class || writerClass == JsonJsonIO.class) {
+		if (writerClass == JsonJsonIO.class) {
 
 			// JSONSimple and JsonIO cant serialize (Object) arrays
 			return;
@@ -200,7 +211,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		testConverter("abcdefghijkl", String.class);
 
 		Class<? extends TreeWriter> writerClass = TreeWriterRegistry.getWriter(TreeWriterRegistry.JSON).getClass();
-		if (writerClass != JsonSimple.class) {
+		if (true) {
 
 			// JSONSimple doesn't serialize (Object) arrays
 			testConverter("abcdefghijkl".getBytes(), String.class);
@@ -211,7 +222,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		testConverter((float) 1234.5678, String.class);
 		testConverter((double) 1234.5678, String.class);
 		testConverter(1234, String.class);
-		if (writerClass != JsonSimple.class) {
+		if (true) {
 			testConverter(123456789L, byte[].class);
 		}
 		testConverter(new BigDecimal("1234.5678"), String.class);
@@ -220,7 +231,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		testConverter(true, String.class);
 		testConverter(false, String.class);
 
-		if (writerClass != JsonSimple.class) {
+		if (true) {
 			testConverter(InetAddress.getLocalHost(), String.class);
 			testConverter(UUID.randomUUID(), String.class);
 			testConverter(new Date(), String.class);
@@ -630,6 +641,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 
 	// --- VALUE SETTERS / GETTERS ---
 
+	@Test
 	public void testPutToArray() throws Exception {
 
 		Tree t = new Tree();
@@ -655,7 +667,7 @@ public abstract class ExtendedTreeTest extends TestCase {
 		t.put("a[2]", 5);
 		assertJsonEquals("{\"a\":[1,2,5,4]}", t.toString(false));
 
-		if (writerClass != JsonSimple.class) {
+		if (true) {
 
 			// JSONSimple doesn't serialize arrays
 
@@ -2228,15 +2240,6 @@ public abstract class ExtendedTreeTest extends TestCase {
 		// Cloning
 		txtCopy = node.clone().toString("debug");
 		assertEquals(txtOriginal, txtCopy);
-	}
-
-	// --- TEST SIMILAR / SAME NODE ---
-
-	private final void assertEquals(Tree n1, Tree n2) {
-		assertEquals(n1.getName(), n2.getName());
-		String t1 = n1.toString("debug");
-		String t2 = n2.toString("debug");
-		assertEquals(t1, t2);
 	}
 
 	private static final void assertJsonEquals(String s1, String s2) {

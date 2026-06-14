@@ -23,7 +23,7 @@ import java.io.IOException;
 import io.datatree.dom.BASE64;
 import io.datatree.dom.Config;
 import io.datatree.dom.Priority;
-import software.amazon.ion.system.IonBinaryWriterBuilder;
+import com.amazon.ion.system.IonBinaryWriterBuilder;
 
 /**
  * <b>AMAZON ION BINARY ION ADAPTER</b><br>
@@ -39,8 +39,8 @@ import software.amazon.ion.system.IonBinaryWriterBuilder;
  * <br>
  * <b>Dependency:</b><br>
  * <br>
- * https://mvnrepository.com/artifact/software.amazon.ion/ion-java<br>
- * compile group: 'software.amazon.ion', name: 'ion-java', version: '1.5.1'<br>
+ * https://mvnrepository.com/artifact/com.amazon.ion/ion-java<br>
+ * compile group: 'com.amazon.ion', name: 'ion-java', version: '1.5.1'<br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>

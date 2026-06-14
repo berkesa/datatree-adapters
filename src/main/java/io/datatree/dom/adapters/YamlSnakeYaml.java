@@ -187,6 +187,12 @@ public class YamlSnakeYaml extends AbstractTextAdapter {
 
 	public class ExtensibleRepresenter extends Representer {
 
+		public ExtensibleRepresenter() {
+
+			// SnakeYAML 2.x removed the no-arg Representer constructor
+			super(new DumperOptions());
+		}
+
 		public void addRepresenter(Class<?> type, Represent represent) {
 			representers.put(type, represent);
 		}

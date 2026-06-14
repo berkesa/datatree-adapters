@@ -25,12 +25,17 @@ import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.UUID;
 
-import com.cedarsoftware.util.io.JsonReader;
-import com.cedarsoftware.util.io.JsonWriter;
-import com.cedarsoftware.util.io.JsonWriter.JsonClassWriter;
+import com.cedarsoftware.io.JsonIo;
+import com.cedarsoftware.io.JsonWriter.JsonClassWriter;
+import com.cedarsoftware.io.ReadOptions;
+import com.cedarsoftware.io.ReadOptionsBuilder;
+import com.cedarsoftware.io.WriteOptions;
+import com.cedarsoftware.io.WriteOptionsBuilder;
+import com.cedarsoftware.io.WriterContext;
 
 import io.datatree.dom.BASE64;
 import io.datatree.dom.Config;
@@ -47,7 +52,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.cedarsoftware/json-io<br>
- * compile group: 'com.cedarsoftware', name: 'json-io', version: '4.12.0' <br>
+ * compile group: 'com.cedarsoftware', name: 'json-io', version: '4.56.0' <br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
@@ -73,30 +78,26 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <br>
  * Tree node = new Tree(inputString, "JsonJsonIO");<br>
  * String outputString = node.toString("JsonJsonIO");
- * 
+ *
  * @author Andras Berkes [andras.berkes@programmer.net]
  */
 @Priority(20)
 public class JsonJsonIO extends AbstractTextAdapter {
 
+	// --- CUSTOM WRITERS (collected before the immutable options are built) ---
+
+	private static final Map<Class<?>, JsonClassWriter> customWriters = new LinkedHashMap<>();
+
 	// --- NORMAL AND PRETTY FORMATS ---
 
-	public HashMap<String, Object> normalFormat = new HashMap<String, Object>();
-	public HashMap<String, Object> prettyFormat = new HashMap<String, Object>();
+	public static final WriteOptions normalFormat;
+	public static final WriteOptions prettyFormat;
 
-	// --- CONSTRUCTOR ---
+	// --- READER OPTIONS (return native Maps / Object[] instead of POJOs) ---
 
-	public JsonJsonIO() {
+	public static final ReadOptions readOptions = new ReadOptionsBuilder().returnAsJsonObjects().build();
 
-		// Configure normal formatter
-		normalFormat.put(JsonWriter.SHORT_META_KEYS, Boolean.FALSE);
-		normalFormat.put(JsonWriter.TYPE, Boolean.FALSE);
-
-		// Configure pretty formatter
-		prettyFormat.put(JsonWriter.PRETTY_PRINT, Boolean.TRUE);
-		prettyFormat.put(JsonWriter.SHORT_META_KEYS, Boolean.FALSE);
-		prettyFormat.put(JsonWriter.TYPE, Boolean.FALSE);
-	}
+	// --- CUSTOM WRITERS ---
 
 	static {
 
@@ -156,44 +157,61 @@ public class JsonJsonIO extends AbstractTextAdapter {
 			output.write(value.getCanonicalHostName());
 			output.write('"');
 		});
+
+		// Build the immutable write options from the registered custom writers
+		normalFormat = new WriteOptionsBuilder()
+				.prettyPrint(false)
+				.showTypeInfoNever()
+				.addCustomWrittenClasses(customWriters)
+				.build();
+		prettyFormat = new WriteOptionsBuilder()
+				.prettyPrint(true)
+				.shortMetaKeys(false)
+				.showTypeInfoNever()
+				.addCustomWrittenClasses(customWriters)
+				.build();
+	}
+
+	// --- CONSTRUCTOR ---
+
+	public JsonJsonIO() {
 	}
 
 	// --- IMPLEMENTED WRITER METHOD ---
 
 	@Override
 	public String toString(Object value, Object meta, boolean pretty, boolean insertMeta) {
-		return toString(value, meta, insertMeta, (input) -> {
-			return JsonWriter.objectToJson(input, pretty ? prettyFormat : normalFormat);
+		return toString(value, meta, insertMeta, input -> {
+			return JsonIo.toJson(input, pretty ? prettyFormat : normalFormat);
 		});
 	}
 
 	// --- IMPLEMENTED PARSER METHOD ---
 
-	@SuppressWarnings("resource")
 	@Override
 	public Object parse(String source) throws Exception {
-		return new JsonReader(source, null).readObject();
+
+		// In "returnAsJsonObjects" mode json-io only accepts native root types
+		// (Map for objects, Object[] for arrays), not java.lang.Object.
+		if (source.charAt(0) == '[') {
+			return JsonIo.toJava(source, readOptions).asClass(Object[].class);
+		}
+		return JsonIo.toJava(source, readOptions).asClass(Map.class);
 	}
 
 	// --- ADD CUSTOM SERIALIZER ---
 
 	public static <T> void addSerializer(Class<T> type, JsonIOWriter<T> writer) {
-		JsonWriter.addWriterPermanent(type, new JsonClassWriter() {
+		customWriters.put(type, new JsonClassWriter() {
 
 			@Override
-			public final boolean hasPrimitiveForm() {
+			public boolean hasPrimitiveForm(WriterContext context) {
 				return true;
-			}
-
-			@Override
-			public void write(Object o, boolean showType, Writer output) throws IOException {
-				
-				// Not used
 			}
 
 			@SuppressWarnings("unchecked")
 			@Override
-			public void writePrimitiveForm(Object o, Writer output) throws IOException {
+			public void writePrimitiveForm(Object o, Writer output, WriterContext context) throws IOException {
 				writer.writePrimitiveForm((T) o, output);
 			}
 
@@ -201,9 +219,7 @@ public class JsonJsonIO extends AbstractTextAdapter {
 	}
 
 	public interface JsonIOWriter<T> {
-
 		public void writePrimitiveForm(T o, Writer output) throws IOException;
-
 	}
 
 }
