@@ -52,31 +52,3 @@ Adapters call `tryToAddSerializers("io.datatree.dom.adapters.<Name>BsonSerialize
 3. Add the library to `<dependencies>` in `pom.xml` (grouped by format with a comment header, matching the existing layout; `com.fasterxml.jackson.*` modules need no `<version>` — they inherit `jackson-bom`).
 4. (Optional) Add a `<Format><Library>BsonSerializers` companion and wire it via `tryToAddSerializers(...)`.
 5. Add a `TreeTestWith<Library>` extending `ExtendedTreeTest` that overrides `setUp()` to set the impl, and register it in `TreeTestSuite` (and in the Surefire `<includes>` if the class name doesn't match `TreeTestWith*`).
-
-## Modernization notes (2.0.0)
-
-Migrated from Gradle/Java 8 to **Maven + JDK 21**, version **2.0.0**. Key cross-cutting changes:
-
-- All `com.fasterxml.jackson.*` modules are unified through the **`jackson-bom`** import in `<dependencyManagement>`, so they always share one version (currently 2.19.x) — Jackson dependencies are declared without an explicit `<version>`.
-- Apache **Johnzon** → 2.x; its JSON-P API moved from `javax.json` to **`jakarta.json`** (`jakarta.json-api` 2.1.x). `JsonJohnzon` imports `jakarta.json.*`.
-- Amazon **Ion** coordinate `software.amazon.ion:ion-java` → **`com.amazon.ion:ion-java`** (the `IonIon`/`JsonIon` imports moved to `com.amazon.ion.*`).
-- **XStream** → `com.thoughtworks.xstream:xstream` 1.4.x; its type-filtering security is enabled by default, so `XmlXStream` calls `addPermission(AnyTypePermission.ANY)` (it (de)serializes the application's own trusted data).
-- **SnakeYAML** → 2.x (the no-arg `Representer` constructor was removed — `ExtensibleRepresenter` now passes a `DumperOptions`).
-- **bson** → 5.x; `IterableCodec` is no longer public and `DocumentCodec` no longer encodes nested maps/lists implicitly, so `JsonBson` registers `IterableCodecProvider` + `MapCodecProvider` and obtains the iterable codec via the registry.
-- **json-io** → 4.56.x; package moved to `com.cedarsoftware.io`, and `JsonJsonIO` uses the `JsonIo` facade with `ReadOptionsBuilder`/`WriteOptionsBuilder` (read in `returnAsJsonObjects` mode → `Map`/`Object[]` roots only).
-
-**Adapters removed in 2.0.0** (dead-upstream / CVE-laden libraries — an intentional API trim justified by the major release; each removed public class is listed for release notes):
-
-| Removed adapter(s) | Dropped library |
-|---|---|
-| `JsonBoon` | `io.fastjson:boon` |
-| `JsonFast` | `com.alibaba:fastjson` (v1) |
-| `JsonSojo`, `XmlRpcSojo` | `net.sf.sojo:sojo` |
-| `JsonFlex` | `net.sf.flexjson:flexjson` |
-| `JsonJsoniter` | `com.jsoniter:jsoniter` |
-| `JsonUtil` | `org.kopitubruk.util:JSONUtil` |
-| `JsonSimple` | `com.googlecode.json-simple:json-simple` |
-| `TomlJtoml` | `me.grison:jtoml` (kept the maintained `io.ous:jtoml` as `TomlJtoml2`) |
-| `MsgPackOrg` | `org.msgpack:msgpack` 0.6 (MessagePack is still supported via `MsgPackJackson` on `jackson-dataformat-msgpack` 0.9) |
-
-Their companion `*BsonSerializers` / `*JavaSerializers` classes and the matching `TreeTestWith*` / `Performance*` tests were removed as well.
