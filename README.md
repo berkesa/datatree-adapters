@@ -1,19 +1,39 @@
-## DataTree Adapter Pack
+# DataTree Adapter Pack
 
-Text and binary adapters for [DataTree Tools API](https://berkesa.github.io/datatree/).
+Text and binary format adapters for the [DataTree API](https://berkesa.github.io/datatree/).
 
-DataTree is an extensible Java Library for reading, manipulating and writing hierarchical data structures from/to various formats. DataTree is NOT an another JSON parser. It's a top-level API layer that uses existing JSON implementations.
-Even though the JSON format is the default, DataTree supports other formats, such as XML, YAML, TOML, etc.
-DataTree enables you to replace the underlaying implementation (to a smaller, smarter, faster version)
-during the software development without any code modifications.
-In addition, the DataTree API provides you with a logical set of tools
-to manipulate (put, get, remove, insert, sort, find, stream, etc.) the content of the hierarchical documents.
+DataTree is an extensible Java library for reading, manipulating, and writing hierarchical data
+structures in many formats. It is **not** yet another JSON parser — it is a top-level API layer
+that drives existing implementations through a single `Tree` document type. JSON is the default
+format, but DataTree also supports XML, YAML, TOML, and many more, and lets you replace the
+underlying implementation (with a smaller, smarter, or faster one) **without changing any of
+your code**. On top of that, the `Tree` API gives you a complete toolset to manipulate documents
+(put, get, remove, insert, sort, find, stream, …).
+
+This **adapter pack** sits on top of [`datatree-core`](https://github.com/berkesa/datatree) and
+adds the ~30 format/implementation adapters listed below. Each one registers itself automatically
+as soon as it is on the classpath.
 
 ![architecture](https://raw.githubusercontent.com/berkesa/datatree/master/docs/architecture.png)
 
 ## Documentation
 
 [![Documentation](https://raw.githubusercontent.com/berkesa/datatree/master/docs/docs-button.png)](https://berkesa.github.io/datatree/introduction.html)
+
+## Download
+
+```xml
+<dependency>
+    <groupId>com.github.berkesa</groupId>
+    <artifactId>datatree-adapters</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
+
+This pulls in `datatree-core` plus the third-party libraries behind every adapter (Jackson,
+Gson, SnakeYAML, XStream, …) as transitive dependencies, so all the formats below work out of
+the box. If you only need a few formats, exclude the libraries you don't use to keep your
+dependency tree small.
 
 ## Supported formats and implementations
 
@@ -146,6 +166,11 @@ TreeWriterRegistry.setWriter("json", new JsonGson());
 Replace `json` with any format name (`xml`, `yaml`, `toml`, `cbor`, ...) and `JsonGson` with
 any adapter from the tables above.
 
-## License:
+## Requirements
 
-DataTree is licensed under the Apache License V2, you can use it in your commercial products for free.
+Java 21 or newer.
+
+## License
+
+DataTree is licensed under the Apache License, Version 2.0 — you can use it in your commercial
+products for free.
