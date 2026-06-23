@@ -168,7 +168,7 @@ any adapter from the tables above.
 
 ## Requirements
 
-Java 21 or newer.
+Java 11 or newer.
 
 ## License
 

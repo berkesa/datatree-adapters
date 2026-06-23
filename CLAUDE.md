@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 DataTree Adapter Pack: a set of text and binary format adapters for the [DataTree Tools API](https://berkesa.github.io/datatree/). DataTree is **not** a JSON parser — it's a top-level API layer (`datatree-core`, a runtime dependency) that lets applications read/manipulate/write hierarchical data while swapping the underlying implementation without code changes. This repo provides those swappable implementations: ~11 JSON libraries plus XML, YAML, TOML, CSV, Properties, and binary formats (Smile, CBOR, BSON, Ion, MessagePack, Kryo).
 
-Java 21 (`maven.compiler.release=21`). Maven build, version **2.0.0**, published to Maven Central as `com.github.berkesa:datatree-adapters`. Depends on `com.github.berkesa:datatree-core:2.0.0`.
+Java 11 (`maven.compiler.release=11`). Minimum consumer runtime: **JDK 11**. Build JDK: 17+ (JDK 25 in use). Maven build, version **2.0.0**, published to Maven Central as `com.github.berkesa:datatree-adapters`. Depends on `com.github.berkesa:datatree-core:2.0.0`.
 
 ## Build & Test
 
