@@ -14,7 +14,7 @@ Java 11 (`maven.compiler.release=11`). Minimum consumer runtime: **JDK 11**. Bui
 mvn clean verify                       # compile + test + jar
 mvn test                               # run unit tests
 mvn -Dtest=TreeTestWithJackson test    # single test class
-mvn clean install                      # install 2.0.0-SNAPSHOT to local ~/.m2
+mvn clean install                      # install 2.0.0 to local ~/.m2
 mvn -Prelease clean deploy             # sources + javadoc + GPG + Central Portal publish
 ```
 
