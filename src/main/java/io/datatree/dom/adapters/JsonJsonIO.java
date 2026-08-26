@@ -52,7 +52,7 @@ import io.datatree.dom.converters.DataConverterRegistry;
  * <b>Dependency:</b><br>
  * <br>
  * https://mvnrepository.com/artifact/com.cedarsoftware/json-io<br>
- * compile group: 'com.cedarsoftware', name: 'json-io', version: '4.56.0' <br>
+ * compile group: 'com.cedarsoftware', name: 'json-io', version: '4.110.0' <br>
  * <br>
  * <b>Set as default (using Java System Properties):</b><br>
  * <br>
@@ -194,9 +194,44 @@ public class JsonJsonIO extends AbstractTextAdapter {
 		// In "returnAsJsonObjects" mode json-io only accepts native root types
 		// (Map for objects, Object[] for arrays), not java.lang.Object.
 		if (source.charAt(0) == '[') {
-			return JsonIo.toJava(source, readOptions).asClass(Object[].class);
+			return toNativeContainers(JsonIo.toJava(source, readOptions).asClass(Object[].class));
 		}
-		return JsonIo.toJava(source, readOptions).asClass(Map.class);
+		return toNativeContainers(JsonIo.toJava(source, readOptions).asClass(Map.class));
+	}
+
+	// --- CONVERT JSON-IO CONTAINERS INTO NATIVE JAVA CONTAINERS ---
+
+	/**
+	 * Replaces json-io's own Map implementation ("JsonObject") with a standard
+	 * LinkedHashMap, recursively. Since json-io 4.100 JsonObject is backed by a
+	 * custom array structure whose entrySet iterator does not implement
+	 * remove(), so a parsed Tree would not be removable/renamable. Every other
+	 * DataTree adapter returns plain LinkedHashMaps; this keeps json-io's
+	 * output identical to theirs (and keeps json-io's internal types out of the
+	 * values returned by Tree::asObject).
+	 *
+	 * @param value parsed value (Map, Object[] or scalar)
+	 *
+	 * @return the same value with all json-io Maps replaced by LinkedHashMaps
+	 */
+	@SuppressWarnings("unchecked")
+	protected static Object toNativeContainers(Object value) {
+		if (value instanceof Map) {
+			Map<Object, Object> source = (Map<Object, Object>) value;
+			LinkedHashMap<Object, Object> copy = new LinkedHashMap<>();
+			for (Map.Entry<Object, Object> entry : source.entrySet()) {
+				copy.put(entry.getKey(), toNativeContainers(entry.getValue()));
+			}
+			return copy;
+		}
+		if (value instanceof Object[]) {
+			Object[] array = (Object[]) value;
+			for (int i = 0; i < array.length; i++) {
+				array[i] = toNativeContainers(array[i]);
+			}
+			return array;
+		}
+		return value;
 	}
 
 	// --- ADD CUSTOM SERIALIZER ---
